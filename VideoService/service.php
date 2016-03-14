@@ -12,6 +12,7 @@
         $stream = new VideoStream("Assets/videos/".desifrele($_GET["id"]));
        
         //sifreSil($_GET["id"]); // desifrelenen id(şifre)'nin tekrar kullanılmasını istemediğimizden siliyoruz. Güvenliği bu sağlıyor :D
+        //maalesef sifresil() autostream yapılırken, videonun yüklenmesini engelliyor :'( 
         
         $stream->start();
         exit; 
