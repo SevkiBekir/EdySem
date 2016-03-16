@@ -1,0 +1,22 @@
+<IfModule mod_rewrite.c>
+    # Daha fazla güvenlik için, RewriteEngine ile dışarıdan gelen tüm bağlantıları katı olarak filtreliyoruz
+    # Herhangi bir klasöre erişim kesinlikle reddedilirken, istemci tarafından kullanılan dosyalar hariç
+    # Gelen tüm istekler service.php'ye yönlendiriliyor...
+    RewriteEngine on
+    
+    #Gizli dosyalar görüntülenemesin
+    <Files .*>
+        Order Deny,Allow
+        Deny From All
+    </Files>
+
+    # Sadece aşağıdaki dosyalara geçiş hakkı sağlanması
+    RewriteCond %{REQUEST_FILENAME} !\.(gif|jpeg|png|js|css|)$
+    RewriteCond %{REQUEST_FILENAME} !/v$
+    RewriteCond %{REQUEST_FILENAME} !/service.php$
+    #RewriteCond %{REQUEST_FILENAME} -l
+    RewriteRule ^ index.php [QSA,L]
+
+    # Geri kalan tüm istekler service.php'ye gönderilecek...
+    RewriteRule ^v/(.*)$ app/service.php?v=$1 [QSA,L]
+</IfModule>

@@ -1,6 +1,6 @@
 <?php
     /**
-    * Schooling video güvenliği ilk versiyon
+    * Schooling video güvenliği v2
     * 
     * Video güvenliği için ilk adımı AJAX ile getirtilen ve belirli timespan ve 
     * kurallar çerçevesinde çalışabilen video kesitleri oluşturabilmekti.
@@ -9,20 +9,27 @@
     * harici bir programa gerek duydu, ilk versiyonda basit sunucu ortamına göre aşağıdaki yöntemi tercih ettim
     * 
     * Videolar sadece bu sayfa tarafından gönderilen özel bir key için çalışabilir olacaklar,
-    * bu key(şifre) sunucu tarafından anlık rastgele oluşturulacak ve sadece bir kez kullanılacak,
-    * tekrar aynı key ile videoya erişim söz konusu olamayacak. Bu sayede network linki üzerinden videonun 
-    * kopyalanabilmesini önleyebiliyoruz, çünkü link sadece bir kez çalışır durumda olacak.
+    * bu key(şifre) sunucu tarafından anlık rastgele oluşturulup, videonun id'si istek gönderen sayfanın
+    * tam linki ile birleştirilip sunucuya şifre indexi ile kaydediliyor. 
     * 
-    * Sayfa her yüklendiğinde videonun linki de değişecek, bu değişimi rastgele şifre üretip çözebilen
-    * querySifrele.php ile sağlıyoruz.
+    * Üretilen şifre link olarak kullanılıp, service.php tarafında işlenip video stream ediliyor.
+    * Eğer tarayıcı çubuğundan videoya erişim istenirse, oluşturulan kısa şifreli link, sistemden kaldırılıp
+    * video has broken hatası verdirtiliyor. Bu gönderici sayfanın olmamayışı prensibi ile farkediliyor ve
+    * videonun kendi linki sayesinde çekilebilmesi imkansızlaşıyor
+    * 
+    * 
+    *        SERVİSİN KULLANIMI
+    * 
+    *   Servisin kullanımı için app/service.php dosyasının include edilmesi ve
+    *   VidServHome sabitinin .htaacces dosyasının bulunduğu klasöre ayarlanması yeterli olacaktır
+    *   Video linki ozelLink($videoId) fonksiyonu ile oluşturulduğu taktirde videolar çalışacaktır :) 
+    *       ayrıca video tagının preload="true" olarak ayarlanması gerekmekte, bu versiyon için... 
+    *   
+    *   
+    *   
     */
     
-    include "querySifrele.php";
-
-    $videoAdi = "video.mp4";
-
-    $anlikVidSif = anlikSifre($videoAdi);
-
+    include "app/service.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,6 +37,9 @@
         
     </head>
     <body>
-        <video controls preload="auto" src="service.php?id=<?php echo $anlikVidSif;?>" width="20%"></video>'
+        <center>
+            <h3>Video Serving v2</h3>
+            <video controls preload="auto" src="<?php echo ozelLink("video.mp4");?>" width="40%"></video>
+        </center>     
     </body>
 </html>
