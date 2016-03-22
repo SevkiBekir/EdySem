@@ -44,7 +44,7 @@
         * ki sistem var olan veriler için tekrar tekrar rastgele şifre üretip şişmesin
         */
         foreach ($_SESSION["şifreler"] as $key => $val){
-            if ($val == [$veri, $ref]){ 
+            if ($val == ["veri" => $veri, "ref" => $ref]){ 
                 return $key; // varmış :) direkt var olan key'i şifre olarak bastırıyoruz
             }
         }
