@@ -20,23 +20,28 @@
             /**
              * Assigning values...
              */
-            $personalName = $p_personalName;\n$personalSurname = $p_personalSurname;\n$email = $p_email;\n$telephone = $p_telephone;\n$createdDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n
-                                                      $updatedDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n
-
-            $this->db->insert(sems, $this);
+            $personalName = $p_personalName; 
+			$personalSurname = $p_personalSurname; 
+			$email = $p_email; 
+			$telephone = $p_telephone; 
+			$createdDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			$updatedDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			
+            $this->db->insert("sems", $this);
         }
 
         public function update($p_personalName = false, $p_personalSurname = false, $p_email = false, $p_telephone = false, , $where){
             /**
              * Assigning values...
              */
-            $personalName = $p_personalName != false ? $p_personalName : $personalName;\n$personalSurname = $p_personalSurname != false ? $p_personalSurname : $personalSurname;\n$email = $p_email != false ? $p_email : $email;\n$telephone = $p_telephone != false ? $p_telephone : $telephone;\n$updatedDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n
-
-            //$this->db->insert(sems, $this);
-
-            $this->db->update(sems, $this, $where);
+            $personalName = $p_personalName != false ? $p_personalName : $personalName;
+			$personalSurname = $p_personalSurname != false ? $p_personalSurname : $personalSurname;
+			$email = $p_email != false ? $p_email : $email;
+			$telephone = $p_telephone != false ? $p_telephone : $telephone;
+			$updatedDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			
+            $this->db->update("sems", $this, $where);
         }
-
     }
 ?>
                 

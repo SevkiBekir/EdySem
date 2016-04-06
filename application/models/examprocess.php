@@ -1,11 +1,11 @@
 
 <?php
-    class examprocess extends CI_Model {
+    class examProcess extends CI_Model {
 
         /**
-         * Columns of table examprocess
+         * Columns of table examProcess
          */
-		public $userId;
+		public $chapterId;
 		public $isSuccess;
 		public $Grade;
 
@@ -15,26 +15,27 @@
             parent::__construct();
         }
 
-        public function insert($p_userId = false, $p_isSuccess = false, $p_Grade = false){
+        public function insert($p_chapterId = false, $p_isSuccess = false, $p_Grade = false){
             /**
              * Assigning values...
              */
-            $userId = $p_userId;\n$isSuccess = $p_isSuccess;\n$Grade = $p_Grade;\n
-
-            $this->db->insert(examprocess, $this);
+            $chapterId = $p_chapterId; 
+			$isSuccess = $p_isSuccess; 
+			$Grade = $p_Grade; 
+			
+            $this->db->insert("examProcess", $this);
         }
 
-        public function update($p_userId = false, $p_isSuccess = false, $p_Grade = false, $where){
+        public function update($p_chapterId = false, $p_isSuccess = false, $p_Grade = false, $where){
             /**
              * Assigning values...
              */
-            $userId = $p_userId != false ? $p_userId : $userId;\n$isSuccess = $p_isSuccess != false ? $p_isSuccess : $isSuccess;\n$Grade = $p_Grade != false ? $p_Grade : $Grade;\n
-
-            //$this->db->insert(examprocess, $this);
-
-            $this->db->update(examprocess, $this, $where);
+            $chapterId = $p_chapterId != false ? $p_chapterId : $chapterId;
+			$isSuccess = $p_isSuccess != false ? $p_isSuccess : $isSuccess;
+			$Grade = $p_Grade != false ? $p_Grade : $Grade;
+			
+            $this->db->update("examProcess", $this, $where);
         }
-
     }
 ?>
                 

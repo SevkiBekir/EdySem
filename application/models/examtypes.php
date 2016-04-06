@@ -1,9 +1,9 @@
 
 <?php
-    class examtypes extends CI_Model {
+    class examTypes extends CI_Model {
 
         /**
-         * Columns of table examtypes
+         * Columns of table examTypes
          */
 		public $name;
 
@@ -17,22 +17,19 @@
             /**
              * Assigning values...
              */
-            $name = $p_name;\n
-
-            $this->db->insert(examtypes, $this);
+            $name = $p_name; 
+			
+            $this->db->insert("examTypes", $this);
         }
 
         public function update($p_name = false, $where){
             /**
              * Assigning values...
              */
-            $name = $p_name != false ? $p_name : $name;\n
-
-            //$this->db->insert(examtypes, $this);
-
-            $this->db->update(examtypes, $this, $where);
+            $name = $p_name != false ? $p_name : $name;
+			
+            $this->db->update("examTypes", $this, $where);
         }
-
     }
 ?>
                 

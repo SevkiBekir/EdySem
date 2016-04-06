@@ -1,13 +1,13 @@
 
 <?php
-    class userdetails extends CI_Model {
+    class userDetails extends CI_Model {
 
         /**
-         * Columns of table userdetails
+         * Columns of table userDetails
          */
+		public $userId;
 		public $age;
 		public $phone;
-		public $typeId;
 		public $occupationId;
 		public $educationId;
 		public $fbUserName;
@@ -24,26 +24,45 @@
             parent::__construct();
         }
 
-        public function insert($p_age = false, $p_phone = false, $p_typeId = false, $p_occupationId = false, $p_educationId = false, $p_fbUserName = false, $p_twUserName = false, $p_about = false, $p_profileImageURL = false, $p_tcNo = false, $p_address = false, $p_gender = false){
+        public function insert($p_userId = false, $p_age = false, $p_phone = false, $p_occupationId = false, $p_educationId = false, $p_fbUserName = false, $p_twUserName = false, $p_about = false, $p_profileImageURL = false, $p_tcNo = false, $p_address = false, $p_gender = false){
             /**
              * Assigning values...
              */
-            $age = $p_age;\n$phone = $p_phone;\n$typeId = $p_typeId;\n$occupationId = $p_occupationId;\n$educationId = $p_educationId;\n$fbUserName = $p_fbUserName;\n$twUserName = $p_twUserName;\n$about = $p_about;\n$profileImageURL = $p_profileImageURL;\n$tcNo = $p_tcNo;\n$address = $p_address;\n$gender = $p_gender;\n
-
-            $this->db->insert(userdetails, $this);
+            $userId = $p_userId; 
+			$age = $p_age; 
+			$phone = $p_phone; 
+			$occupationId = $p_occupationId; 
+			$educationId = $p_educationId; 
+			$fbUserName = $p_fbUserName; 
+			$twUserName = $p_twUserName; 
+			$about = $p_about; 
+			$profileImageURL = $p_profileImageURL; 
+			$tcNo = $p_tcNo; 
+			$address = $p_address; 
+			$gender = $p_gender; 
+			
+            $this->db->insert("userDetails", $this);
         }
 
-        public function update($p_age = false, $p_phone = false, $p_typeId = false, $p_occupationId = false, $p_educationId = false, $p_fbUserName = false, $p_twUserName = false, $p_about = false, $p_profileImageURL = false, $p_tcNo = false, $p_address = false, $p_gender = false, $where){
+        public function update($p_userId = false, $p_age = false, $p_phone = false, $p_occupationId = false, $p_educationId = false, $p_fbUserName = false, $p_twUserName = false, $p_about = false, $p_profileImageURL = false, $p_tcNo = false, $p_address = false, $p_gender = false, $where){
             /**
              * Assigning values...
              */
-            $age = $p_age != false ? $p_age : $age;\n$phone = $p_phone != false ? $p_phone : $phone;\n$typeId = $p_typeId != false ? $p_typeId : $typeId;\n$occupationId = $p_occupationId != false ? $p_occupationId : $occupationId;\n$educationId = $p_educationId != false ? $p_educationId : $educationId;\n$fbUserName = $p_fbUserName != false ? $p_fbUserName : $fbUserName;\n$twUserName = $p_twUserName != false ? $p_twUserName : $twUserName;\n$about = $p_about != false ? $p_about : $about;\n$profileImageURL = $p_profileImageURL != false ? $p_profileImageURL : $profileImageURL;\n$tcNo = $p_tcNo != false ? $p_tcNo : $tcNo;\n$address = $p_address != false ? $p_address : $address;\n$gender = $p_gender != false ? $p_gender : $gender;\n
-
-            //$this->db->insert(userdetails, $this);
-
-            $this->db->update(userdetails, $this, $where);
+            $userId = $p_userId != false ? $p_userId : $userId;
+			$age = $p_age != false ? $p_age : $age;
+			$phone = $p_phone != false ? $p_phone : $phone;
+			$occupationId = $p_occupationId != false ? $p_occupationId : $occupationId;
+			$educationId = $p_educationId != false ? $p_educationId : $educationId;
+			$fbUserName = $p_fbUserName != false ? $p_fbUserName : $fbUserName;
+			$twUserName = $p_twUserName != false ? $p_twUserName : $twUserName;
+			$about = $p_about != false ? $p_about : $about;
+			$profileImageURL = $p_profileImageURL != false ? $p_profileImageURL : $profileImageURL;
+			$tcNo = $p_tcNo != false ? $p_tcNo : $tcNo;
+			$address = $p_address != false ? $p_address : $address;
+			$gender = $p_gender != false ? $p_gender : $gender;
+			
+            $this->db->update("userDetails", $this, $where);
         }
-
     }
 ?>
                 

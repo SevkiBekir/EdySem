@@ -1,9 +1,9 @@
 
 <?php
-    class coursetouser extends CI_Model {
+    class courseToUser extends CI_Model {
 
         /**
-         * Columns of table coursetouser
+         * Columns of table courseToUser
          */
 		public $courseId;
 		public $date;
@@ -18,22 +18,21 @@
             /**
              * Assigning values...
              */
-            $courseId = $p_courseId;\n$date = $p_date;\n
-
-            $this->db->insert(coursetouser, $this);
+            $courseId = $p_courseId; 
+			$date = $p_date; 
+			
+            $this->db->insert("courseToUser", $this);
         }
 
         public function update($p_courseId = false, $p_date = false, $where){
             /**
              * Assigning values...
              */
-            $courseId = $p_courseId != false ? $p_courseId : $courseId;\n$date = $p_date != false ? $p_date : $date;\n
-
-            //$this->db->insert(coursetouser, $this);
-
-            $this->db->update(coursetouser, $this, $where);
+            $courseId = $p_courseId != false ? $p_courseId : $courseId;
+			$date = $p_date != false ? $p_date : $date;
+			
+            $this->db->update("courseToUser", $this, $where);
         }
-
     }
 ?>
                 

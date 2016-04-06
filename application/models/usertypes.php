@@ -1,9 +1,9 @@
 
 <?php
-    class usertypes extends CI_Model {
+    class userTypes extends CI_Model {
 
         /**
-         * Columns of table usertypes
+         * Columns of table userTypes
          */
 		public $name;
 
@@ -17,22 +17,19 @@
             /**
              * Assigning values...
              */
-            $name = $p_name;\n
-
-            $this->db->insert(usertypes, $this);
+            $name = $p_name; 
+			
+            $this->db->insert("userTypes", $this);
         }
 
         public function update($p_name = false, $where){
             /**
              * Assigning values...
              */
-            $name = $p_name != false ? $p_name : $name;\n
-
-            //$this->db->insert(usertypes, $this);
-
-            $this->db->update(usertypes, $this, $where);
+            $name = $p_name != false ? $p_name : $name;
+			
+            $this->db->update("userTypes", $this, $where);
         }
-
     }
 ?>
                 

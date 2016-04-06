@@ -5,7 +5,7 @@
         /**
          * Columns of table discussions
          */
-		public $userId;
+		public $courseId;
 		public $title;
 
 
@@ -14,27 +14,27 @@
             parent::__construct();
         }
 
-        public function insert($p_userId = false, $p_title = false, ){
+        public function insert($p_courseId = false, $p_title = false, ){
             /**
              * Assigning values...
              */
-            $userId = $p_userId;\n$title = $p_title;\n$createdDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n
-                                                      $updatedDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n
-
-            $this->db->insert(discussions, $this);
+            $courseId = $p_courseId; 
+			$title = $p_title; 
+			$createdDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			$updatedDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			
+            $this->db->insert("discussions", $this);
         }
 
-        public function update($p_userId = false, $p_title = false, , $where){
+        public function update($p_courseId = false, $p_title = false, , $where){
             /**
              * Assigning values...
              */
-            $userId = $p_userId != false ? $p_userId : $userId;\n$title = $p_title != false ? $p_title : $title;\n
-
-            //$this->db->insert(discussions, $this);
-
-            $this->db->update(discussions, $this, $where);
+            $courseId = $p_courseId != false ? $p_courseId : $courseId;
+			$title = $p_title != false ? $p_title : $title;
+			
+            $this->db->update("discussions", $this, $where);
         }
-
     }
 ?>
                 

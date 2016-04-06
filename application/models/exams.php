@@ -5,8 +5,8 @@
         /**
          * Columns of table exams
          */
-		public $questionId;
 		public $InstructorId;
+		public $chapterId;
 
 
         public function __construct(){
@@ -14,27 +14,28 @@
             parent::__construct();
         }
 
-        public function insert($p_questionId = false, $p_InstructorId = false){
+        public function insert($p_InstructorId = false, $p_chapterId = false){
             /**
              * Assigning values...
              */
-            $questionId = $p_questionId;\n$createdDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n
-                                                      $updatedDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n$InstructorId = $p_InstructorId;\n
-
-            $this->db->insert(exams, $this);
+            $createdDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			$updatedDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			$InstructorId = $p_InstructorId; 
+			$chapterId = $p_chapterId; 
+			
+            $this->db->insert("exams", $this);
         }
 
-        public function update($p_questionId = false, $p_InstructorId = false, $where){
+        public function update($p_InstructorId = false, $p_chapterId = false, $where){
             /**
              * Assigning values...
              */
-            $questionId = $p_questionId != false ? $p_questionId : $questionId;\n$updatedDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n$InstructorId = $p_InstructorId != false ? $p_InstructorId : $InstructorId;\n
-
-            //$this->db->insert(exams, $this);
-
-            $this->db->update(exams, $this, $where);
+            $updatedDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			$InstructorId = $p_InstructorId != false ? $p_InstructorId : $InstructorId;
+			$chapterId = $p_chapterId != false ? $p_chapterId : $chapterId;
+			
+            $this->db->update("exams", $this, $where);
         }
-
     }
 ?>
                 

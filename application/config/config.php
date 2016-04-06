@@ -23,7 +23,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '';
+
+$localips = array(
+    '127.0.0.1',
+    '::1'
+);
+
+$config['base_url'] = in_array($_SERVER['REMOTE_ADDR'], $localips) ? 'http://localhost/Schooling/' : 'http://144.122.7.254/sem/semarg/eLearningProject/Schooling/';
+
 
 /*
 |--------------------------------------------------------------------------

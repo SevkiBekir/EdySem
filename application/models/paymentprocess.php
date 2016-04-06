@@ -1,11 +1,11 @@
 
 <?php
-    class paymentprocess extends CI_Model {
+    class paymentProcess extends CI_Model {
 
         /**
-         * Columns of table paymentprocess
+         * Columns of table paymentProcess
          */
-		public $userId;
+		public $courseId;
 		public $situation;
 		public $date;
 
@@ -15,26 +15,27 @@
             parent::__construct();
         }
 
-        public function insert($p_userId = false, $p_situation = false, $p_date = false){
+        public function insert($p_courseId = false, $p_situation = false, $p_date = false){
             /**
              * Assigning values...
              */
-            $userId = $p_userId;\n$situation = $p_situation;\n$date = $p_date;\n
-
-            $this->db->insert(paymentprocess, $this);
+            $courseId = $p_courseId; 
+			$situation = $p_situation; 
+			$date = $p_date; 
+			
+            $this->db->insert("paymentProcess", $this);
         }
 
-        public function update($p_userId = false, $p_situation = false, $p_date = false, $where){
+        public function update($p_courseId = false, $p_situation = false, $p_date = false, $where){
             /**
              * Assigning values...
              */
-            $userId = $p_userId != false ? $p_userId : $userId;\n$situation = $p_situation != false ? $p_situation : $situation;\n$date = $p_date != false ? $p_date : $date;\n
-
-            //$this->db->insert(paymentprocess, $this);
-
-            $this->db->update(paymentprocess, $this, $where);
+            $courseId = $p_courseId != false ? $p_courseId : $courseId;
+			$situation = $p_situation != false ? $p_situation : $situation;
+			$date = $p_date != false ? $p_date : $date;
+			
+            $this->db->update("paymentProcess", $this, $where);
         }
-
     }
 ?>
                 

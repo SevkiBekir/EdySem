@@ -5,7 +5,7 @@
         /**
          * Columns of table posts
          */
-		public $userId;
+		public $discussionId;
 		public $content;
 
 
@@ -14,27 +14,28 @@
             parent::__construct();
         }
 
-        public function insert($p_userId = false, $p_content = false){
+        public function insert($p_discussionId = false, $p_content = false){
             /**
              * Assigning values...
              */
-            $userId = $p_userId;\n$createdDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n
-                                                      $updatedDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n$content = $p_content;\n
-
-            $this->db->insert(posts, $this);
+            $discussionId = $p_discussionId; 
+			$createdDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			$updatedDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			$content = $p_content; 
+			
+            $this->db->insert("posts", $this);
         }
 
-        public function update($p_userId = false, $p_content = false, $where){
+        public function update($p_discussionId = false, $p_content = false, $where){
             /**
              * Assigning values...
              */
-            $userId = $p_userId != false ? $p_userId : $userId;\n$updatedDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n$content = $p_content != false ? $p_content : $content;\n
-
-            //$this->db->insert(posts, $this);
-
-            $this->db->update(posts, $this, $where);
+            $discussionId = $p_discussionId != false ? $p_discussionId : $discussionId;
+			$updatedDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			$content = $p_content != false ? $p_content : $content;
+			
+            $this->db->update("posts", $this, $where);
         }
-
     }
 ?>
                 

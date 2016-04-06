@@ -5,7 +5,7 @@
         /**
          * Columns of table views
          */
-		public $viewerId;
+		public $documentId;
 
 
         public function __construct(){
@@ -13,26 +13,23 @@
             parent::__construct();
         }
 
-        public function insert($p_viewerId = false){
+        public function insert($p_documentId = false){
             /**
              * Assigning values...
              */
-            $viewerId = $p_viewerId;\n
-
-            $this->db->insert(views, $this);
+            $documentId = $p_documentId; 
+			
+            $this->db->insert("views", $this);
         }
 
-        public function update($p_viewerId = false, $where){
+        public function update($p_documentId = false, $where){
             /**
              * Assigning values...
              */
-            $viewerId = $p_viewerId != false ? $p_viewerId : $viewerId;\n
-
-            //$this->db->insert(views, $this);
-
-            $this->db->update(views, $this, $where);
+            $documentId = $p_documentId != false ? $p_documentId : $documentId;
+			
+            $this->db->update("views", $this, $where);
         }
-
     }
 ?>
                 

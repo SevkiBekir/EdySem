@@ -17,22 +17,19 @@
             /**
              * Assigning values...
              */
-            $stars = $p_stars;\n
-
-            $this->db->insert(ratings, $this);
+            $stars = $p_stars; 
+			
+            $this->db->insert("ratings", $this);
         }
 
         public function update($p_stars = false, $where){
             /**
              * Assigning values...
              */
-            $stars = $p_stars != false ? $p_stars : $stars;\n
-
-            //$this->db->insert(ratings, $this);
-
-            $this->db->update(ratings, $this, $where);
+            $stars = $p_stars != false ? $p_stars : $stars;
+			
+            $this->db->update("ratings", $this, $where);
         }
-
     }
 ?>
                 

@@ -1,12 +1,12 @@
 
 <?php
-    class lessonprogress extends CI_Model {
+    class lessonProgress extends CI_Model {
 
         /**
-         * Columns of table lessonprogress
+         * Columns of table lessonProgress
          */
-		public $userId;
 		public $lessonId;
+		public $lessonLegendId;
 
 
         public function __construct(){
@@ -14,26 +14,25 @@
             parent::__construct();
         }
 
-        public function insert($p_userId = false, $p_lessonId = false){
+        public function insert($p_lessonId = false, $p_lessonLegendId = false){
             /**
              * Assigning values...
              */
-            $userId = $p_userId;\n$lessonId = $p_lessonId;\n
-
-            $this->db->insert(lessonprogress, $this);
+            $lessonId = $p_lessonId; 
+			$lessonLegendId = $p_lessonLegendId; 
+			
+            $this->db->insert("lessonProgress", $this);
         }
 
-        public function update($p_userId = false, $p_lessonId = false, $where){
+        public function update($p_lessonId = false, $p_lessonLegendId = false, $where){
             /**
              * Assigning values...
              */
-            $userId = $p_userId != false ? $p_userId : $userId;\n$lessonId = $p_lessonId != false ? $p_lessonId : $lessonId;\n
-
-            //$this->db->insert(lessonprogress, $this);
-
-            $this->db->update(lessonprogress, $this, $where);
+            $lessonId = $p_lessonId != false ? $p_lessonId : $lessonId;
+			$lessonLegendId = $p_lessonLegendId != false ? $p_lessonLegendId : $lessonLegendId;
+			
+            $this->db->update("lessonProgress", $this, $where);
         }
-
     }
 ?>
                 
