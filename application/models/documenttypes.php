@@ -17,22 +17,19 @@
             /**
              * Assigning values...
              */
-            $name = $p_name;\n
-
-            $this->db->insert(documenttypes, $this);
+            $name = $p_name; 
+			
+            $this->db->insert("documenttypes", $this);
         }
 
         public function update($p_name = false, $where){
             /**
              * Assigning values...
              */
-            $name = $p_name != false ? $p_name : $name;\n
-
-            //$this->db->insert(documenttypes, $this);
-
-            $this->db->update(documenttypes, $this, $where);
+            $name = $p_name != false ? $p_name : $name;
+			
+            $this->db->update("documenttypes", $this, $where);
         }
-
     }
 ?>
                 

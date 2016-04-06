@@ -18,22 +18,21 @@
             /**
              * Assigning values...
              */
-            $userId = $p_userId;\n$lessonId = $p_lessonId;\n
-
-            $this->db->insert(lessonprogress, $this);
+            $userId = $p_userId; 
+			$lessonId = $p_lessonId; 
+			
+            $this->db->insert("lessonprogress", $this);
         }
 
         public function update($p_userId = false, $p_lessonId = false, $where){
             /**
              * Assigning values...
              */
-            $userId = $p_userId != false ? $p_userId : $userId;\n$lessonId = $p_lessonId != false ? $p_lessonId : $lessonId;\n
-
-            //$this->db->insert(lessonprogress, $this);
-
-            $this->db->update(lessonprogress, $this, $where);
+            $userId = $p_userId != false ? $p_userId : $userId;
+			$lessonId = $p_lessonId != false ? $p_lessonId : $lessonId;
+			
+            $this->db->update("lessonprogress", $this, $where);
         }
-
     }
 ?>
                 

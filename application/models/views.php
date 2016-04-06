@@ -17,22 +17,19 @@
             /**
              * Assigning values...
              */
-            $viewerId = $p_viewerId;\n
-
-            $this->db->insert(views, $this);
+            $viewerId = $p_viewerId; 
+			
+            $this->db->insert("views", $this);
         }
 
         public function update($p_viewerId = false, $where){
             /**
              * Assigning values...
              */
-            $viewerId = $p_viewerId != false ? $p_viewerId : $viewerId;\n
-
-            //$this->db->insert(views, $this);
-
-            $this->db->update(views, $this, $where);
+            $viewerId = $p_viewerId != false ? $p_viewerId : $viewerId;
+			
+            $this->db->update("views", $this, $where);
         }
-
     }
 ?>
                 

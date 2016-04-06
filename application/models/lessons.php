@@ -19,22 +19,23 @@
             /**
              * Assigning values...
              */
-            $name = $p_name;\n$duration = $p_duration;\n$typeId = $p_typeId;\n
-
-            $this->db->insert(lessons, $this);
+            $name = $p_name; 
+			$duration = $p_duration; 
+			$typeId = $p_typeId; 
+			
+            $this->db->insert("lessons", $this);
         }
 
         public function update($p_name = false, $p_duration = false, $p_typeId = false, $where){
             /**
              * Assigning values...
              */
-            $name = $p_name != false ? $p_name : $name;\n$duration = $p_duration != false ? $p_duration : $duration;\n$typeId = $p_typeId != false ? $p_typeId : $typeId;\n
-
-            //$this->db->insert(lessons, $this);
-
-            $this->db->update(lessons, $this, $where);
+            $name = $p_name != false ? $p_name : $name;
+			$duration = $p_duration != false ? $p_duration : $duration;
+			$typeId = $p_typeId != false ? $p_typeId : $typeId;
+			
+            $this->db->update("lessons", $this, $where);
         }
-
     }
 ?>
                 

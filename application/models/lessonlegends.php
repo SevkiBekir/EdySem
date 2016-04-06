@@ -17,22 +17,19 @@
             /**
              * Assigning values...
              */
-            $name = $p_name;\n
-
-            $this->db->insert(lessonlegends, $this);
+            $name = $p_name; 
+			
+            $this->db->insert("lessonlegends", $this);
         }
 
         public function update($p_name = false, $where){
             /**
              * Assigning values...
              */
-            $name = $p_name != false ? $p_name : $name;\n
-
-            //$this->db->insert(lessonlegends, $this);
-
-            $this->db->update(lessonlegends, $this, $where);
+            $name = $p_name != false ? $p_name : $name;
+			
+            $this->db->update("lessonlegends", $this, $where);
         }
-
     }
 ?>
                 

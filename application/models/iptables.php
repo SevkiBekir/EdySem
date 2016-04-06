@@ -19,22 +19,23 @@
             /**
              * Assigning values...
              */
-            $IP = $p_IP;\n$where = $p_where;\n$date = $p_date;\n
-
-            $this->db->insert(iptables, $this);
+            $IP = $p_IP; 
+			$where = $p_where; 
+			$date = $p_date; 
+			
+            $this->db->insert("iptables", $this);
         }
 
         public function update($p_IP = false, $p_where = false, $p_date = false, $where){
             /**
              * Assigning values...
              */
-            $IP = $p_IP != false ? $p_IP : $IP;\n$where = $p_where != false ? $p_where : $where;\n$date = $p_date != false ? $p_date : $date;\n
-
-            //$this->db->insert(iptables, $this);
-
-            $this->db->update(iptables, $this, $where);
+            $IP = $p_IP != false ? $p_IP : $IP;
+			$where = $p_where != false ? $p_where : $where;
+			$date = $p_date != false ? $p_date : $date;
+			
+            $this->db->update("iptables", $this, $where);
         }
-
     }
 ?>
                 

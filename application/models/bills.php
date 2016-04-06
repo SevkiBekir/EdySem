@@ -18,23 +18,23 @@
             /**
              * Assigning values...
              */
-            $billNo = $p_billNo;\n$userId = $p_userId;\n$createdDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n
-                                                      $updatedDate = date("d.m.Y, H:i:s"); // 06.04.2016, 04:34:18\n
-
-            $this->db->insert(bills, $this);
+            $billNo = $p_billNo; 
+			$userId = $p_userId; 
+			$createdDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			$updatedDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
+			
+            $this->db->insert("bills", $this);
         }
 
         public function update($p_billNo = false, $p_userId = false, , $where){
             /**
              * Assigning values...
              */
-            $billNo = $p_billNo != false ? $p_billNo : $billNo;\n$userId = $p_userId != false ? $p_userId : $userId;\n
-
-            //$this->db->insert(bills, $this);
-
-            $this->db->update(bills, $this, $where);
+            $billNo = $p_billNo != false ? $p_billNo : $billNo;
+			$userId = $p_userId != false ? $p_userId : $userId;
+			
+            $this->db->update("bills", $this, $where);
         }
-
     }
 ?>
                 

@@ -17,22 +17,19 @@
             /**
              * Assigning values...
              */
-            $name = $p_name;\n
-
-            $this->db->insert(cities, $this);
+            $name = $p_name; 
+			
+            $this->db->insert("cities", $this);
         }
 
         public function update($p_name = false, $where){
             /**
              * Assigning values...
              */
-            $name = $p_name != false ? $p_name : $name;\n
-
-            //$this->db->insert(cities, $this);
-
-            $this->db->update(cities, $this, $where);
+            $name = $p_name != false ? $p_name : $name;
+			
+            $this->db->update("cities", $this, $where);
         }
-
     }
 ?>
                 

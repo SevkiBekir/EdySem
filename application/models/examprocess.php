@@ -19,22 +19,23 @@
             /**
              * Assigning values...
              */
-            $userId = $p_userId;\n$isSuccess = $p_isSuccess;\n$Grade = $p_Grade;\n
-
-            $this->db->insert(examprocess, $this);
+            $userId = $p_userId; 
+			$isSuccess = $p_isSuccess; 
+			$Grade = $p_Grade; 
+			
+            $this->db->insert("examprocess", $this);
         }
 
         public function update($p_userId = false, $p_isSuccess = false, $p_Grade = false, $where){
             /**
              * Assigning values...
              */
-            $userId = $p_userId != false ? $p_userId : $userId;\n$isSuccess = $p_isSuccess != false ? $p_isSuccess : $isSuccess;\n$Grade = $p_Grade != false ? $p_Grade : $Grade;\n
-
-            //$this->db->insert(examprocess, $this);
-
-            $this->db->update(examprocess, $this, $where);
+            $userId = $p_userId != false ? $p_userId : $userId;
+			$isSuccess = $p_isSuccess != false ? $p_isSuccess : $isSuccess;
+			$Grade = $p_Grade != false ? $p_Grade : $Grade;
+			
+            $this->db->update("examprocess", $this, $where);
         }
-
     }
 ?>
                 
