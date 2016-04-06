@@ -20,16 +20,19 @@
              */
             foreach($diagram as $table => $val){
                 // Create model script file
-                $modelf = fopen(FCPATH."application/models/".$table.".php", "w") or die("Unable to open file!"); // Create model as 
+                $modelf = fopen(FCPATH."application/models/".ucfirst($table).".php", "w") or die("Unable to open file!"); // Create model as 
                 
                 // output file path...
-                echo FCPATH."application/models/".$table.".php <br>";
+                echo FCPATH."application/models/".ucfirst($table).".php <br>";
                 
+                $cols = [];
                 $freeCols = []; // non-referanced editable columns array
                 foreach($val as $col => $ref){ // Getting non-referenced columns of table
                     if($ref == false) {
                         $freeCols[] = $col;
                     }
+                    
+                    $cols[] = $col;
                 }
                 
                 
@@ -41,7 +44,7 @@
                 /**
                  * Build model variables....
                  */
-                foreach($freeCols as $id => $col){
+                foreach($cols as $id => $col){
                     if(!in_array($col, ['id', 'createdDate', 'updatedDate'])){ // Some columns does not implemented
                         $colCodeDef .= "\t\tpublic $".$col.";\n";
                         $colCodeParam .= '$p_'.$col.' = false'.($id != (count($freeCols) - 1)? ", " : "");
