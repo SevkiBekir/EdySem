@@ -1,6 +1,14 @@
 
 <?php
-    class users extends CI_Model {
+    /**
+     * Asim Dogan NAMLI
+     * asim.dogan.namli@gmail.com
+     * @2016
+     */
+
+    //include "dbModels/Users.php";
+
+    class users extends EL_Model {
 
         /**
          * Columns of table users
@@ -16,31 +24,27 @@
             parent::__construct();
         }
 
-        public function insert($p_firstname = false, $p_lastname = false, $p_email = false, $p_password = false, ){
-            /**
-             * Assigning values...
-             */
-            $firstname = $p_firstname; 
-			$lastname = $p_lastname; 
-			$email = $p_email; 
-			$password = $p_password; 
-			$createdDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
-			$updatedDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
-			
-            $this->db->insert("users", $this);
+        function getUserId($email, $pass){
+            if($row = $this->search(array('email' => $email, 'password' => $pass))){
+                
+                //new dBug($row);
+                
+                return $row[0]->id;
+            };
+            
+            return false;
         }
-
-        public function update($p_firstname = false, $p_lastname = false, $p_email = false, $p_password = false, , $where){
-            /**
-             * Assigning values...
-             */
-            $firstname = $p_firstname != false ? $p_firstname : $firstname;
-			$lastname = $p_lastname != false ? $p_lastname : $lastname;
-			$email = $p_email != false ? $p_email : $email;
-			$password = $p_password != false ? $p_password : $password;
-			$updatedDate = date('d.m.Y, H:i:s'); // 06.04.2016, 04:34:18
-			
-            $this->db->update("users", $this, $where);
+        
+        function register($email, $password, $firstName, $lastName){
+            echo $firstName;
+            
+            if($this->save(array("email" => $email, "password" => $password, "firstName" => $firstName, "lastName" => $lastName))){
+                
+                /// Registration is successful
+                return true;
+            };
+            
+            return false;
         }
     }
 ?>

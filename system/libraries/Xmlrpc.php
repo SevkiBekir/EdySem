@@ -1096,7 +1096,7 @@ class XML_RPC_Message extends CI_Xmlrpc
 	 */
 	public function createPayload()
 	{
-		$this->payload = '<?xml version="1.0"?'.">\r\n<methodCall>\r\n"
+		$this->payload = '<?phpxml version="1.0"?'.">\r\n<methodCall>\r\n"
 				.'<methodName>'.$this->method_name."</methodName>\r\n"
 				."<params>\r\n";
 

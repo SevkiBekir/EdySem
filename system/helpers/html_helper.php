@@ -196,11 +196,11 @@ if ( ! function_exists('img'))
 			{
 				if ($index_page === TRUE)
 				{
-					$img .= ' src="'.get_instance()->config->site_url($v).'"';
+					$img .= ' src="<?php assetsUrl(); ?>'.get_instance()->config->site_url($v).'"';
 				}
 				else
 				{
-					$img .= ' src="'.get_instance()->config->slash_item('base_url').$v.'"';
+					$img .= ' src="<?php assetsUrl(); ?>'.get_instance()->config->slash_item('base_url').$v.'"';
 				}
 			}
 			else
@@ -288,11 +288,11 @@ if ( ! function_exists('link_tag'))
 				{
 					if ($index_page === TRUE)
 					{
-						$link .= 'href="'.$CI->config->site_url($v).'" ';
+						$link .= 'href=" <?php assetsUrl(); ?>'.$CI->config->site_url($v).'" ';
 					}
 					else
 					{
-						$link .= 'href="'.$CI->config->slash_item('base_url').$v.'" ';
+						$link .= 'href=" <?php assetsUrl(); ?>'.$CI->config->slash_item('base_url').$v.'" ';
 					}
 				}
 				else
@@ -305,15 +305,15 @@ if ( ! function_exists('link_tag'))
 		{
 			if (preg_match('#^([a-z]+:)?//#i', $href))
 			{
-				$link .= 'href="'.$href.'" ';
+				$link .= 'href=" <?php assetsUrl(); ?>'.$href.'" ';
 			}
 			elseif ($index_page === TRUE)
 			{
-				$link .= 'href="'.$CI->config->site_url($href).'" ';
+				$link .= 'href=" <?php assetsUrl(); ?>'.$CI->config->site_url($href).'" ';
 			}
 			else
 			{
-				$link .= 'href="'.$CI->config->slash_item('base_url').$href.'" ';
+				$link .= 'href=" <?php assetsUrl(); ?>'.$CI->config->slash_item('base_url').$href.'" ';
 			}
 
 			$link .= 'rel="'.$rel.'" type="'.$type.'" ';

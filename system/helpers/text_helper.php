@@ -326,7 +326,7 @@ if ( ! function_exists('highlight_code'))
 		 * and thus, thwart the highlighting.
 		 */
 		$str = str_replace(
-			array('&lt;', '&gt;', '<?', '?>', '<%', '%>', '\\', '</script>'),
+			array('&lt;', '&gt;', '<?php', '?>', '<%', '%>', '\\', '</script>'),
 			array('<', '>', 'phptagopen', 'phptagclose', 'asptagopen', 'asptagclose', 'backslashtmp', 'scriptclose'),
 			$str
 		);

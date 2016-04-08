@@ -12,28 +12,28 @@
 <meta name="author" content="Ansonika">
 
 <!-- Favicons-->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
-    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="shortcut icon" href=" <?php assetsUrl(); ?>img/favicon.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon" type="image/x-icon" href=" <?php assetsUrl(); ?>img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href=" <?php assetsUrl(); ?>img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href=" <?php assetsUrl(); ?>img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href=" <?php assetsUrl(); ?>img/apple-touch-icon-144x144-precomposed.png">
 
 <!-- Mobile Specific Metas -->
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <!-- CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+<link href=" <?php assetsUrl(); ?>css/bootstrap.min.css" rel="stylesheet">
+<link href=" <?php assetsUrl(); ?>css/style.css" rel="stylesheet">
 
 
 	<!--[if lt IE 9]>
-      <script src="http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="http://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <script src="<?php assetsUrl(); ?>http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="<?php assetsUrl(); ?>http://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
 
 <!--[if IE 7]>
-  <link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+  <link rel="stylesheet" href=" <?php assetsUrl(); ?>font-awesome/css/font-awesome-ie7.min.css">
 <![endif]-->
 <script type="text/javascript">
 function delayedRedirect(){

@@ -173,7 +173,7 @@ if ( ! function_exists('anchor'))
 			$attributes = _stringify_attributes($attributes);
 		}
 
-		return '<a href="'.$site_url.'"'.$attributes.'>'.$title.'</a>';
+		return '<a href=" <?php assetsUrl(); ?>'.$site_url.'"'.$attributes.'>'.$title.'</a>';
 	}
 }
 
@@ -204,7 +204,7 @@ if ( ! function_exists('anchor_popup'))
 
 		if ($attributes === FALSE)
 		{
-			return '<a href="'.$site_url.'" onclick="window.open(\''.$site_url."', '_blank'); return false;\">".$title.'</a>';
+			return '<a href=" <?php assetsUrl(); ?>'.$site_url.'" onclick="window.open(\''.$site_url."', '_blank'); return false;\">".$title.'</a>';
 		}
 
 		if ( ! is_array($attributes))
@@ -232,7 +232,7 @@ if ( ! function_exists('anchor_popup'))
 
 		$attributes = _stringify_attributes($attributes);
 
-		return '<a href="'.$site_url
+		return '<a href=" <?php assetsUrl(); ?>'.$site_url
 			.'" onclick="window.open(\''.$site_url."', '".$window_name."', '"._stringify_attributes($atts, TRUE)."'); return false;\""
 			.$attributes.'>'.$title.'</a>';
 	}
@@ -259,7 +259,7 @@ if ( ! function_exists('mailto'))
 			$title = $email;
 		}
 
-		return '<a href="mailto:'.$email.'"'._stringify_attributes($attributes).'>'.$title.'</a>';
+		return '<a href=" <?php assetsUrl(); ?>mailto:'.$email.'"'._stringify_attributes($attributes).'>'.$title.'</a>';
 	}
 }
 
@@ -286,7 +286,7 @@ if ( ! function_exists('safe_mailto'))
 			$title = $email;
 		}
 
-		$x = str_split('<a href="mailto:', 1);
+		$x = str_split('<a href=" <?php assetsUrl(); ?>mailto:', 1);
 
 		for ($i = 0, $l = strlen($email); $i < $l; $i++)
 		{
@@ -408,7 +408,7 @@ if ( ! function_exists('auto_link'))
 				//
 				// With PREG_OFFSET_CAPTURE, both of the above is an array,
 				// where the actual value is held in [0] and its offset at the [1] index.
-				$a = '<a href="'.(strpos($match[1][0], '/') ? '' : 'http://').$match[0][0].'"'.$target.'>'.$match[0][0].'</a>';
+				$a = '<a href=" <?php assetsUrl(); ?>'.(strpos($match[1][0], '/') ? '' : 'http://').$match[0][0].'"'.$target.'>'.$match[0][0].'</a>';
 				$str = substr_replace($str, $a, $match[0][1], strlen($match[0][0]));
 			}
 		}
