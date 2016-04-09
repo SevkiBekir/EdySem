@@ -104,7 +104,7 @@
 
                 <!-- Content of top menu -->
                 <ul class="sf-menu">
-                    <?php include "subViews/topMenuItems.php"; ?>
+                    <?php include_once("subViews/topMenuItems.php"); ?>
                 </ul>
 
                 <div class="col-md-3 pull-right hidden-sm hidden-xs">

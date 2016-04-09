@@ -1,7 +1,7 @@
 <?php 
-    include "header.php";
+include_once("header.php");
 
-if(!$userId){ 
+if($userId==""){ 
 
 ?>
     <section id="sub-header" >
@@ -290,7 +290,3 @@ if(!$userId){
         </div>
        </section><!-- End testimonials -->
 
-<?php include "footer.php"; ?>
-
-  </body>
-</html>
