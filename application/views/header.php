@@ -46,7 +46,7 @@
   	<div class="container">
 	<div class="row">
 		<div class="col-md-3 col-sm-3 col-xs-3">
-			<a href="index" id="logo">Schooling</a>
+			<a href="<?php baseUrl(); ?>" id="logo">Schooling</a>
 		</div>
 		<div class="col-md-9 col-sm-9 col-xs-9">
 			<div class=" pull-right">
@@ -104,7 +104,7 @@
 
                 <!-- Content of top menu -->
                 <ul class="sf-menu">
-                    <?php include "subViews/TopMenuItems.php"; ?>
+                    <?php include "subViews/topMenuItems.php"; ?>
                 </ul>
 
                 <div class="col-md-3 pull-right hidden-sm hidden-xs">

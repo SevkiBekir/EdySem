@@ -7,6 +7,6 @@ class logout extends CI_Controller {
         
 		$this->session->sess_destroy();
         session('userId', ''); // Neden anlayamadım, session destroy bir sonraki yenilemede session datasını siliyor gibi :(
-        loadView("Main");
+        loadView("main");
 	}
 }

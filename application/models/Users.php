@@ -24,8 +24,9 @@
             parent::__construct();
         }
 
-        function getUserId($email, $pass){
-            if($row = $this->search(array('email' => $email, 'password' => $pass))){
+        function getUserId($email, $password){
+        	$password=md5($password);
+            if($row = $this->search(array('email' => $email, 'password' => $password))){
                 
                 //new dBug($row);
                 
@@ -36,8 +37,13 @@
         }
         
         function register($email, $password, $firstName, $lastName){
+            if($this->search(array('email'=>$email))){
+	            //Email found!
+	            //No register
+	            return false;
+            }
             echo $firstName;
-            
+            $password=md5($password);
             if($this->save(array("email" => $email, "password" => $password, "firstName" => $firstName, "lastName" => $lastName))){
                 
                 /// Registration is successful

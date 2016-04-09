@@ -7,15 +7,15 @@ class login extends CI_Controller {
 		$this->load->model('users');
         
         $id = $this->users->getUserId(post('lEmail'), post('lPassword'));
-        //new dBug($id);
+        //new dBug($this->users);
         
         if($id){
             session('userId', $id);
             
-            $this->load->view('Main');
+            $this->load->view('main');
         }
         else{
-            $this->load->view('Main');
+            $this->load->view('main');
         };
 	}
 }
