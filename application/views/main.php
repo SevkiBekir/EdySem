@@ -1,4 +1,13 @@
 <?php 
+ /**
+     * SemTech Co -> E-Learning Project
+     * @2016
+     * ************ T E A M ************
+     * Şevki KOCADAĞ -> bekirsevki@gmail.com
+     * Asim Dogan NAMLI -> asim.dogan.namli@gmail.com
+     * Okan KAYA -> okankaya93@gmail.com
+     * 
+     */
 include_once("header.php");
 
 if($userId==""){ 
@@ -9,8 +18,8 @@ if($userId==""){
             <div class="row">
                 <div class="col-md-6" id="subscribe">
 
-                    <h1>To Learn Something New</h1>
-                    <h2 class="hidden-xs">Let's start to learn by using login or register</h2>
+                    <h1>Yeni Birşeyler öğrenmek için</h1>
+                    <h2 class="hidden-xs">Hadi kayıt olarak veya giriş yaparak öğrenmeye başlayalım!</h2>
                 </div>
 
                 <div class="col-md-6 ">
@@ -19,37 +28,37 @@ if($userId==""){
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <input type="email" class="form-control style_2" name="lEmail" placeholder="Email">
+                                    <input type="email" class="form-control style_2" name="lEmail" placeholder="Email" required>
                                     <span class="input-icon"><i class="icon-email"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <input type="password" class="form-control style_2" name="lPassword" placeholder="Password">
+                                    <input type="password" class="form-control style_2" name="lPassword" placeholder="Şifre" required>
                                     <span class="input-icon"><i class="icon-lock"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                     <input type="submit" name="btnLogin" value="Login" class="btn-lg button_fullwidth">
+                                     <input type="submit" name="btnLogin" value="Giriş" class="btn-lg button_fullwidth">
                                 </div>
                             <!-- end row -->
                             </div>
                         </div>
                     </form>
-                </div>
+                
                 <div class="login-or"><hr class="hr-or"><span class="span-or">or</span></div>
                 <form method="post" action="register">
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
-                                <input type="text" class="form-control style_2" name="rFirstName" placeholder="First Name">
+                                <input type="text" class="form-control style_2" name="rFirstName" placeholder="İsim" required>
                                 <span class="input-icon"><i class="icon-user"></i></span>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
-                                <input type="text" class="form-control style_2" name="rLastName" placeholder="Last Name">
+                                <input type="text" class="form-control style_2" name="rLastName" placeholder="Soyisim" required>
                                 <span class="input-icon"><i class="icon-user"></i></span>
                             </div>
                         </div>
@@ -57,7 +66,7 @@ if($userId==""){
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="email" name="rEmail" class="form-control style_2" placeholder="Email">
+                                <input type="email" name="rEmail" class="form-control style_2" placeholder="Email" required>
                                 <span class="input-icon"><i class="icon-email"></i></span>
                             </div>
                         </div>
@@ -65,13 +74,13 @@ if($userId==""){
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
-                                <input type="password" class="form-control style_2" name="rPassword1" placeholder="Password">
+                                <input type="password" class="form-control style_2" name="rPassword1" placeholder="Şifre" required>
                                 <span class="input-icon"><i class="icon-user"></i></span>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
-                                <input type="password" class="form-control style_2" name="rPassword2" placeholder="Password (Again)">
+                                <input type="password" class="form-control style_2" name="rPassword2" placeholder="Şifre (Yeniden)" required>
                                 <span class="input-icon"><i class="icon-user"></i></span>
                             </div>
                         </div>
@@ -81,11 +90,12 @@ if($userId==""){
 
                         <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="submit" name="btnRegister" value="Register" class="btn-lg button_fullwidth">
+                                    <input type="submit" name="btnRegister" value="Kayıt Ol" class="btn-lg button_fullwidth">
                             </div>
                         </div>
                     </div>
                     </form>
+                    </div>
                 </div>
             </div><!-- End row -->
         </div>
@@ -97,17 +107,18 @@ if($userId==""){
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1>Our Intro Video</h1>
-                    <h2>Schooling helps you to</h2>
+                    <h1>Tanıtım Videomuz</h1>
+                    <h2>E-Learning</h2>
                     <ul class="list_ok h4">
-                        <li><strong>Learn</strong> new thing</li>
-                        <li><strong>Become</strong>  an expert</li>
-                        <li><strong>Gain</strong> money</li>
+                        <li>yeni birşeyler <strong>Öğrenmeye</strong> </li>
+                        <li>uzman <strong>Olmaya</strong></li>
+                        <li>para <strong>Kazanmaya</strong></li>
 
                     </ul>
+                    <h2>yardımcı olur.</h2>
                 </div>
                 <div class="col-md-6 video">
-                    <iframe style="width:550px;height:315px;" src="<?php assetsUrl(); ?>https://www.youtube.com/embed/vRAgOfvIxlE" frameborder="0" allowfullscreen></iframe>
+                    <iframe style="width:550px;height:315px;" src="https://www.youtube.com/embed/vRAgOfvIxlE" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div><!-- End row -->
         </div>
@@ -121,9 +132,10 @@ if($userId==""){
     <div class="container">
         <div class="row">
             <div class=" col-md-10 col-md-offset-1 text-center">
-                <h2>Why Join Schooling</h2>
+                <h2>Neden E-Learning Projesi?</h2>
                 <p class="lead">
-                    More expert teachers, trusted certifications, thousands of audio and video lessons. Having all of them in one's pocket. <br>
+                	Uzman eğitmenler, güvenilir sertifikasyon, binlerce ders materyalleri... Bunların hepsine bir paket ile E-Learning'e katılarak sahip olabilirsiniz.
+                     <br>
                     
                 </p>
             </div>
@@ -133,36 +145,36 @@ if($userId==""){
             <div class="col-md-6">
                 <div class="feature">
                     <i class="icon-trophy"></i>
-                    <h3>Expert teachers</h3>
+                    <h3>Uzman Eğitmenler</h3>
                     <p>
-                       The best teachers are from around the world.
+                       Türkiye'deki en iyi eğitmenler
                     </p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="feature">
                     <i class=" icon-ok-4"></i>
-                    <h3>Trusted payment</h3>
+                    <h3>Güvenilir Sertifikasyon</h3>
                     <p>
-                        Secure and easy payment. Your money is safe with us.
+                       Güvenilir sınav merkezlerinde kursunuzun başarısını ispat edin!
                     </p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="feature">
                     <i class="icon-user"></i>
-                    <h3> +1000 students</h3>
+                    <h3> +1000 Öğrenci</h3>
                     <p>
-						There are thousands students from around the world
+						Türkiye'de seçkin öğrenciler ile iletişimde bulunun!
                          </p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="feature">
                     <i class="icon-video"></i>
-                    <h3>+100 Video lessons</h3>
+                    <h3>+1000 Ders Materyali </h3>
                     <p>
-                        Hundreds video are in your pockets. Watch them wherever you are and whenever you want on tablet or phone </p>
+                        İster mobil aygıtlarda ister kişisel bilgisayarınızda sınırsız erişim ile binlerde ders materyali E-Learning'de!</p>
                 </div>
             </div>
             </div><!-- End row -->
@@ -173,7 +185,7 @@ if($userId==""){
     	<div class="container">
         	<div class="row">
                 <div class="col-md-12 text-center">
-                    <h2>Popular Courses</h2>
+                    <h2>Popüler Kurslar</h2>
 
                 </div>
             </div><!-- End row -->
@@ -245,7 +257,7 @@ if($userId==""){
             </div><!-- End row -->
             <div class="row">
                 <div class="col-md-12">
-                     <a href="courseList" class="button_medium_outline pull-right">View all courses</a>
+                     <a href="courseList" class="button_medium_outline pull-right">Bütün Kursları Gör</a>
                 </div>
             </div>
         </div>   <!-- End container -->
@@ -276,7 +288,7 @@ if($userId==""){
                                         </div>
                                         <div class="col-sm-9">
                                             <p>
-                                               One of the best in life is to LEARN NEW THING
+                                               Hayattaki en iyi şey birşeyler öğrenmektir.
                                             </p>
                                             <small>Şevki Bekir Kocadağ</small>
                                         </div>

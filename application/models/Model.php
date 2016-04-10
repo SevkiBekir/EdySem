@@ -1,10 +1,12 @@
 <?php
-    /**
-     * Smart Codeigniter Model
-     * Taken from: http://www.thephpcode.com/blog/view/a-smart-codeigniter-model.html
-     * 
-     * Edited by: Asim Dogan NAMLI
+ /**
+     * SemTech Co -> E-Learning Project
      * @2016
+     * ************ T E A M ************
+     * Şevki KOCADAĞ -> bekirsevki@gmail.com
+     * Asim Dogan NAMLI -> asim.dogan.namli@gmail.com
+     * Okan KAYA -> okankaya93@gmail.com
+     * 
      */
     class EL_Model extends CI_Model{
         public $table; 

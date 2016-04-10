@@ -1,17 +1,28 @@
+<?php
+ /**
+     * SemTech Co -> E-Learning Project
+     * @2016
+     * ************ T E A M ************
+     * Şevki KOCADAĞ -> bekirsevki@gmail.com
+     * Asim Dogan NAMLI -> asim.dogan.namli@gmail.com
+     * Okan KAYA -> okankaya93@gmail.com
+     * 
+     */
 
+?>
 <footer>
     <div class="container" id="nav-footer">
         <div class="row text-left">
             <div class="col-md-3 col-sm-3">
-                <h4>Browse</h4>
+                <h4>Göz At</h4>
                 <ul>
 
-                    <li><a href="instructors">Instructors</a></li>
+                    <li><a href="instructors">Eğitmenler</a></li>
 
                 </ul>
             </div><!-- End col-md-4 -->
             <div class="col-md-3 col-sm-3">
-                <h4>Courses</h4>
+                <h4>Kurslar</h4>
                 <ul>
                 <?php
                     // Courses....
@@ -30,13 +41,13 @@
                 </ul>
             </div><!-- End col-md-4 -->
             <div class="col-md-3 col-sm-3">
-                <h4>About Learn</h4>
+                <h4>About E-Learning</h4>
                 <ul>
-                    <li><a href="aboutUs">About Us</a></li>
-                    <li><a href="applyInstructor">Become Instructor</a></li>
-                    <li><a href="termsAndConditions">Terms and Conditions</a></li>
-                    <li><a href="register">Register</a></li>
-                    <li><a href="contact">Contact Us</a></li>
+                    <li><a href="aboutUs">Hakkımızda</a></li>
+                    <li><a href="applyInstructor">Eğitmen Ol!</a></li>
+                    <li><a href="termsAndConditions">Hükümler ve Koşullar</a></li>
+                    <li><a href="register">Kayıt Ol</a></li>
+                    <li><a href="contact">İletişim</a></li>
                 </ul>
             </div><!-- End col-md-4 -->
             <div class="col-md-3 col-sm-3">
@@ -47,15 +58,15 @@
                 </ul>
                 <ul>
                     <li><strong class="phone">+90 312 210 27 96</strong><br><small>Mon - Fri / 9.00AM - 05.00PM</small></li>
-                    <li>Questions? <a href=" <?php assetsUrl(); ?>#">bekirsevki@gmail.com</a></li>
+                    <li>Sorular? <a href=" <?php assetsUrl(); ?>#">bekirsevki@gmail.com</a></li>
                 </ul>
             </div><!-- End col-md-4 -->
         </div><!-- End row -->
     </div>
-    <div id="copy_right">This project is done for National CEIT Congress © 2015</div>
+    <div id="copy_right">Bu proje ODTÜ SEM TECH İş birliği ile geliştirilmiştir. © 2016</div>
 </footer>
 
-<div id="toTop">Back to top</div>
+<div id="toTop">Başa dön</div>
 
 <!-- JQUERY -->
 <script src="<?php assetsUrl(); ?>js/jquery-1.10.2.min.js"></script>
@@ -64,7 +75,7 @@
 <script src="<?php assetsUrl(); ?>js/superfish.js"></script>
 <script src="<?php assetsUrl(); ?>js/bootstrap.min.js"></script>
 <script src="<?php assetsUrl(); ?>js/retina.min.js"></script>
-<script src="<?php assetsUrl(); ?>assets/validate.js"></script>
+<script src="<?php assetsUrl(); ?>js/validate.js"></script>
 <script src="<?php assetsUrl(); ?>js/jquery.fitvids.js"></script> <!-- for video responsive-->
 <script src="<?php assetsUrl(); ?>js/jquery.placeholder.js"></script>
 <script src="<?php assetsUrl(); ?>js/functions.js"></script>

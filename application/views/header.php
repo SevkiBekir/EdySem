@@ -1,8 +1,15 @@
 <?php 
-    //include_once("sessions.php");
-    $userId = session('userId');
-    $userFName = session("userFName");
-    $userLName = session("userLName");
+ /**
+     * SemTech Co -> E-Learning Project
+     * @2016
+     * ************ T E A M ************
+     * Şevki KOCADAĞ -> bekirsevki@gmail.com
+     * Asim Dogan NAMLI -> asim.dogan.namli@gmail.com
+     * Okan KAYA -> okankaya93@gmail.com
+     * 
+     */
+include_once("sessions.php");
+
 
     //echo $userId;
 ?>
@@ -14,7 +21,7 @@
 
 <head>
   	<meta charset="utf-8">
-    <title>Schooling - Just like School</title>
+    <title>E-Learning Project</title>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
     
     <!-- Favicons-->
@@ -46,7 +53,7 @@
   	<div class="container">
 	<div class="row">
 		<div class="col-md-3 col-sm-3 col-xs-3">
-			<a href="<?php baseUrl(); ?>" id="logo">Schooling</a>
+			<a href="<?php baseUrl(); ?>" id="logo">E-Learning</a>
 		</div>
 		<div class="col-md-9 col-sm-9 col-xs-9">
 			<div class=" pull-right">
@@ -69,25 +76,25 @@
                         </div>
                         <div class="col-xs-4 col-xs-push-1 hpull-right">
                             <div class="btn-group">
-                                <a class="btn dropdown-toggle hProfileDropDown" data-toggle="dropdown" href=" <?php assetsUrl(); ?>#">
-                                    <?php echo $userFName." ".$userLName; ?>
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="myProfile"><span class=" icon-cog"></span> My Dashboard</a></li>
-                                    <li><a href="logout"><span class="icon-logout"></span> Log Out</a></li>
-                                </ul>
+                                <a class="btn dropdown-toggle hProfileDropDown" data-toggle="dropdown" href="#">
+                            <?php echo $userFName." ".$userLName; ?>
+                            <span class="caret"></span>
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><a  href="myProfile"><span class=" icon-cog"></span> My Dashboard</a></li>
+                            <li><a  href="logout"><span class="icon-logout"></span> Log Out</a></li>
+                          </ul>
                             </div>
                          </div>
                     </div>
             <?php }
                 else if($userId==""){?>
-                <a href="login" class="button_top" id="login_top2">Login</a>
-                <a href="applyInstructor" class="button_top hidden-xs" id="apply">Become Instructor</a></div>
+                <a href="login" class="button_top" id="login_top2">Giriş</a>
+                <a href="applyInstructor" class="button_top hidden-xs" id="apply">Eğitmen Ol</a></div>
                 <ul id="top_nav" class="hidden-xs">
-                    <li><a href="aboutUs">About</a></li>
+                    <li><a href="aboutUs">Hakkımızda</a></li>
                    
-                    <li><a href="register">Register</a></li>
+                    <li><a href="register">Kayıt Ol</a></li>
                 </ul>
                 <?php }?>
             <!-- end pull-right-->
@@ -110,7 +117,7 @@
                 <div class="col-md-3 pull-right hidden-sm hidden-xs">
                         <div id="sb-search" class="sb-search">
                             <form method="get" action="courseList.php">
-                                <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
+                                <input class="sb-search-input" placeholder="Aramak istediğin kelimeyi gir" type="text" value="" name="search" id="search">
                                 <input class="sb-search-submit" type="submit" value="">
                                 <span class="sb-icon-search"></span>
                             </form>
