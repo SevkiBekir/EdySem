@@ -200,6 +200,8 @@ if($userId==""){
                             //include_once("connectionDB.php");
                             //$querySearch="select c.id,c.name,cD.summary,c.catagoryId,cD.ImageURL,c.price from courses c inner join courseDetails cD on c.id=cD.courseId";
                             //$runQuery=mysql_query($querySearch);
+                            
+                        
                             while(false) // $fetchQuery=mysql_fetch_array($runQuery)
                             {
                                 $courseName=$fetchQuery["name"];
