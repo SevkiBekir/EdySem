@@ -114,7 +114,33 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'application';
+
+/**
+ * Dinamik application seçme
+ * subdomainler bu dizine yönlendirildikleri zaman 
+ * application path, media veya mobil olarak değiştirilecektir
+ * default application_folder webApp 'dır
+ */
+    $parsedUrl = parse_url($_SERVER['HTTP_HOST']);
+    //var_dump($_SERVER['HTTP_HOST']);
+    //var_dump($parsedUrl);
+    $host = explode('.', $parsedUrl['path']);
+    //var_dump($host);
+    
+    $appPath = 'webApp';
+    switch ($host[0]) {
+        case 'media':
+            $appPath = 'mediaApp';
+        break;
+        case 'mobil':
+            $appPath = 'mobilApp';
+        default:
+            // The list of your $routes lines at is was...
+        break;
+    }
+
+    $application_folder = 'apps/'.$appPath;
+    define('SHAREDAPP', 'apps/sharedApp');
 
 /*
  *---------------------------------------------------------------
@@ -304,6 +330,16 @@ switch (ENVIRONMENT)
 	}
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
+
+/**
+ * Tricky sharedApp core load
+ * @param [[Type]] $class [[Description]]
+ */
+function __autoload($class){
+    if(strpos($class, 'CI_') !== 0){
+        @include_once(SHAREDAPP.'core/'. $class . EXT );
+    }
+}
 
 /*
  * --------------------------------------------------------------------
