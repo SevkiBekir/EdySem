@@ -29,7 +29,33 @@ class main extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('main');
-		$this->load->view('footer');
+		$this->load->model('courses');
+    
+        
+        
+        $get=$this->courses->getCourseDetails(NULL,array('isActive'=>1));
+		//new dBug($data);
+		$i=0;
+		foreach($get as $row){
+			$getCatagoryName=$this->courses-> getCatagoryName($row->catagoryId);
+			$getDateDifference=$this->courses->getDateDifference($row->id);
+			$getCourseRating=$this->courses->getCourseRating($row->id);
+	        $data['a'.$i]=array('courseName'=>$row->name,
+	        			'courseSummary'=>$row->summary,
+	        			'courseUpdatedDate'=>$row->updatedDate,
+	        			'courseCatagoryName'=>$getCatagoryName->name,
+	        			'coursePrice'=>$row->price,
+	        			'courseDateDifference'=>$getDateDifference->days,
+						'courseRating'=>intval($getCourseRating->stars),
+	        								);
+	        
+			$i++;
+		}
+		$myA=array('data'=>$data);
+		
+		//new dBug($myA);
+		loadView('main',$myA);
+		loadView('footer');
+		
 	}
 }

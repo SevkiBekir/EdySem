@@ -14,16 +14,32 @@ class courseList extends CI_Controller {
 
 	public function index(){
 		$this->load->model('courses');
-        // DB'de olup olmadığını kontrol ediyor.
-        //TRUE-> Kayıt yap
-        //FALSE->User var, Giriş yap.
-        //-1->Boş gönderi yaptı.
+    
         
         
-        $this->courses->getCourseDetails(1);
+        $data=$this->courses->getCourseDetails(NULL,array('isActive'=>1));
+		//new dBug($data);
+		$i=0;
+		foreach($data as $row){
+			$getCatagoryName=$this->courses-> getCatagoryName($row->catagoryId);
+			$getDateDifference=$this->courses->getDateDifference($row->id);
+	        $data[$i]=array('courseName'=>$row->name,
+	        			'courseSummary'=>$row->summary,
+	        			'courseUpdatedDate'=>$row->updatedDate,
+	        			'courseCatagoryName'=>$getCatagoryName->name,
+	        			'coursePrice'=>$row->price,
+	        			'courseDateDifference'=>$getDateDifference->days,
+						
+	        								);
+			$i++;
+		}
+		
+		
+        new dBug($data);
        
+
         
-        loadView('courseList');
-        //echo post('rEmail');
+        loadView('courseList',$data);
+        
 	}
 }
