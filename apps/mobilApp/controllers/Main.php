@@ -27,9 +27,11 @@ class main extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		$this->load->view('main');
-		$this->load->view('footer');
+	public function index(){
+        if(session('userId')){ 
+            /*$this->load->view('main');
+            $this->load->view('footer');*/
+            echo json_encode($this->msessions->getSessData());
+        }
 	}
 }

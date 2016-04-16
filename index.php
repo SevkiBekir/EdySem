@@ -119,8 +119,9 @@ switch (ENVIRONMENT)
  * Dinamik application seçme
  * subdomainler bu dizine yönlendirildikleri zaman 
  * application path, media veya mobil olarak değiştirilecektir
- * default application_folder webApp 'dır
+ * default application_folder webApp'dır
  */
+/*
     $parsedUrl = parse_url($_SERVER['HTTP_HOST']);
     //var_dump($_SERVER['HTTP_HOST']);
     //var_dump($parsedUrl);
@@ -131,12 +132,36 @@ switch (ENVIRONMENT)
     switch ($host[0]) {
         case 'media':
             $appPath = 'mediaApp';
-        break;
+            break;
         case 'mobil':
             $appPath = 'mobilApp';
+            break;
         default:
             // The list of your $routes lines at is was...
-        break;
+            break;
+    }
+
+    $application_folder = 'apps/'.$appPath;
+    define('SHAREDAPP', 'apps/sharedApp');
+*/
+
+    $parsedUrl = parse_url($_SERVER['REQUEST_URI']);
+    //var_dump($_SERVER['HTTP_HOST']);
+    //var_dump($parsedUrl);
+    $host = explode('/', $parsedUrl['path']);
+    //var_dump($host);
+    
+    $appPath = 'webApp';
+    switch ($host[1]) {
+        case 'media':
+            $appPath = 'mediaApp';
+            break;
+        case 'mobil':
+            $appPath = 'mobilApp';
+            break;
+        default:
+            // The list of your $routes lines at is was...
+            break;
     }
 
     $application_folder = 'apps/'.$appPath;

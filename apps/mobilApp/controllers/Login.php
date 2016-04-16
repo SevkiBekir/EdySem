@@ -15,21 +15,27 @@ class login extends CI_Controller {
 	public function index(){
 		$this->load->model('users');
         
-        $id = $this->users->getUserId(post('lEmail'), post('lPassword'));
+        $sessData = [];
+        $output = [];
+        
+        $userId = $this->users->getUserId(post('lEmail'), post('lPassword'));
         //new dBug($this->users);
         
-        if($id){
-        	$firstName = $this->users->getFName($id);
-        	$lastName  = $this->users->getLName($id);
-        	
-            session('userId', $id);
-            session('userFName', $firstName);
-            session('userLName', $lastName);
+        if($userId){
+        	$firstName = $this->users->getFName($userId);
+        	$lastName  = $this->users->getLName($userId);
             
-            headerLocation('');
+            $sessData = ['userId' => $userId, 'userFName' => $firstName, 'userLName' => $lastName];
+            
+            $sessData = $this->msessions->newSession($userId, $sessData);
+            
+            $output = ['login' => true, 'userFName' => $firstName, 'userLName' => $lastName, 'token' => $this->msessions->token];
+            //headerLocation('');
         }
         else{
-            loadView('login');
+            $output = ['login' => false];
         };
+        
+        echo json_encode($output);
 	}
 }

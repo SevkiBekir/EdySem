@@ -13,17 +13,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class courseList extends CI_Controller {
 
 	public function index(){
-		$this->load->model('courses');
-        // DB'de olup olmadığını kontrol ediyor.
-        //TRUE-> Kayıt yap
-        //FALSE->User var, Giriş yap.
-        //-1->Boş gönderi yaptı.
-        
-        
-        $this->courses->getCourseDetails(1);
-       
-        
-        loadView('courseList');
-        //echo post('rEmail');
+		if($this->msessions->session('userId')){
+            $this->load->model('courses');
+            // DB'de olup olmadığını kontrol ediyor.
+            //TRUE-> Kayıt yap
+            //FALSE->User var, Giriş yap.
+            //-1->Boş gönderi yaptı.
+
+            $this->courses->getCourseDetails(1);
+
+            loadView('courseList');
+            //echo post('rEmail');   
+        }
 	}
 }

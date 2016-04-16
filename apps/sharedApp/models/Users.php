@@ -31,7 +31,8 @@
          * Get UserID
          */
         function getUserId($email, $password){
-        	$password=md5($password);
+        	$password = md5($password);
+            //echo $password;
             if($row = $this->search(array('email' => $email, 'password' => $password))){
                 
                 //new dBug($row);
@@ -64,14 +65,16 @@
          */
         function register($email, $password, $firstName, $lastName){
         	//DAHA SONRA FORM VALIDATION OLACAK!
-        	if ($email != NULL && $password =! NULL && $firstName =! NULL && $lastName != NULL){
+        	if ($email != NULL && $password != NULL && $firstName != NULL && $lastName != NULL){
 	        	if($this->search(array('email'=>$email))){
-	            //Email found!
-	            //No register
-	            return 0;
+                    //Email found!
+                    //No register
+                    return 0;
 	            }
 	            echo $email;
-	            $password=md5($password);
+	            
+                $password = md5($password);
+                
 	            if($this->save(array("email" => $email, "password" => $password, "firstName" => $firstName, "lastName" => $lastName))){
 	                
 	                /// Registration is successful

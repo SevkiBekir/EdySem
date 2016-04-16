@@ -15,10 +15,15 @@
      * @param obj $key çekmek istenilen veri
      */
     function session($key, $val = NULL){
-        if($val){
-            get_instance()->session->set_userData($key, $val);
+        if (isset(get_instance()->session)){
+            if($val){
+                get_instance()->session->set_userData($key, $val);
+            }
+            return get_instance()->session->userData($key);   
         }
-        return get_instance()->session->userData($key);
+        elseif(isset(get_instance()->msessions)){
+            return get_instance()->msessions->session($key, $val);
+        }
     }
 
     /**
@@ -35,6 +40,10 @@
             else{
                 return baseHostUrl('assets', NULL).'/'.$file;
             }   
+        }
+        else{
+            get_instance()->load->library('veriSifrele');
+            return get_instance()->veriSifrele->ozelLink(baseHostUrl('assets', NULL).'/'.$file); // Tek kullanımlık link oluşturur
         }
     }
 

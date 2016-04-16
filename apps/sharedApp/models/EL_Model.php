@@ -26,16 +26,34 @@
             $op = 'update'; 
             $keyExists = FALSE; 
             $fields = $this->db->field_data($tablename); 
-
+            
             foreach ($fields as $field){ 
                 if($field->primary_key == 1) { 
+                    
                     $keyExists = TRUE;
+                    
                     if(isset($data[$field->name])) { 
                         $this->db->where($field->name, $data[$field->name]); 
                     } 
                     else {
-                        $op = 'insert'; 
+                        $op = 'insert';
                     }
+                }
+            }
+            
+            foreach ($fields as $field){ 
+                if($op == 'insert'){
+                    if($field->name == 'createdDate'){
+                        $data['createdDate'] = date("Y-m-d H:i:s"); // Mysql datetime formated
+                    }
+                    if($field->name == 'updatedDate'){
+                        $data['updatedDate'] = date("Y-m-d H:i:s"); // Mysql datetime formated
+                    }                    
+                }
+                else{
+                    if($field->name == 'updatedDate'){
+                        $data['updatedDate'] = date("Y-m-d H:i:s"); // Mysql datetime formated
+                    } 
                 }
             }
 
@@ -59,6 +77,7 @@
 
             if($conditions != NULL){ 
                 //new dBug($conditions);
+                //echo $tablename." ";
                 return $this->db->where($conditions)->get($tablename, $limit, $offset = 0)->result(); 
             }
 

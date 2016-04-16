@@ -10,11 +10,10 @@
      * 
      *
      * COURSES MODEL
-     */
-	 
+     */	 
 
     class courses extends EL_Model {
-
+        
         /**
          * Columns of table users
          */
@@ -26,7 +25,6 @@
 		public $updatedDate;
 		public $isActive;
 
-
         public function __construct(){
             // Call the CI_Model constructor
             parent::__construct();
@@ -36,18 +34,19 @@
          */
         
         public function getCourseDetails($id,$where = NULL){
-        	$table=$this->table;
+            $table=$this->table;
 	        $this->db->select('*')
 	        		 ->from($this->table.' c')
 					 ->join('courseDetails cd','cd.courseId=c.id');
+            
 	        if($where != NULL)
 	        	$this->db->where($where);
-	        $query=$this->db->get();
+	        
+            $query=$this->db->get();
 	        
 	        
 	        foreach ($query->result() as $row){
-			    new dBug($row);
-			    
+			    new dBug($row);    
 			}
         } 
         

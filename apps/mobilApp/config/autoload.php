@@ -58,7 +58,7 @@ $autoload['packages'] = array(SHAREDAPP);
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('dBug','database', 'session');
+$autoload['libraries'] = array('dBug','database');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array();
+$autoload['model'] = array('EL_Model', 'msessions');
