@@ -29,7 +29,7 @@ $localips = array(
     '::1'
 );
 
-$config['base_url'] = in_array($_SERVER['REMOTE_ADDR'], $localips) ? 'http://localhost/Schooling/' : 'http://144.122.7.254/sem/semarg/eLearningProject/Schooling/';
+$config['base_url'] = in_array($_SERVER['REMOTE_ADDR'], $localips) ? 'http://localhost/Schooling/' : 'http://dev.sem.metu.edu.tr/EdySem';
 
 
 /*

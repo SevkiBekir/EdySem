@@ -99,8 +99,8 @@
     /**
      * Shortens $this->load->view($file)
      */
-    function loadView($file){
-        get_instance()->load->view($file);
+    function loadView($file,$data=NULL){
+        get_instance()->load->view($file,$data);
     }
     
      /**

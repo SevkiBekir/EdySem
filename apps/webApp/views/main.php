@@ -197,63 +197,47 @@ if($userId==""){
                              * Courses... 
                              */
 
-                            //include_once("connectionDB.php");
-                            //$querySearch="select c.id,c.name,cD.summary,c.catagoryId,cD.ImageURL,c.price from courses c inner join courseDetails cD on c.id=cD.courseId";
-                            //$runQuery=mysql_query($querySearch);
-                            
-                        
-                            while(false) // $fetchQuery=mysql_fetch_array($runQuery)
-                            {
-                                $courseName=$fetchQuery["name"];
-                                $courseId=$fetchQuery["id"];
-                                $courseSummary=$fetchQuery["summary"];
-                                $catagoryId=$fetchQuery["catagoryId"];
-                                $courseImageURL=$fetchQuery["ImageURL"];
-                                $coursePrice=$fetchQuery["price"];
-
-
-
-                                $timeDiffQuery="SELECT DATEDIFF(NOW(),c.date) AS days,c.date,c.id from courses c where c.id=$courseId";
-                                $runQueryTimeDiff=mysql_query($timeDiffQuery);
-                                while($fetchTimeDiffQuery=mysql_fetch_row($runQueryTimeDiff))
-                                {
-                                    $timeDiff=$fetchTimeDiffQuery[0];
-                                }
-
+                           
+                            $courseCount=0;
+							//new dBug($data);
+                            foreach($data as $row){
+                                $courseName=$row["courseName"];
+                                $courseSummary=$row["courseSummary"];
+                                $coursePrice=$row["coursePrice"];
+                                $timeDiff=$row["courseDateDifference"];
+                                $catagoryName=$row["courseCatagoryName"];
+                                $courseRating=$row["courseRating"];
+								$courseImageURL="http://sevkikocadag.com/kurultay/img/courses.png"
                         ?>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="col-item">
 
                                     <div class="photo">
-                                        <a href=" <?php assetsUrl(); ?>#"><img src="<?php assetsUrl(); ?><?php echo $courseImageURL; ?>" alt="" /></a>
-                                        <?php
-                                            $query="select * from catagories where id=$catagoryId";
-                                            $runQueryNew=mysql_query($query);
-                                            while($fetchQueryNew=mysql_fetch_array($runQueryNew))
-                                            {
-                                                $catagoryName=$fetchQueryNew["name"];
-                                            }
-                                         ?>
-                                        <div class="cat_row"><a href=" <?php assetsUrl(); ?><?php echo "courseList.php?catagoryId=$catagoryId"; ?>"><?php echo  $catagoryName; ?></a><span class="pull-right"><i class=" icon-clock"></i><?php echo $timeDiff. " days ago"; ?></span></div>
+                                        <a href="#"><img src="<?php echo $courseImageURL; ?>" alt="" /></a>
+                                        
+                                        <div class="cat_row"><a href=" <?php assetsUrl(); ?><?php echo "courseList/catagoryName/$catagoryName"; ?>"><?php echo  $catagoryName; ?></a><span class="pull-right"><i class=" icon-clock"></i><?php echo $timeDiff. " days ago"; ?></span></div>
                                     </div>
                                     <div class="info">
                                         <div class="row">
                                             <div class="course_info col-md-12 col-sm-12">
                                                 <h4> <?php echo  $courseName; ?></h4>
                                                 <p > <?php echo  $courseSummary; ?> </p>
-                                                <div class="price text-center"><?php echo $coursePrice; ?></div> 
+                                                <div class="price text-center"><?php echo "₺".$coursePrice; ?></div> 
+                                                <div class="rating"> <?php for($i=0;$i<$courseRating;$i++){  ?>
+		                                            <i class="icon-star"></i><?php } ?></div>
                                             </div>
                                         </div>
                                         <div class="separator clearfix">
 
-                                            <p > <a href=' <?php assetsUrl(); ?><?php echo "course.php?courseId=$courseId" ?>'><i class=" icon-list"></i> Details</a></p>
+                                            <p > <a href=' <?php assetsUrl(); ?><?php echo "course.php/courseName/$courseName" ?>'><i class=" icon-list"></i> Details</a></p>
                                         </div>
                                     </div>
                                </div>
                             </div>
 
                         <?php
-
+                        	if ($courseCount>=8) // Anasayfada 8 tane kurs görünsün.
+								break;
                             }
                         ?>
             </div><!-- End row -->

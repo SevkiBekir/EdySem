@@ -35,21 +35,59 @@
          * Get CourseDetails Table Inner Join
          */
         
-        public function getCourseDetails($id,$where = NULL){
+        public function getCourseDetails($id=NULL,$where = NULL){      	
         	$table=$this->table;
 	        $this->db->select('*')
-	        		 ->from($this->table.' c')
+	        		 ->from($table.' c')
 					 ->join('courseDetails cd','cd.courseId=c.id');
 	        if($where != NULL)
 	        	$this->db->where($where);
 	        $query=$this->db->get();
 	        
 	        
-	        foreach ($query->result() as $row){
-			    new dBug($row);
-			    
-			}
+	        $row=$query->result();
+	        return $row;
+		
         } 
+        
+        public function getCatagoryName($id){
+	        $table="catagories";
+	        $this->db->select('name')
+	        		 ->from($table)
+	        		 ->where('id',$id);
+
+	        $query=$this->db->get();
+	        $row=$query->result();
+	        
+	        return $row[0];
+        }
+        
+        public function getDateDifference($id){
+        
+	        $table=$this->table;
+	        $this->db->select('DATEDIFF(NOW(),c.updatedDate) AS days')
+	        		 ->from($table.' c')
+					 ->where('id',$id);
+					 
+	        $query=$this->db->get();
+	        
+	        
+	        $row=$query->result();
+	        return $row[0];
+
+        }
+        
+        public function getCourseRating($id){
+	        $table="ratings";
+	        $this->db->select('stars')
+	        		 ->from($table)
+	        		 ->where('courseId',$id);
+
+	        $query=$this->db->get();
+	        $row=$query->result();
+	        
+	        return $row[0];
+        }
         
     }
 ?>
