@@ -50,7 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['media/(:any)'] = "respond/index/$1"; // that will route all requests to Respond.php
+$route['media/(:any)'] = "respond/sifresiz/$1"; // that will route all requests to Respond.php
+$route['media/s/(:any)'] = "respond/sifreli/$1";
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
