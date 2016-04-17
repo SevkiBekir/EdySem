@@ -27,15 +27,13 @@ class main extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
+	public function index(){
 		$this->load->model('courses');
-    
         
-        
-        $get=$this->courses->getCourseDetails(NULL,array('isActive'=>1));
+        $get=$this->courses->getCourseDetails(NULL, array('isActive'=>1));
 		//new dBug($data);
 		$i=0;
+        $data = [];
 		foreach($get as $row){
 			$getCatagoryName=$this->courses-> getCatagoryName($row->catagoryId);
 			$getDateDifference=$this->courses->getDateDifference($row->id);
@@ -51,7 +49,7 @@ class main extends CI_Controller {
 	        
 			$i++;
 		}
-		$myA=array('data'=>$data);
+		$myA = array('data'=> $data);
 		
 		//new dBug($myA);
 		loadView('main',$myA);

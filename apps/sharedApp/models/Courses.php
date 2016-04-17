@@ -33,13 +33,9 @@
          * Get CourseDetails Table Inner Join
          */
         
-<<<<<<< HEAD
-        public function getCourseDetails($id,$where = NULL){
-            $table=$this->table;
-=======
         public function getCourseDetails($id=NULL,$where = NULL){      	
         	$table=$this->table;
->>>>>>> origin/development
+            
 	        $this->db->select('*')
 	        		 ->from($table.' c')
 					 ->join('courseDetails cd','cd.courseId=c.id');
@@ -49,16 +45,8 @@
 	        
             $query=$this->db->get();
 	        
-	        
-<<<<<<< HEAD
-	        foreach ($query->result() as $row){
-			    new dBug($row);    
-			}
-=======
 	        $row=$query->result();
 	        return $row;
-		
->>>>>>> origin/development
         } 
         
         public function getCatagoryName($id){
