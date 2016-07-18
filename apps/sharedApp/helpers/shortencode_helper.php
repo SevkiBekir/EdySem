@@ -14,12 +14,17 @@
      * 
      * @param obj $key çekmek istenilen veri
      */
-    function session($key, $val = NULL){
+    function session($key = false, $val = NULL){
         if (isset(get_instance()->session)){
-            if($val){
-                get_instance()->session->set_userData($key, $val);
+            if($key){ // if $key given...
+                if($val){
+                    get_instance()->session->set_userData($key, $val);
+                }
+                return get_instance()->session->userData($key);  
+            } 
+            else{ // else return all userData;
+                return get_instance()->session->all_userdata();
             }
-            return get_instance()->session->userData($key);   
         }
         elseif(isset(get_instance()->msessions)){
             return get_instance()->msessions->session($key, $val);
@@ -32,8 +37,8 @@
      * @param  integer [$echo = 1] url bastırılsınmı bastırılmasın mı?
      * @return string assets/ url'i
      */
-    function assetsUrl($file = '', $hasPriv = false, $echo = 1){
-        if(!$hasPriv){ // Eğer güvenlik önemli değilse...
+    function assetsUrl($file = '', $isSecure = false, $echo = 1){
+        if(!$isSecure){ // Eğer güvenlik önemli değilse...
             if($echo){
                 echo baseHostUrl('assets', NULL).'/'.$file;
             }
@@ -42,9 +47,25 @@
             }   
         }
         else{
-            get_instance()->load->library('veriSifrele');
-            return get_instance()->veriSifrele->ozelLink(baseHostUrl('assets', NULL).'/'.$file); // Tek kullanımlık link oluşturur
+            $sifre = urlSifrele($file, 'media', true); // Tek kullanımlık link oluşturur)
+            if($echo){
+                echo $sifre;
+            }
+            return $sifre;
         }
+    }
+
+
+    /**
+     * Tokenize url with some meta data
+     * @param string   $url                the local/global url
+     * @param string   $type               which kind?, that will proccessed by mediaApp, for now $type=[assets|video|profilPhoto]
+     * @param [[Type]] [$isUnique          = false] if its unique, url will be avaible for only one access by requested page
+     */
+    function urlSifrele($path, $type, $isUnique = false){
+        get_instance()->load->library('veriSifrele');
+        
+        return baseHostUrl('media/s', NULL).'/'.get_instance()->verisifrele->sifrele(['path' => $path, 'type' => $type, 'ref' => ($isUnique ? "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" : false)]);
     }
 
     /**

@@ -1,19 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
-| -------------------------------------------------------------------------
-| Memcached settings
-| -------------------------------------------------------------------------
-| Your Memcached servers can be specified below.
-|
-|	See: https://codeigniter.com/user_guide/libraries/caching.html#memcached
-|
-*/
-$config = array(
-	'default' => array(
-		'hostname' => '127.0.0.1',
-		'port'     => '11211',
-		'weight'   => '1',
-	),
-);
+/**
+ * Loading defauld sharedApp config
+ * 
+ * Appler tarafından yaygın olarak kullanılan configrasyonlar aşağıda include ediliyor, eğer bu App'e yönelik
+ * özel ayar söz konusu olursa, aşağıya yazılabilir
+ */
+include SHAREDAPP.'/config/'.end((explode(DIRECTORY_SEPARATOR, __FILE__)));

@@ -22,7 +22,7 @@ if($userId=='')
 	<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 		<div id="login">
 			<p class="text-center">
-				<img src="<?php assetsUrl(); ?>img/login_logo.png" alt="">
+				<img src="<?php assetsUrl('img/login_logo.png'); ?>" alt="">
 			</p>
 			<hr>
 			<form method="post" action="register">

@@ -50,8 +50,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['media/(:any)'] = "respond/sifresiz/$1"; // that will route all requests to Respond.php
-$route['media/s/(:any)'] = "respond/sifreli/$1";
+/**
+ * Eğer, mediaApp yüklenmişse, bellidir ki assets/sifre yapısında url dönmüştür, bunu işliyoruz 
+ */
+$route['media/(:any)'] = "respond/sifresiz/$1"; 
+$route['media/s/(:any)'] = "respond/sifreli/$1"; 
+
+$route['media'] = "noway"; 
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

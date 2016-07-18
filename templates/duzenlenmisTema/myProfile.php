@@ -203,11 +203,11 @@ if($userId!="")
                                     </thead>
                                     <tbody>
                                       <tr>
-                                        <td><a href=" <?php assetsUrl(); ?>#">Add a course</a></td>
+                                        <td><a href="#">Add a course</a></td>
                                         <td>This process is about adding a new course</td>
                                        </tr>
                                        <tr>
-                                        <td><a href=" <?php assetsUrl(); ?>#">Update your course/s</a></td>
+                                        <td><a href="#">Update your course/s</a></td>
                                         <td>You can edit your course/s and also delele it.</td>
                                        </tr>
                                        <?php 
@@ -216,7 +216,7 @@ if($userId!="")
 									   {   
 									   ?>
                                        <tr>
-                                        <td><a href=" <?php assetsUrl(); ?>#">Approve/Deny Course</a></td>
+                                        <td><a href="#">Approve/Deny Course</a></td>
                                         <td>You can approve or deny a course. Course status also included.</td>
                                        </tr>
                                        <?php

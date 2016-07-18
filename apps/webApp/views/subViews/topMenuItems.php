@@ -3,7 +3,7 @@
 
 <?php if($userId != ""){ ?>
     <li class="mega_drop_down">
-        <a href=" <?php assetsUrl(); ?>#">Profilim</a>
+        <a href="#">Profilim</a>
         <div class="mobnav-subarrow"></div>
         <div class="sf-mega">
             <div class="col-md-4 col-sm-6">

@@ -225,7 +225,7 @@ if($userId==""){
                             <div class="col-item">
 
                                     <div class="photo">
-                                        <a href=" <?php assetsUrl(); ?>#"><img src="<?php assetsUrl(); ?><?php echo $courseImageURL; ?>" alt="" /></a>
+                                        <a href="#"><img src="<?php assetsUrl(); ?><?php echo $courseImageURL; ?>" alt="" /></a>
                                         <?php
                                             $query="select * from catagories where id=$catagoryId";
                                             $runQueryNew=mysql_query($query);

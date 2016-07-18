@@ -9,23 +9,23 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
     
     <!-- Favicons-->
-    <link rel="shortcut icon" href=" <?php assetsUrl(); ?>img/favicon.ico" type="image/x-icon"/>
-    <link rel="apple-touch-icon" type="image/x-icon" href=" <?php assetsUrl(); ?>img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href=" <?php assetsUrl(); ?>img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href=" <?php assetsUrl(); ?>img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href=" <?php assetsUrl(); ?>img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="shortcut icon" href="<?php assetsUrl('img/favicon.ico'); ?>" type="image/x-icon"/>
+    <link rel="apple-touch-icon" type="image/x-icon" href="<?php assetsUrl('img/apple-touch-icon-57x57-precomposed.png'); ?>">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="<?php assetsUrl('img/apple-touch-icon-72x72-precomposed.png'); ?>">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="<?php assetsUrl('img/apple-touch-icon-114x114-precomposed.png'); ?>">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="<?php assetsUrl('img/apple-touch-icon-144x144-precomposed.png'); ?>">
     
     <!-- CSS -->
     <link href=" <?php assetsUrl(); ?>css/bootstrap.min.css" rel="stylesheet">
-    <link href=" <?php assetsUrl(); ?>css/superfish.css" rel="stylesheet">
-    <link href=" <?php assetsUrl(); ?>css/style.css" rel="stylesheet">
-    <link href=" <?php assetsUrl(); ?>fontello/css/fontello.css" rel="stylesheet">
+    <link href="<?php assetsUrl('css/superfish.css'); ?>" rel="stylesheet">
+    <link href="<?php assetsUrl('css/style.css'); ?>" rel="stylesheet">
+    <link href="<?php assetsUrl('fontello/css/fontello'); ?>" rel="stylesheet">
     <!-- color scheme css -->
-    <link href=" <?php assetsUrl(); ?>css/color_scheme.css" rel="stylesheet">
+    <link href="<?php assetsUrl('css/color_scheme.css'); ?>" rel="stylesheet">
     
     <!-- Toggle Switch -->
     <link rel="stylesheet" href=" <?php assetsUrl(); ?>css/jquery.switch.css">
-    <link href=" <?php assetsUrl(); ?>check_radio/skins/square/aero.css" rel="stylesheet">
+    <link href="<?php assetsUrl('check_radio/skins/square/aero'); ?>" rel="stylesheet">
     
     <!--[if lt IE 9]>
       <script src="<?php assetsUrl(); ?>http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -61,7 +61,7 @@
 			<div id="mobnav-btn"></div>
 			<ul class="sf-menu">
 				<li class="normal_drop_down">
-				<a href=" <?php assetsUrl(); ?>#">Home</a>
+				<a href="#">Home</a>
 				<div class="mobnav-subarrow"></div>
 				<ul>
 					<li><a href=" <?php assetsUrl(); ?>index.html">Revolution version</a></li>
@@ -71,7 +71,7 @@
 				</ul>
 				</li>
 				<li class="normal_drop_down">
-				<a href=" <?php assetsUrl(); ?>#">Course</a>
+				<a href="#">Course</a>
 				<div class="mobnav-subarrow"></div>
 				<ul>
                 	<li><a href=" <?php assetsUrl(); ?>courses_grid.html">Courses grid</a></li>
@@ -89,7 +89,7 @@
 				<li><a href=" <?php assetsUrl(); ?>prices_plans.html">Prices &amp; Plans</a></li>
 				<li><a href=" <?php assetsUrl(); ?>blog.html">Blog</a></li>
                 <li class="mega_drop_down">
-				<a href=" <?php assetsUrl(); ?>#">Pages (Megamenu)</a>
+				<a href="#">Pages (Megamenu)</a>
                 <div class="mobnav-subarrow"></div>
                 <div class="sf-mega">
                 	<div class="col-md-4 col-sm-6">
@@ -111,16 +111,16 @@
                               <li><a href=" <?php assetsUrl(); ?>login.html">Login</a></li>
                               <li><a href=" <?php assetsUrl(); ?>register.html">Register</a></li>
                               <li><a href=" <?php assetsUrl(); ?>shortcodes.html">Shortcodes</a></li>
-                              <li><a href=" <?php assetsUrl(); ?>gallery.html">Photo &amp; video gallery <img src="<?php assetsUrl(); ?>img/new.png" alt=""></a></li>
+                              <li><a href=" <?php assetsUrl(); ?>gallery.html">Photo &amp; video gallery <img src="<?php assetsUrl('img/new.png'); ?>" alt=""></a></li>
                           </ul>
                     </div>
                     <div class="col-md-4 col-sm-6">
                     <h5>Submenu with icons</h5>
                             <ul class="mega_submenu icons">
-                            	<li><a href=" <?php assetsUrl(); ?>#"> Downloads<i class="icon-download"></i></a></li>
-                                <li><a href=" <?php assetsUrl(); ?>#">Video files <i class="icon-video"></i></a></li>
-                                <li><a href=" <?php assetsUrl(); ?>#">Audio files <i class="icon-mic"></i></a></li>
-                                <li><a href=" <?php assetsUrl(); ?>#">Members <i class="icon-user"></i></a></li>
+                            	<li><a href="#"> Downloads<i class="icon-download"></i></a></li>
+                                <li><a href="#">Video files <i class="icon-video"></i></a></li>
+                                <li><a href="#">Audio files <i class="icon-mic"></i></a></li>
+                                <li><a href="#">Members <i class="icon-user"></i></a></li>
                             </ul>
                     </div>
                 </div>
@@ -198,7 +198,7 @@
 					<div class="col-md-4 col-md-offset-4">
 						<ul class="data-list" id="terms">
 							<li>
-                            <strong>Do you accept <a href=" <?php assetsUrl(); ?>#" data-toggle="modal" data-target="#terms-txt">terms and conditions</a> ?</strong>
+                            <strong>Do you accept <a href="#" data-toggle="modal" data-target="#terms-txt">terms and conditions</a> ?</strong>
                            <label class="switch-light switch-ios ">
                                     <input type="checkbox" name="terms" class="required fix_ie8" value="yes">
                                     <span>
@@ -299,19 +299,19 @@
 			<ul>
 				<li><a href=" <?php assetsUrl(); ?>about_us.html">About Us</a></li>
 				<li><a href=" <?php assetsUrl(); ?>apply_2.html">Apply</a></li>
-				<li><a href=" <?php assetsUrl(); ?>#">Terms and conditions</a></li>
+				<li><a href="#">Terms and conditions</a></li>
 				<li><a href=" <?php assetsUrl(); ?>register.html">Register</a></li>
 			</ul>
 		</div><!-- End col-md-4 -->
 		<div class="col-md-3 col-sm-3">
 			<ul id="follow_us">
-				<li><a href=" <?php assetsUrl(); ?>#"><i class="icon-facebook"></i></a></li>
-				<li><a href=" <?php assetsUrl(); ?>#"><i class="icon-twitter"></i></a></li>
-				<li><a href=" <?php assetsUrl(); ?>#"><i class=" icon-google"></i></a></li>
+				<li><a href="#"><i class="icon-facebook"></i></a></li>
+				<li><a href="#"><i class="icon-twitter"></i></a></li>
+				<li><a href="#"><i class=" icon-google"></i></a></li>
 			</ul>
 			<ul>
 				<li><strong class="phone">+0034 43244 44</strong><br><small>Mon - Fri / 9.00AM - 06.00PM</small></li>
-				<li>Questions? <a href=" <?php assetsUrl(); ?>#">questions@domain.com</a></li>
+				<li>Questions? <a href="#">questions@domain.com</a></li>
 			</ul>
 		</div><!-- End col-md-4 -->
 	</div><!-- End row -->
@@ -348,22 +348,22 @@ sanctus, pro ne quod dicunt sensibus.</p>
 <!-- JQUERY -->
 <script src="<?php assetsUrl(); ?>js/jquery-1.10.2.min.js"></script>
 <!-- Wizard-->
-<script src="<?php assetsUrl(); ?>js/jquery-ui-1.8.12.min.js"></script>
-<script src="<?php assetsUrl(); ?>js/jquery.wizard.js"></script>
-<script src="<?php assetsUrl(); ?>js/jquery.validate.js"></script>
-<script src="<?php assetsUrl(); ?>check_radio/jquery.icheck.js"></script>
+<script src="<?php assetsUrl('js/jquery-ui-1.8.12.min.js'); ?>"></script>
+<script src="<?php assetsUrl('js/jquery.wizard.js'); ?>"></script>
+<script src="<?php assetsUrl('js/jquery.validate.js'); ?>"></script>
+<script src="<?php assetsUrl('check_radio/jquery.icheck.js'); ?>"></script>
 
 <!-- OTHER JS --> 
-<script src="<?php assetsUrl(); ?>js/superfish.js"></script>
-<script src="<?php assetsUrl(); ?>js/bootstrap.min.js"></script>
-<script src="<?php assetsUrl(); ?>js/retina.min.js"></script>
-<script src="<?php assetsUrl(); ?>assets/validate.js"></script>
-<script src="<?php assetsUrl(); ?>js/jquery.placeholder.js"></script>
-<script src="<?php assetsUrl(); ?>js/wizard_func.js"></script>
-<script src="<?php assetsUrl(); ?>js/functions.js"></script>
+<script src="<?php assetsUrl('js/superfish.js'); ?>"></script>
+<script src="<?php assetsUrl('js/bootstrap.min.js'); ?>"></script>
+<script src="<?php assetsUrl('js/retina.min.js'); ?>"></script>
+<script src="<?php assetsUrl('assets/validate') ?>"></script>
+<script src="<?php assetsUrl('js/jquery.placeholder.js'); ?>"></script>
+<script src="<?php assetsUrl('js/wizard_func.js'); ?>"></script>
+<script src="<?php assetsUrl('js/functions.js'); ?>"></script>
 
-<script src="<?php assetsUrl(); ?>js/classie.js"></script>
-<script src="<?php assetsUrl(); ?>js/uisearch.js"></script>
+<script src="<?php assetsUrl('js/classie.js'); ?>"></script>
+<script src="<?php assetsUrl('js/uisearch.js'); ?>"></script>
 <script>new UISearch( document.getElementById( 'sb-search' ) );</script>
 
 

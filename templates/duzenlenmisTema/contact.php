@@ -35,7 +35,7 @@
         <p>
 			You can easily become an instructor. 
 		</p>
-        <a href=" <?php assetsUrl(); ?>#" class="button_medium_outline">Become an Instructor</a>
+        <a href="#" class="button_medium_outline">Become an Instructor</a>
 	</div>
 	<div class="col-md-8">
 		<div class=" box_style_2">

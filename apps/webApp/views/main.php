@@ -8,6 +8,9 @@
      * Okan KAYA -> okankaya93@gmail.com
      * 
      */
+
+//session('şifreler', []);
+//new dBug(session());
 include_once("header.php");
 
 if($userId==""){ 

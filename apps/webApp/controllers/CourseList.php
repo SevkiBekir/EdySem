@@ -14,8 +14,6 @@ class courseList extends CI_Controller {
 
 	public function index(){
 		$this->load->model('courses');
-    
-        
         
         $data=$this->courses->getCourseDetails(NULL,array('isActive'=>1));
 		//new dBug($data);
