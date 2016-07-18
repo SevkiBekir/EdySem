@@ -1,0 +1,25 @@
+{
+    "duration": 60,
+    "fps": 29,
+    "check": true,
+    "sections": [
+                {
+                    "id": 1,
+                    "url": "video#1/sec1.mp4",
+                    "startFrame": 0,
+                    "length": 10
+                },
+                {
+                    "id": 2,
+                    "url": "video#1/sec2.mp4",
+                    "startFrame": 10,
+                    "length": 20
+                },
+                {
+                    "id": 3,
+                    "url": "video#1/sec3.mp4",
+                    "startFrame": 30,
+                    "length": 60
+                }
+       ]
+}
