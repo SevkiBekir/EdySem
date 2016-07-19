@@ -42,13 +42,13 @@
 		</div><!-- End col-md-4 -->
 		<div class="col-md-3 col-sm-3">
 			<ul id="follow_us">
-				<li><a href=" <?php assetsUrl(); ?>#"><i class="icon-facebook"></i></a></li>
-				<li><a href=" <?php assetsUrl(); ?>#"><i class="icon-twitter"></i></a></li>
-				<li><a href=" <?php assetsUrl(); ?>#"><i class=" icon-google"></i></a></li>
+				<li><a href="#"><i class="icon-facebook"></i></a></li>
+				<li><a href="#"><i class="icon-twitter"></i></a></li>
+				<li><a href="#"><i class=" icon-google"></i></a></li>
 			</ul>
 			<ul>
 				<li><strong class="phone">+90 312 210 27 96</strong><br><small>Mon - Fri / 9.00AM - 05.00PM</small></li>
-				<li>Questions? <a href=" <?php assetsUrl(); ?>#">bekirsevki@gmail.com</a></li>
+				<li>Questions? <a href="#">bekirsevki@gmail.com</a></li>
 			</ul>
 		</div><!-- End col-md-4 -->
 	</div><!-- End row -->
@@ -62,23 +62,23 @@
 <script src="<?php assetsUrl(); ?>js/jquery-1.10.2.min.js"></script>
 
 <!-- OTHER JS --> 
-<script src="<?php assetsUrl(); ?>js/superfish.js"></script>
-<script src="<?php assetsUrl(); ?>js/bootstrap.min.js"></script>
-<script src="<?php assetsUrl(); ?>js/retina.min.js"></script>
-<script src="<?php assetsUrl(); ?>assets/validate.js"></script>
-<script src="<?php assetsUrl(); ?>js/jquery.fitvids.js"></script> <!-- for video responsive-->
-<script src="<?php assetsUrl(); ?>js/jquery.placeholder.js"></script>
-<script src="<?php assetsUrl(); ?>js/functions.js"></script>
-<script src="<?php assetsUrl(); ?>js/classie.js"></script>
-<script src="<?php assetsUrl(); ?>js/uisearch.js"></script>
+<script src="<?php assetsUrl('js/superfish.js'); ?>"></script>
+<script src="<?php assetsUrl('js/bootstrap.min.js'); ?>"></script>
+<script src="<?php assetsUrl('js/retina.min.js'); ?>"></script>
+<script src="<?php assetsUrl('assets/validate') ?>"></script>
+<script src="<?php assetsUrl('js/jquery.fitvids.js'); ?>"></script> <!-- for video responsive-->
+<script src="<?php assetsUrl('js/jquery.placeholder.js'); ?>"></script>
+<script src="<?php assetsUrl('js/functions.js'); ?>"></script>
+<script src="<?php assetsUrl('js/classie.js'); ?>"></script>
+<script src="<?php assetsUrl('js/uisearch.js'); ?>"></script>
 
 
 <script>new UISearch( document.getElementById( 'sb-search' ) );</script>
 
 <!-- GOOGLE MAP -->
 <script type="text/javascript" src="<?php assetsUrl(); ?>http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="<?php assetsUrl(); ?>js/mapmarker.jquery.js"></script>
-<script type="text/javascript" src="<?php assetsUrl(); ?>js/mapmarker_func.jquery.js"></script>
+<script type="text/javascript" src="<?php assetsUrl('js/mapmarker.jquery.js'); ?>"></script>
+<script type="text/javascript" src="<?php assetsUrl('js/mapmarker_func.jquery.js'); ?>"></script>
 
 <script type="text/javascript">
 /* <![CDATA[ */

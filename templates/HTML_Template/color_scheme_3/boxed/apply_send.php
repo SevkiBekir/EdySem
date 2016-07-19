@@ -12,18 +12,18 @@
 <meta name="author" content="Ansonika">
 
 <!-- Favicons-->
-    <link rel="shortcut icon" href=" <?php assetsUrl(); ?>img/favicon.ico" type="image/x-icon"/>
-    <link rel="apple-touch-icon" type="image/x-icon" href=" <?php assetsUrl(); ?>img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href=" <?php assetsUrl(); ?>img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href=" <?php assetsUrl(); ?>img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href=" <?php assetsUrl(); ?>img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="shortcut icon" href="<?php assetsUrl('img/favicon.ico'); ?>" type="image/x-icon"/>
+    <link rel="apple-touch-icon" type="image/x-icon" href="<?php assetsUrl('img/apple-touch-icon-57x57-precomposed.png'); ?>">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="<?php assetsUrl('img/apple-touch-icon-72x72-precomposed.png'); ?>">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="<?php assetsUrl('img/apple-touch-icon-114x114-precomposed.png'); ?>">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="<?php assetsUrl('img/apple-touch-icon-144x144-precomposed.png'); ?>">
 
 <!-- Mobile Specific Metas -->
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <!-- CSS -->
 <link href=" <?php assetsUrl(); ?>css/bootstrap.min.css" rel="stylesheet">
-<link href=" <?php assetsUrl(); ?>css/style.css" rel="stylesheet">
+<link href="<?php assetsUrl('css/style.css'); ?>" rel="stylesheet">
 
 
 	<!--[if lt IE 9]>

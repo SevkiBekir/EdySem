@@ -13,21 +13,21 @@ include_once("sessions.php");
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
     
     <!-- Favicons-->
-    <link rel="shortcut icon" href=" <?php assetsUrl(); ?>img/favicon.ico" type="image/x-icon"/>
-    <link rel="apple-touch-icon" type="image/x-icon" href=" <?php assetsUrl(); ?>img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href=" <?php assetsUrl(); ?>img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href=" <?php assetsUrl(); ?>img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href=" <?php assetsUrl(); ?>img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="shortcut icon" href="<?php assetsUrl('img/favicon.ico'); ?>" type="image/x-icon"/>
+    <link rel="apple-touch-icon" type="image/x-icon" href="<?php assetsUrl('img/apple-touch-icon-57x57-precomposed.png'); ?>">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="<?php assetsUrl('img/apple-touch-icon-72x72-precomposed.png'); ?>">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="<?php assetsUrl('img/apple-touch-icon-114x114-precomposed.png'); ?>">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="<?php assetsUrl('img/apple-touch-icon-144x144-precomposed.png'); ?>">
     
     <!-- CSS -->
-    <link href=" <?php assetsUrl(); ?>css/bootstrap.css" rel="stylesheet">
-    <link href=" <?php assetsUrl(); ?>css/superfish.css" rel="stylesheet">
-    <link href=" <?php assetsUrl(); ?>css/style.css" rel="stylesheet">
-    <link href=" <?php assetsUrl(); ?>css/myStyle.css" rel="stylesheet">
-    <link href=" <?php assetsUrl(); ?>fontello/css/fontello.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href=" <?php assetsUrl(); ?>css/single_course.css">
+    <link href="<?php assetsUrl('css/bootstrap.css'); ?>" rel="stylesheet">
+    <link href="<?php assetsUrl('css/superfish.css'); ?>" rel="stylesheet">
+    <link href="<?php assetsUrl('css/style.css'); ?>" rel="stylesheet">
+    <link href="<?php assetsUrl('css/myStyle.css'); ?>" rel="stylesheet">
+    <link href="<?php assetsUrl('fontello/css/fontello.css'); ?>" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php assetsUrl('css/single_course.css'); ?>">
      <!-- color scheme css -->
-    <link href=" <?php assetsUrl(); ?>css/color_scheme.css" rel="stylesheet">
+    <link href="<?php assetsUrl('css/color_scheme.css'); ?>" rel="stylesheet">
     
     <!--[if lt IE 9]>
       <script src="<?php assetsUrl(); ?>http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -63,7 +63,7 @@ include_once("sessions.php");
                         <div class="btn-group">
                         
 						
-                          <a class="btn dropdown-toggle hProfileDropDown" data-toggle="dropdown" href=" <?php assetsUrl(); ?>#">
+                          <a class="btn dropdown-toggle hProfileDropDown" data-toggle="dropdown" href="#">
                             <?php echo $userFName." ".$userLName; ?>
                             <span class="caret"></span>
                           </a>
@@ -102,7 +102,7 @@ include_once("sessions.php");
                 <li><a href="courseList">Courses</a></li>
 				<?php if($userId!=""){ ?>
                 <li class="mega_drop_down">
-				<a href=" <?php assetsUrl(); ?>#">My Profile</a>
+				<a href="#">My Profile</a>
                 <div class="mobnav-subarrow"></div>
                 <div class="sf-mega">
                 	<div class="col-md-4 col-sm-6">

@@ -1,14 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
-| -------------------------------------------------------------------------
-| Profiler Sections
-| -------------------------------------------------------------------------
-| This file lets you determine whether or not various sections of Profiler
-| data are displayed when the Profiler is enabled.
-| Please see the user guide for info:
-|
-|	https://codeigniter.com/user_guide/general/profiling.html
-|
-*/
+/**
+ * Loading defauld sharedApp config
+ * 
+ * Appler tarafından yaygın olarak kullanılan configrasyonlar aşağıda include ediliyor, eğer bu App'e yönelik
+ * özel ayar söz konusu olursa, aşağıya yazılabilir
+ */
+include SHAREDAPP.'/config/'.end((explode(DIRECTORY_SEPARATOR, __FILE__)));

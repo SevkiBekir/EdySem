@@ -144,7 +144,6 @@ switch (ENVIRONMENT)
     $application_folder = 'apps/'.$appPath;
     define('SHAREDAPP', 'apps/sharedApp');
 */
-
     $parsedUrl = parse_url($_SERVER['REQUEST_URI']);
     //var_dump($_SERVER['HTTP_HOST']);
     //var_dump($parsedUrl);
@@ -163,10 +162,10 @@ switch (ENVIRONMENT)
             // The list of your $routes lines at is was...
             break;
     }
-
+    //echo $appPath;
     $application_folder = 'apps/'.$appPath;
-    define('SHAREDAPP', 'apps/sharedApp');
-
+    //echo dirname(__FILE__).'/apps/sharedApp';
+    define('SHAREDAPP', dirname(__FILE__).'/apps/sharedApp');
 /*
  *---------------------------------------------------------------
  * VIEW DIRECTORY NAME
