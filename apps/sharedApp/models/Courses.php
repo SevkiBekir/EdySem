@@ -61,6 +61,19 @@
 	        return $row[0];
         }
         
+         public function getCatagory(){
+	        $table="catagories";
+	        $this->db->select('*')
+	        		 ->from($table);
+	        		 
+
+	        $query=$this->db->get();
+	        $row=$query->result();
+	        
+	        return $row;
+        }
+        
+        
         public function getDateDifference($id){
         
 	        $table=$this->table;
@@ -88,6 +101,7 @@
 	        return $row[0];
         }
         
+       
     }
 ?>
                 

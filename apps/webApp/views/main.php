@@ -210,7 +210,8 @@ if($userId==""){
                                 $timeDiff=$row["courseDateDifference"];
                                 $catagoryName=$row["courseCatagoryName"];
                                 $courseRating=$row["courseRating"];
-								$courseImageURL="http://sevkikocadag.com/kurultay/img/courses.png"
+								$courseImageURL="http://sevkikocadag.com/kurultay/img/courses.png";
+								$courseCount++;
                         ?>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="col-item">
@@ -226,8 +227,12 @@ if($userId==""){
                                                 <h4> <?php echo  $courseName; ?></h4>
                                                 <p > <?php echo  $courseSummary; ?> </p>
                                                 <div class="price text-center"><?php echo "₺".$coursePrice; ?></div> 
-                                                <div class="rating"> <?php for($i=0;$i<$courseRating;$i++){  ?>
-		                                            <i class="icon-star"></i><?php } ?></div>
+                                                <div class="rating"> 
+                                                <?php for($i=0;$i<$courseRating;$i++){  ?>
+		                                            	<i class="icon-star"></i>
+		                                        <?php } ?>
+		                                           		 
+		                                        </div>
                                             </div>
                                         </div>
                                         <div class="separator clearfix">
@@ -237,10 +242,10 @@ if($userId==""){
                                     </div>
                                </div>
                             </div>
-
+							
                         <?php
                         	if ($courseCount>=8) // Anasayfada 8 tane kurs görünsün.
-								break;
+									break;
                             }
                         ?>
             </div><!-- End row -->
