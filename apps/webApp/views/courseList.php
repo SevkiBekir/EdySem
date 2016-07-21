@@ -49,33 +49,33 @@ include_once "header.php";
         	</div>
             <?php
             }*/
-            			$countCourse=$countCourse['count'];
+            			$countCourse = $countCourse['count'];
             			
-            			
+            			$getSearch = "";  // ???
              ?>
             <div class="box_style_1">
             	<h4>Categories</h4>
                 <ul class="submenu-col">
-                	 <li><a href=" <?php assetsUrl(); ?>courseList<?php if($getSearch!="") echo "/search/$getSearch"; ?>" id="<?php  echo "active"; ?>">All Courses <span class="badge"><?php echo $countCourse; ?></a></li>
-                <?php
+                    <li>
+                        <a href=" <?php assetsUrl(); ?>courseList<?php if($getSearch != "") echo "/search/$getSearch"; ?>" id="<?php  echo "active"; ?>">All Courses <span class="badge"><?php echo $countCourse; ?></span></a>
+                    </li>
+                    <?php
 						foreach($catagories as $row){
-							$catagoryId=$row["catagoryId"];
-							$catagoryName=$row["catagoryName"];
+							$catagoryId = $row["catagoryId"];
+							$catagoryName = $row["catagoryName"];
 						
+                            $queryCountCat="select count(*) as numbers from courses where catagoryId=$catagoryId";
+                            $runQueryCountCat=mysql_query($queryCountCat);
+                            while($fetchQueryCountCat=mysql_fetch_array($runQueryCountCat))
+                                $countCatagory=$fetchQueryCountCat["numbers"];
 	                	
-	                	
-	                	$queryCountCat="select count(*) as numbers from courses where catagoryId=$catagoryId";
-	                	$runQueryCountCat=mysql_query($queryCountCat);
-	                	while($fetchQueryCountCat=mysql_fetch_array($runQueryCountCat))
-	                		$countCatagory=$fetchQueryCountCat["numbers"];
-	                	
-	          ?>
+	               ?>
                    
                     	
-                    <li><a href=" <?php assetsUrl(); ?><?php echo "courseList.php?catagoryId=$catagoryId"; if($getSearch!="") echo "&search=$getSearch"; ?>" id="<?php if($getCatagoryId=="$catagoryId") echo "active"; ?>"><?php echo $catagoryName." "; ?><span class="badge"><?php echo $countCatagory; ?></span></a></li>
-              <?php 
+                                <li><a href=" <?php assetsUrl(); ?><?php echo "courseList.php?catagoryId=$catagoryId"; if($getSearch!="") echo "&search=$getSearch"; ?>" id="<?php if($getCatagoryId=="$catagoryId") echo "active"; ?>"><?php echo $catagoryName." "; ?><span class="badge"><?php echo $countCatagory; ?></span></a></li>
+                <?php 
 						}
-			  ?>
+                ?>
                     
                 </ul>
            
@@ -85,42 +85,40 @@ include_once "header.php";
         
         <div class="col-lg-9 col-md-8 col-sm-8">
         	<div class="row">
-        	<?php 			include_once("connectionDB.php");
-	                	$querySearch="select c.id,c.name,cD.summary,c.catagoryId,cD.ImageURL,c.price from courses c inner join courseDetails cD on c.id=cD.courseId";
-	                	if($getCatagoryId!="" || $getSearch!="")
-	                	{
-	                		$querySearch.=" where";
-	                		
-		                	if($getCatagoryId!="")
-		                		$querySearch.=" c.catagoryId=$getCatagoryId";
-		                	if($getCatagoryId!="" && $getSearch!="")
-	                			$querySearch.=" and";
-		                	if($getSearch!="")
-		                		$querySearch.=" c.name like '%$getSearch%'";
+        	<?php 		
+                /*
+                include_once("connectionDB.php");
+                $querySearch="select c.id,c.name,cD.summary,c.catagoryId,cD.ImageURL,c.price from courses c inner join courseDetails cD on c.id=cD.courseId";
+                if($getCatagoryId!="" || $getSearch!="")
+                {
+                    $querySearch.=" where";
+
+                    if($getCatagoryId!="")
+                        $querySearch.=" c.catagoryId=$getCatagoryId";
+                    if($getCatagoryId!="" && $getSearch!="")
+                        $querySearch.=" and";
+                    if($getSearch!="")
+                        $querySearch.=" c.name like '%$getSearch%'";
+
+
+                }*/
+
+                foreach($courseData as $fetchQuery){
+                    $courseName = $fetchQuery["name"];
+                    $courseId = $fetchQuery["id"];
+                    $courseSummary = $fetchQuery["summary"];
+                    $catagoryId = $fetchQuery["catagoryId"];
+                    $courseImageURL = $fetchQuery["ImageURL"];
+                    $coursePrice = $fetchQuery["price"];
+
+                    $timeDiffQuery = "SELECT DATEDIFF(NOW(),c.date) AS days,c.date,c.id from courses c where c.id=$courseId";
+                    $runQueryTimeDiff = mysql_query($timeDiffQuery);
+                    
+                    while($fetchTimeDiffQuery = mysql_fetch_row($runQueryTimeDiff)){
+                        $timeDiff = $fetchTimeDiffQuery[0];
+                    }
 		                	
-		                	
-	                	}
-	                	
-	                	$runQuery=mysql_query($querySearch);
-	                	while($fetchQuery=mysql_fetch_array($runQuery))
-	                	{
-	                		$courseName=$fetchQuery["name"];
-	                		$courseId=$fetchQuery["id"];
-	                		$courseSummary=$fetchQuery["summary"];
-	                		$catagoryId=$fetchQuery["catagoryId"];
-		                	$courseImageURL=$fetchQuery["ImageURL"];
-		                	$coursePrice=$fetchQuery["price"];
-		                	
-		                	
-		                	
-		                	$timeDiffQuery="SELECT DATEDIFF(NOW(),c.date) AS days,c.date,c.id from courses c where c.id=$courseId";
-		                	$runQueryTimeDiff=mysql_query($timeDiffQuery);
-		                	while($fetchTimeDiffQuery=mysql_fetch_row($runQueryTimeDiff))
-		                	{
-								$timeDiff=$fetchTimeDiffQuery[0];
-							}
-		                	
-		            ?>
+		        ?>
         		<div class="col-lg-4 col-md-6">
                      <div class="col-item">
                             

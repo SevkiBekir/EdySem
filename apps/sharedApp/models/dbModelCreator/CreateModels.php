@@ -20,7 +20,7 @@
              */
             foreach($diagram as $table => $val){
                 // Create model script file
-                $modelf = fopen(FCPATH."application/models/dbModels/".ucfirst($table).".php", "w") or die("Unable to open file!"); // Create model as 
+                $modelf = fopen(FCPATH."dbModels/".ucfirst($table).".php", "w") or die("Unable to open file!"); // Create model as 
                 
                 // output file path...
                 echo FCPATH."application/models/dbModels/".ucfirst($table).".php <br>";
@@ -38,29 +38,45 @@
                 
                 $colCodeDef = ""; // To define column vars
                 $colCodeParam = ""; // To define as parameters
-                $colCodeAssingIns = "\$data = array("; // To define assinging parameters to columns for insert  
+                $colCodeAssingIns = ""; // To define assinging parameters to columns for insert  
                 $colCodeAssingUp = ""; // To define assinging parameters to columns for update
+                $preGetFunctions = "";
+                $colCodeCheckIns = "";
                 
                 /**
                  * Build model variables....
                  */
                 new dBug($cols);
                 foreach($cols as $id => $col){
-                    
+                    if($col != "id"){
+                        $preGetFunctions .= "
+        \n
+        /**
+         * Get $col from id
+         */
+        function get".ucfirst($col)."(\$id){
+        \tif(\$row = \$this->search(array('id' => \$id))){
+        \t\treturn \$row[0]->".$col.";
+        \t}
+        \treturn false;
+        }";
+                    }
                     if(!in_array($col, ['id', 'createdDate', 'updatedDate'])){ // Some columns does not implemented
                         $colCodeDef .= "\t\tpublic $".$col." = 0;\n";
                         $colCodeParam .= '$p_'.$col.' = false'.($id != (count($cols) - 1)? ', ' : "");
                         
-                        $colCodeAssingIns .= '"'.$col.'" => $p_'.$col.", \n\t\t\t\t";
+                        $colCodeCheckIns .= $col." != NULL && ";
+                        
+                        $colCodeAssingIns .= '"'.$col.'" => $p_'.$col.", ";
                         
                         $colCodeAssingUp .= '$this->$'.$col.' = $p_'.$col.' != false ? $p_'.$col.' : $'.$col.";\n\t\t\t";
                     }
                     else{
                         if($col != "id"){ // if its not a id column, provide to generate update, insert time
-                            if ($col == "createdDate"){
+                            if ($col == "createdDate"){/*
                                 $colCodeAssingIns .= "\"".$col."\" => date('d.m.Y, H:i:s'), // ".date('d.m.Y, H:i:s')."\n\t\t\t\t";
                                 $colCodeAssingIns .= "\"updatedDate\" => date('d.m.Y, H:i:s'), // ".date('d.m.Y, H:i:s')."\n\t\t\t\t";
-                                
+                                */
                                 $colCodeDef .="\t\tpublic $".$col." = 0;\n";
                                 $colCodeDef .="\t\tpublic \$updatedDate = 0;\n";
                             }
@@ -73,7 +89,9 @@
                 }
                 
                 $colCodeParam = substr($colCodeParam, -2) == ', ' ? substr($colCodeParam, 0, -2) : $colCodeParam;
-                $colCodeAssingIns = substr($colCodeAssingIns, 0, -30)."\n\t\t\t);";
+                $colCodeAssingIns = substr($colCodeAssingIns, -2) == ', ' ? substr($colCodeAssingIns, 0, -2) : $colCodeAssingIns;
+                
+                $colCodeCheckIns = substr($colCodeCheckIns, -4) == ' && ' ? substr($colCodeCheckIns, 0, -4) : $colCodeCheckIns;
                 
                 echo $colCodeAssingIns."<br>";
                 /*
@@ -88,7 +106,7 @@
      * @2016
      * 
      */
-    class DB_'.$table.' extends CI_Model {
+    class '.$table.' extends EL_Model {
 
         /**
          * Columns of table '.$table.'
@@ -99,43 +117,31 @@
             // Call the CI_Model constructor
             parent::__construct();
         }
-
-        public function insert('.$colCodeParam.'){
-            /**
-             * Assigning values...
-             */
-            '.$colCodeAssingIns.'
-            $this->db->insert("'.$table.'", $this);
-        }
-
-        public function update('.$colCodeParam.', $where){
-            /**
-             * Assigning values...
-             */
-            '.$colCodeAssingUp.'
-            $this->db->update("'.$table.'", $this, $where);
-        }
         
-        public function get($limit = NULL, $offset = NULL){
-            /**
-             * Assigning values...
-             */
-            '.$colCodeAssingUp.'
-            $this->db->get("'.$table.'", $limit, $offset);
-        }
+        // GET FUNCTIONS //
         
-        public function getWhere($where, $limit = NULL, $offset = NULL){
+'.$preGetFunctions.'        
+        
+        // SET FUNCTIONS//
+        
+        
+        public function newRecord('.$colCodeParam.'){
             /**
              * Assigning values...
              */
-            '.$colCodeAssingUp.'
-            $this->db->get_where("'.$table.'", $where, $limit, $offset);
+            if ('.$colCodeCheckIns.'){
+	            if($this->save(array('.$colCodeAssingIns.'))){
+	                /// Record is successful
+	                return 1;
+	            };
+
+        	}
+            else{
+	            return -1; // There is a null vars
+            }            
+            //return false;
         }
-    }
-?>
-                
-                
-                ';
+        ';
                 
                 // Write and close model script
                 fwrite($modelf, $script);

@@ -45,7 +45,7 @@
 	        
             $query=$this->db->get();
 	        
-	        $row=$query->result();
+	        $row = $query->result();
 	        return $row;
         } 
         

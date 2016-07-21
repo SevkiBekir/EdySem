@@ -4,8 +4,8 @@
 //error_reporting(E_ALL);
 $dbhost = "localhost";
 $dbname = "psevkik5_school";
-$dbuser = "psevkik5_usScho";
-$dbpass = "o6yk0oblltGEdJCJ";
+$dbuser = "root";
+$dbpass = "";
 
 include_once "class.php";
 $password_decrypt = Encryption::decrypt($dbpass);
