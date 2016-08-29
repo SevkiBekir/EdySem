@@ -1,5 +1,5 @@
 
-<?php include "header.php"; 
+<?php include_once ("header.php"); 
 	/*
 	$getCourseId="";
 	$getCourseId=$_GET['courseId'];

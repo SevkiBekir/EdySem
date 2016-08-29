@@ -116,7 +116,7 @@ include_once("sessions.php");
 
                     <div class="col-md-3 pull-right hidden-sm hidden-xs">
                             <div id="sb-search" class="sb-search">
-                                <form method="get" action="courseList.php">
+                                <form method="get" action="<?php echo baseUrl()."courseList";?>">
                                     <input class="sb-search-input" placeholder="Aramak istediğin kelimeyi gir" type="text" value="" name="search" id="search">
                                     <input class="sb-search-submit" type="submit" value="">
                                     <span class="sb-icon-search"></span>

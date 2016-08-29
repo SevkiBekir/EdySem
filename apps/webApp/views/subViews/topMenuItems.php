@@ -1,5 +1,5 @@
 <li><a href="<?php baseUrl(); ?>">Anasayfa</a></li>
-<li><a href="courseList">Kurslar</a></li>
+<li><a href=<?php echo baseUrl()."courseList"; ?>>Kurslar</a></li>
 
 <?php if($userId != ""){ ?>
     <li class="mega_drop_down">
