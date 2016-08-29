@@ -65,7 +65,7 @@ class courseList extends CI_Controller {
 		$myA['catagories'] = $data;
 		
 		
-		new dBug($myA);
+		//new dBug($myA);
 		loadView('courseList', $myA);
         loadView('footer');
         

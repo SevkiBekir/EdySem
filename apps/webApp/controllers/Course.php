@@ -27,7 +27,7 @@ class course extends CI_Controller {
             //new dBug($getCourseId);
             $data=[];
             $getCourseDetails = $this->courses->getCourseDetails(NULL, array('isActive' => 1,'c.id' => $getCourseId));
-            new dBug($getCourseDetails);
+            //new dBug($getCourseDetails);
             $data['course'] = array(
                 'courseName'    =>   $getCourseDetails -> name,
                 'price'         =>   $getCourseDetails -> price,
@@ -42,6 +42,7 @@ class course extends CI_Controller {
             $getOccupation = $this -> courses -> getOccupation($getInstructorDetails -> occupationId);
             
             $data['instructor'] = array(
+				'id'			=> 	 $getCourseDetails -> instructorId,
                 'firstName'     =>   $getInstructorDetails -> firstname,
                 'lastName'      =>   $getInstructorDetails -> lastname,
                 'education'     =>   $getEducation -> name,
@@ -54,11 +55,13 @@ class course extends CI_Controller {
             
             $userId = $this->session->userId;
             $countCompleted = $this -> lessons -> countCompleted($userId,$getCourseId);
-            
+            $data['countCompleted']=$countCompleted->count;
+			
 			$getLessons = $this -> lessons -> getLessons($getCourseId);
 			$dummyArray=[];
 			$i=0;
 			foreach ($getLessons as $row){
+				
 				$dummyArray['l'.$i]=array(
 					'lessonId' 			=> $row -> id,
 					'lessonName'		=> $row -> name,
@@ -66,18 +69,33 @@ class course extends CI_Controller {
 					'lessonTypeName'	=> $row -> lessonTypeName,
 					'chapterName'		=> $row -> chapterName,
 					'chapterNo'			=> $row -> chapterNo,
+					'getLegendName'		=> $this -> lessons -> getLegendName($userId, $row -> id),
 				);
 				$i++;
 			}
 			
 			$data['lessons']=$dummyArray;
 			
-            $data['countCompleted']=$countCompleted->count;
-            new dBug($data);
+            
+			$controlCourse2User=$this -> courses -> controlCourse2User($userId, $getCourseId);
+			$data['controlCourse2User']=$controlCourse2User -> count;
+			
+			$sumDurations=$this -> lessons -> sumDurations($getCourseId);
+			$data['sumDurations']=$sumDurations -> sum;
+			
+			
+            //new dBug($data);
             
             loadView('course',$data);
             loadView('footer');
         }
+	}
+	
+	public function payment($link){
+		echo "Payment Page for '".$link."'<br/>";
+		echo "<a href='";
+		baseUrl(1,"/course/".$this->uri->segment(2));
+		echo "'>GERİ </a>";
 	}
     
     

@@ -12,7 +12,7 @@
         
 
         $courseName=$course["courseName"];
-		//$instructorId=$fetchQuery["teacherId"];
+		$instructorId=$instructor["id"];
 		$courseSummary=$course["summary"];
     	$coursePrice=$course["price"];
     	$courseObjectives=$course["objectives"];
@@ -83,43 +83,34 @@
                     <?php
                     } // END PROGRESS BAR 
                 
-                	/* BAKILACAK BURAYA
-					$queryPay="select count(*) as OK from courseToUser where userId=$userId and courseId=$getCourseId";
-					$runQueryPay=mysql_query($queryPay);
-					while($fetchQueryPay=mysql_fetch_array($runQueryPay))
-						$isPaid=$fetchQueryPay["OK"];
+                	
+					$isPaid=$controlCourse2User;
                     
-                    */
                     
-                    $queryLesson="select l.id,l.name,l.duration,lT.name as lessonTypeName, ch.name as chapterName, ch.no as chapterNo from lessons l join chapters ch on ch.id=l.chapterId join lessonTypes lT on lT.id=l.typeId where l.courseId=$getCourseId";
-                    $runQueryLesson=mysql_query($queryLesson);
-                    $usedChapter=0;
-                    
-                    while($fetchQueryLesson=mysql_fetch_array($runQueryLesson))
-                    {
-                    	
-	                    $lessonId=$fetchQueryLesson["id"];
-	                    $lessonName=$fetchQueryLesson["name"];
-	                    $lessonDuration=$fetchQueryLesson["duration"];
-	                    $lessonTypeName=$fetchQueryLesson["lessonTypeName"];
-	                    $chapterName=$fetchQueryLesson["chapterName"];
-	                    $chapterNo=$fetchQueryLesson["chapterNo"];
+                	$usedChapter=0;
+					foreach($lessons as $row)
+					{
+						$lessonId=$row["lessonId"];
+	                    $lessonName=$row["lessonName"];
+	                    $lessonDuration=$row["lessonDuration"];
+	                    $lessonTypeName=$row["lessonTypeName"];
+	                    $chapterName=$row["chapterName"];
+	                    $chapterNo=$row["chapterNo"];
 	                    if($usedChapter==0 || $usedChapter!=$chapterNo) // What r u doing dude?
 	                    {
 	                    	$usedChapter=$chapterNo;
 		                    echo "<h3 class='chapter_course'>Chapter $chapterNo: $chapterName  </h3>";
 	                    }
-	                    
-	                    $queryProgress="select lL.name as legendName from lessonProgress lP inner join lessonLegends lL on lL.id=lP.lessonLegendId where lP.lessonId=$lessonId and lP.userId=$userId";
-	                    $runQueryProgress=mysql_query($queryProgress);
-	                    while($fetchQueryProgress=mysql_fetch_array($runQueryProgress))
-							$legendName=$fetchQueryProgress["legendName"];
+					
+							$legendName=$row["getLegendName"];
 							
 	                    
 	                ?>
 	                
 	                	<div class="strip_single_course">
-	                        <h4 class=" <?php if($isPaid==1 || $instructorId==$userId) echo " "; else echo "btn disabled "; if($legendName=="") echo "start"; else if($legendName!="") echo $legendName; ?> "><a href=" <?php assetsUrl(); ?><?php echo "lesson.php?lessonId=$lessonId"; ?>"><?php echo $lessonName; ?></a></h4>
+	                        <h4 class=" <?php if($isPaid==1 || $instructorId==$userId) echo " "; else echo "btn disadsasabled "; if($legendName=="") echo "start"; else if($legendName!="") echo $legendName; ?> ">
+								<a href=" <?php baseUrl(); echo "/course/lesson/".$lessonId; ?>"><?php echo $lessonName; ?>
+						    </h4>
 	                        <ul>
 	                              <li><i class="icon-clock"></i> <?php echo  $lessonDuration." Minutes"; ?></li>
 	                              <li><i class="icon-<?php if($lessonTypeName=="Text") echo "doc"; else if($lessonTypeName==".mp4") echo "video"; ?>"></i><?php echo $lessonTypeName; ?></li>
@@ -146,19 +137,18 @@
 						}
 						else
 						{
-							echo "<a href='payment/' class='btn button_fullwidth-3'>Pay $coursePrice & Start Learning</a>";
+						?>
+							<a href=" <?php baseUrl(1,"/course/".$this->uri->segment(2)."/payment"); ?>" class='btn button_fullwidth-3'>Pay <?php echo $coursePrice; ?>  & Start Learning</a>
+						<?php
 						}
 						
-						$query="select sum(duration) as hours from lessons where courseId=$getCourseId";
-	        			$runQuery=mysql_query($query);
-	        			while($fetchQuery=mysql_fetch_array($runQuery))
-	        				$totalHours=$fetchQuery["hours"];
-
+							
+	        				
         		 ?>
             	  	
             	<div class="box_style_1">
          			<h4>Lessons <span class="pull-right"><?php echo $countLesson; ?></span></h4>
-         			<h4>Total Duration <span class="pull-right"><?php echo $totalHours." Minutes"; ?></span></h4>
+         			<h4>Total Duration <span class="pull-right"><?php echo $sumDurations." Minutes"; ?></span></h4>
                     
                     <?php
                     
@@ -167,7 +157,7 @@
 						$instructorProImURL="#";
 						$instructorOccupation=$instructor["occupation"];
                         $instructorEducation=$instructor["education"];
-                        $instructorUsername = $intructor["username"];
+                        $instructorUsername = $instructor["username"];
 				    
 				    
 				  
@@ -211,9 +201,8 @@
   </section>
   
 
-<?php include "footer.php"; ?>
+
 	<script>
 	$('#divObjectives ul').attr('class','list_ok');
 	</script>
-  </body>
-</html>
+ 

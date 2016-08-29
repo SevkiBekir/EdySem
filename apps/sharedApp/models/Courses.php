@@ -214,6 +214,29 @@
 	        
 	        return $row[0];
         }
+		
+		/* $queryPay="select count(*) as OK from courseToUser where userId=$userId and courseId=$getCourseId";
+		*/
+		
+		public function controlCourse2User($userId, $courseId){
+
+			$table="courseToUser";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+            
+	        $this->db->select('count(*) as count')
+	        		 ->from($table)
+                     ->where('userId',$userId)
+					 ->where('courseId',$courseId);
+
+	        $query=$this->db->get();
+           
+	        $row=$query->result();
+	        
+	        return $row[0];
+        }
+		
         
     }
 ?>

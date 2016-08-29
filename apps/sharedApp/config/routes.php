@@ -56,4 +56,5 @@ $route['translate_uri_dashes'] = FALSE;
 
 /* CUSTOM */
 
+$route['course/(:any)/payment']='course/payment/$1';
 $route['course/(:any)']='course/index/$1';

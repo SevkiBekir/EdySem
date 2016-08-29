@@ -91,6 +91,8 @@
             //return false;
         }
         
+		
+		// GET FUNCTION //
         public function countLessons($id){
             $table="lessons l";
             $schemeVar=printSchemeName();
@@ -153,6 +155,58 @@
 	        
 	        return $row;
         }
+		
+		
+		/* $queryProgress="select lL.name as legendName from lessonProgress lP inner join lessonLegends lL on lL.id=lP.lessonLegendId where lP.lessonId=$lessonId and lP.userId=$userId"; */
+		
+		public function getLegendName($userId=0, $lessonId=0){
+			if ($userId==0 || $lessonId==0)
+				return NULL;
+			
+            $table="lessonProgress lP";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+            
+	        $this->db->select('lL.name as legendName')
+	        		 ->from($table)
+                     ->where('lP.id',$lessonId)
+                     ->where('lP.userId',$userId)
+                     ->join($schemeVar.".lessonLegends lL", "lL.id=lP.lessonLegendId");
+
+	        $query=$this->db->get();
+         
+	        $row=$query->result();
+	        
+	        return $row[0];
+        }
+		
+		
+		/* $query=SELECT SUM(l.duration::integer) FROM "eLearningProject"."lessons" "l" JOIN "eLearningProject"."chapters" "ch" ON "ch"."id"="l"."chapterId" JOIN "eLearningProject"."courses" "co" ON "co"."id"="ch"."courseId" WHERE "co"."id" = 1 
+		*/
+		public function sumDurations($courseId=0){
+			if ($courseId==0)
+				return NULL;
+			
+            $table="lessons l";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+            
+	        $this->db->select('sum(l.duration::integer) as sum')
+	        		 ->from($table)
+                     ->where('co.id',$courseId)
+					 ->join($schemeVar.".chapters ch","ch.id=l.chapterId")
+                     ->join($schemeVar.".courses co","co.id=ch.courseId");
+            
+			$query=$this->db->get();
+         
+	        $row=$query->result();
+	        
+	        return $row[0];
+        }
+		
+		
         
     }
         
