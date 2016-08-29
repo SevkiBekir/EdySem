@@ -20,7 +20,10 @@
 
         public function save($data, $tablename="") { 
             if($tablename == "") { 
-                $tablename = $this->table; 
+                $tablename = $this->table;
+                $schemeVar=printSchemeName();
+                if (findLocalOrNot()==true)
+                     $tablename=$schemeVar.".". $tablename;
             } 
 
             $op = 'update'; 
@@ -72,7 +75,10 @@
 
         function search($conditions = NULL, $tablename = "", $limit = 500, $offset = 0) {     
             if($tablename == "") { 
-                $tablename = $this->table; 
+                $tablename = $this->table;
+                $schemeVar=printSchemeName();
+                if (findLocalOrNot()==true)
+                    $tablename=$schemeVar.".".$tablename;
             } 
 
             if($conditions != NULL){ 
@@ -87,7 +93,10 @@
 
         function insert($data, $tablename = ""){ 
             if($tablename == ""){ 
-                $tablename = $this->table; 
+                $tablename = $this->table;
+                $schemeVar=printSchemeName();
+                if (findLocalOrNot()==true)
+                     $tablename=$schemeVar.".". $tablename;
             }
 
             $this->db->insert($tablename, $data); 
@@ -96,7 +105,11 @@
 
         function update($data, $conditions, $tablename=""){ 
             if($tablename==""){
-                $tablename = $this->table; $this->db->where($conditions);
+                $tablename = $this->table;
+                $schemeVar=printSchemeName();
+                if (findLocalOrNot()==true)
+                     $tablename=$schemeVar.".". $tablename;
+                $this->db->where($conditions);
             }
 
             $this->db->update($tablename,$data); 
@@ -106,6 +119,9 @@
         function delete($conditions, $tablename = "") { 
             if($tablename == ""){ 
                 $tablename = $this->table;
+                $schemeVar=printSchemeName();
+                if (findLocalOrNot()==true)
+                     $tablename=$schemeVar.".". $tablename;
             }
 
             $this->db->where($conditions); 

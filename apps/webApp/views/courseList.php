@@ -23,8 +23,8 @@ include_once "header.php";
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1 text-center">
-                <h1>Course List</h1>
-               	<p class="lead boxed ">Learn Whatever you want</p>
+                <h1>Kurslarımız</h1>
+               	<p class="lead boxed ">Öğrenmek güzeldir!</p>
                 
             </div>
         </div><!-- End row -->
@@ -57,22 +57,19 @@ include_once "header.php";
             	<h4>Categories</h4>
                 <ul class="submenu-col">
                     <li>
-                        <a href=" <?php assetsUrl(); ?>courseList<?php if($getSearch != "") echo "/search/$getSearch"; ?>" id="<?php  echo "active"; ?>">All Courses <span class="badge"><?php echo $countCourse; ?></span></a>
+                        <a href=" <?php baseUrl(); ?>courseList<?php if($getSearch != "") echo "/search/$getSearch"; ?>" id="<?php  echo "active"; ?>">All Courses <span class="badge"><?php echo $countCourse; ?></span></a>
                     </li>
                     <?php
 						foreach($catagories as $row){
 							$catagoryId = $row["catagoryId"];
 							$catagoryName = $row["catagoryName"];
-						
-                            $queryCountCat="select count(*) as numbers from courses where catagoryId=$catagoryId";
-                            $runQueryCountCat=mysql_query($queryCountCat);
-                            while($fetchQueryCountCat=mysql_fetch_array($runQueryCountCat))
-                                $countCatagory=$fetchQueryCountCat["numbers"];
+						    $countCatagory = $row["count"];
+                            
 	                	
 	               ?>
                    
                     	
-                                <li><a href=" <?php assetsUrl(); ?><?php echo "courseList.php?catagoryId=$catagoryId"; if($getSearch!="") echo "&search=$getSearch"; ?>" id="<?php if($getCatagoryId=="$catagoryId") echo "active"; ?>"><?php echo $catagoryName." "; ?><span class="badge"><?php echo $countCatagory; ?></span></a></li>
+                                <li><a href=" <?php baseUrl(); ?><?php echo "courseList/catagory/".prepareCourseNameLink($catagoryName); /*if($getSearch!="") echo "&search=$getSearch"; ?>" id="<?php /*if($getCatagoryId=="$catagoryId") echo "active"; */?>"><?php echo $catagoryName." "; ?><span class="badge"><?php echo $countCatagory; ?></span></a></li>
                 <?php 
 						}
                 ?>
@@ -103,52 +100,52 @@ include_once "header.php";
 
                 }*/
 
-                foreach($courseData as $fetchQuery){
-                    $courseName = $fetchQuery["name"];
-                    $courseId = $fetchQuery["id"];
-                    $courseSummary = $fetchQuery["summary"];
-                    $catagoryId = $fetchQuery["catagoryId"];
-                    $courseImageURL = $fetchQuery["ImageURL"];
-                    $coursePrice = $fetchQuery["price"];
-
-                    $timeDiffQuery = "SELECT DATEDIFF(NOW(),c.date) AS days,c.date,c.id from courses c where c.id=$courseId";
-                    $runQueryTimeDiff = mysql_query($timeDiffQuery);
-                    
-                    while($fetchTimeDiffQuery = mysql_fetch_row($runQueryTimeDiff)){
-                        $timeDiff = $fetchTimeDiffQuery[0];
-                    }
+                foreach($courseData as $row){
+                                $courseName=$row["courseName"];
+                                $courseSummary=$row["courseSummary"];
+                                $coursePrice=$row["coursePrice"];
+                                $timeDiff=$row["courseDateDifference"];
+                                $catagoryName=$row["courseCatagoryName"];
+                                $courseRating=$row["courseRating"];
+								$courseImageURL="http://sevkikocadag.com/kurultay/img/courses.png";
+                                $courseLink=$row["courseLink"];
+            
+                                    
+                                    
+                                    
+               
 		                	
 		        ?>
         		<div class="col-lg-4 col-md-6">
                      <div class="col-item">
                             
                      	<div class="photo">
-                        	 <a href=" <?php assetsUrl(); ?>#"><img src="<?php assetsUrl(); ?><?php echo $courseImageURL; ?>" alt="" /></a>
-                                    <?php
-                                    $query="select * from catagories where id=$catagoryId";
-				                	$runQueryNew=mysql_query($query);
-				                	while($fetchQueryNew=mysql_fetch_array($runQueryNew))
-				                	{
-				                		$catagoryName=$fetchQueryNew["name"];
-				                	}
-                                     ?>
-                                    <div class="cat_row"><a href=" <?php assetsUrl(); ?><?php echo "courseList.php?catagoryId=$catagoryId"; ?>"><?php echo  $catagoryName; ?></a><span class="pull-right"><i class=" icon-clock"></i><?php echo $timeDiff. " days ago"; ?></span></div>
-                                </div>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="course_info col-md-12 col-sm-12">
-                                            <h4> <?php echo  $courseName; ?></h4>
-                                            <p > <?php echo  $courseSummary; ?> </p>
-                                            <div class="price text-center"><?php echo $coursePrice; ?></div> 
-                                        </div>
-                                    </div>
-                                    <div class="separator clearfix">
-                                        
-                                        <p > <a href=" <?php assetsUrl(); ?><?php echo "course.php?courseId=$courseId" ?>"><i class=" icon-list"></i> Details</a></p>
+                            <a href="<?php baseUrl(); ?><?php echo "course/".$courseLink ?>"><img src="<?php echo $courseImageURL; ?>" alt="" /></a>
+
+                            <div class="cat_row"><a href=" <?php baseUrl(); ?><?php echo "courseList/catagory/".prepareCourseNameLink($catagoryName); ?>"><?php echo  $catagoryName; ?></a><span class="pull-right"><i class=" icon-clock"></i><?php  echo $timeDiff." day"; echo ($timeDiff!=1) ?  "s":""; echo " ago"; ?></span></div>
+                        </div> <!-- End photo -->
+                        <div class="info">
+                            <div class="row">
+                                <div class="course_info col-md-12 col-sm-12">
+                                    <h4> <?php echo  $courseName; ?></h4>
+                                    <p > <?php echo  $courseSummary; ?> </p>
+                                    <div class="price text-center"><?php echo "₺".$coursePrice; ?></div> 
+                                    <div class="rating"> 
+                                    <?php for($i=0;$i<$courseRating;$i++){  ?>
+                                            <i class="icon-star"></i>
+                                    <?php } ?>
+
                                     </div>
                                 </div>
-                           </div>
-                        </div>
+                            </div> <!-- End row -->
+                            <div class="separator clearfix">
+
+                                <p > <a href=' <?php baseUrl(); ?><?php echo "course/".$courseLink ?>'><i class=" icon-list"></i> Details</a></p>
+                            </div> <!-- End separator -->
+                        </div> <!-- End info -->
+                                
+                   </div> <!-- End col-item-->
+                </div><!-- End col-lg-4-->
                         
                         
 						 <?php

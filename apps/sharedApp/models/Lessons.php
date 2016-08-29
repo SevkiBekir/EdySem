@@ -91,3 +91,69 @@
             //return false;
         }
         
+        public function countLessons($id){
+            $table="lessons l";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+            
+	        $this->db->select('count(*)')
+	        		 ->from($table)
+                     ->where('co.id',$id)
+                     ->join($schemeVar.".chapters ch","ch.id=l.chapterId")
+                     ->join($schemeVar.".courses co","co.id=ch.courseId");
+
+	        $query=$this->db->get();
+            
+	        $row=$query->result();
+	        
+	        return $row[0];
+        }
+        
+        public function countCompleted($userId=0, $courseId){
+            $table="lessonProgress lP";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+            
+	        $this->db->select('count(*)')
+	        		 ->from($table)
+                     ->where('co.id',$courseId)
+                     ->where('lP.lessonLegendId',3)
+                     ->where('lP.userId',$userId)
+                     ->join($schemeVar.".lessons l", "l.id=lP.lessonId")
+                     ->join($schemeVar.".chapters ch","ch.id=l.chapterId")
+                     ->join($schemeVar.".courses co","co.id=ch.courseId");
+
+	        $query=$this->db->get();
+         
+	        $row=$query->result();
+	        
+	        return $row[0];
+        }
+		
+		
+		 public function getLessons($courseId){
+            $table="lessons l";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+            
+	        $this->db->select('l.id,l.name,l.duration,dT.name as lessonTypeName, ch.name as chapterName, ch.no as chapterNo')
+	        		 ->from($table)
+                     ->where('co.id',$courseId)
+                     ->join($schemeVar.".documentTypes dT", "l.typeId=dT.id")
+                     ->join($schemeVar.".chapters ch","ch.id=l.chapterId")
+                     ->join($schemeVar.".courses co","co.id=ch.courseId")
+					 ->order_by('ch.no ASC'); /* LessonNo diye tablo eklenecek */
+
+	        $query=$this->db->get();
+         
+	        $row=$query->result();
+	        
+	        return $row;
+        }
+        
+    }
+        
+        

@@ -76,9 +76,36 @@ $localips = array(
     '::1'
 );
 
-$active_group = in_array($_SERVER['REMOTE_ADDR'], $localips) ? 'local' : 'host';
+$active_group = in_array($_SERVER['REMOTE_ADDR'], $localips) ? 'sevki_local' : 'asim_local';
 
 $query_builder = TRUE;
+
+
+$db['sevki_local'] = array(
+	'dsn'	=> 'pgsql:host=localhost;port=5432;dbname=EdySEM',
+	'hostname' => 'localhost',
+	'username' => 'postgres',
+	'password' => '123',
+	'database' => 'EdySEM',
+	'dbdriver' => 'pdo',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_tr',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+
+
+/*
 
 $db['host'] = array(
 	'dsn'	=> '',
@@ -102,7 +129,9 @@ $db['host'] = array(
 	'save_queries' => TRUE
 );
 
-$db['local'] = array(
+*/
+
+$db['asim_local'] = array(
     'dsn'	=> '',
     'hostname' => 'localhost',
     'username' => 'root',

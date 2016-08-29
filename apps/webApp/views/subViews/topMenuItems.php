@@ -25,7 +25,7 @@
                            <h4 class="text-center"><?php echo $userFName.' '.$userLName; ?></h4>
                         </p>
 
-                        <a href="myProfile" class="text-center">Profil Detaylarına Git</a>
+                        <a href="<?php echo baseUrl()."myProfile";?>" class="text-center">Profil Detaylarına Git</a>
 
                     </li>
                 </ul>

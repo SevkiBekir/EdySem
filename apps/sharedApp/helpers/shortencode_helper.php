@@ -145,4 +145,34 @@
     function MetaRefresh($file = NULL){
        echo "<meta http-equiv='refresh' content='0; url=".get_instance()->config->base_url($file, NULL)."'>";
     }
+
+    /**
+     * find local or remote host
+     */
+    function findLocalOrNot(){
+       $localips = array(
+        '127.0.0.1',
+        '::1'
+        );
+        return in_array($_SERVER['REMOTE_ADDR'], $localips) ? true:false;
+        
+    }
+
+
+     /**
+     * for PostgreSQL, echo Scheme Name
+     */
+    function printSchemeName(){
+        return "eLearningProject";
+        
+    }
+
+    /**
+     * Prepare courseNameLink catagoryNameLink
+     */
+    function prepareCourseNameLink($string){
+        $string=str_replace(" ","-",$string);
+        return $string;
+        
+    }
 ?>

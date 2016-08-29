@@ -53,3 +53,7 @@ $route['default_controller'] = 'main';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+/* CUSTOM */
+
+$route['course/(:any)']='course/index/$1';

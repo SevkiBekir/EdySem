@@ -27,14 +27,17 @@ class courseList extends CI_Controller {
 			$getCatagoryName = $this->courses-> getCatagoryName($row->catagoryId);
 			$getDateDifference = $this->courses->getDateDifference($row->id);
 			$getCourseRating = $this->courses->getCourseRating($row->id);
+            $getCourseLink=$this->courses->getCourseLink($row->id)->name;
             
-	        $data['a'.$i] = array('courseName'=>$row->name,
-                                'courseSummary'=>$row->summary,
-                                'courseUpdatedDate'=>$row->updatedDate,
-                                'courseCatagoryName'=>$getCatagoryName->name,
-                                'coursePrice'=>$row->price,
-                                'courseDateDifference'=>$getDateDifference->days,
-                                'courseRating'=>intval($getCourseRating->stars),
+            
+	        $data['a'.$i] = array('courseName'          =>  $row->name,
+                                'courseSummary'         =>  $row->summary,
+                                'courseUpdatedDate'     =>  $row->updatedDate,
+                                'courseCatagoryName'    =>  $getCatagoryName->name,
+                                'coursePrice'           =>  $row->price,
+                                'courseDateDifference'  =>  $getDateDifference->days,
+                                'courseRating'          =>  intval($getCourseRating->stars),
+                                'courseLink'            =>  $getCourseLink,
 	        			    );
 	        
 			$i++;
@@ -45,14 +48,16 @@ class courseList extends CI_Controller {
 		
 		$getCatagory = $this->courses->getCatagory();
         
-		new dBug($getCatagory);
+		//new dBug($getCatagory);
 		
         $i = 0;
 		$data = [];
 		
         foreach($getCatagory as $row){
+            $getCatagoryCount = $this->courses->getCatagoryCount($row->id);
 			$data['c'.$i] = array('catagoryId'=>$row->id,
-								'catagoryName'=>$row->name
+								  'catagoryName'=>$row->name,
+                                  'count'=>$getCatagoryCount->count
 								);
 			$i++;
 		}

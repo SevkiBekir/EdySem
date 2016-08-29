@@ -75,7 +75,7 @@
 	            
                 $password = md5($password);
                 
-	            if($this->save(array("email" => $email, "password" => $password, "firstName" => $firstName, "lastName" => $lastName))){
+	            if($this->save(array("email" => $email, "password" => $password, "firstname" => $firstName, "lastname" => $lastName))){
 	                
 	                /// Registration is successful
 	                echo "girdi";

@@ -81,20 +81,20 @@ include_once("sessions.php");
                                     <span class="caret"></span>
                                   </a>
                                   <ul class="dropdown-menu">
-                                    <li><a  href="myProfile"><span class=" icon-cog"></span> My Dashboard</a></li>
-                                    <li><a  href="logout"><span class="icon-logout"></span> Log Out</a></li>
+                                    <li><a  href="<?php echo baseUrl()."myProfile";?>"><span class=" icon-cog"></span> My Dashboard</a></li>
+                                    <li><a  href="<?php echo baseUrl()."logout";?>"><span class="icon-logout"></span> Log Out</a></li>
                                   </ul>
                                     </div>
                                  </div>
                             </div>
                     <?php }
                         else if($userId==""){?>
-                        <a href="login" class="button_top" id="login_top2">Giriş</a>
-                        <a href="applyInstructor" class="button_top hidden-xs" id="apply">Eğitmen Ol</a></div>
+                        <a href="<?php echo baseUrl()."login";?>" class="button_top" id="login_top2">Giriş</a>
+                        <a href="<?php echo baseUrl()."applyInstructor";?>" class="button_top hidden-xs" id="apply">Eğitmen Ol</a></div>
                         <ul id="top_nav" class="hidden-xs">
-                            <li><a href="aboutUs">Hakkımızda</a></li>
+                            <li><a href="<?php echo baseUrl()."aboutUs";?>">Hakkımızda</a></li>
 
-                            <li><a href="register">Kayıt Ol</a></li>
+                            <li><a href="<?php echo baseUrl()."register";?>">Kayıt Ol</a></li>
                         </ul>
                         <?php }?>
                     <!-- end pull-right-->

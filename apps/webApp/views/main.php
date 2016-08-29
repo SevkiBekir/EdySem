@@ -202,7 +202,8 @@ if($userId==""){
 
                            
                             $courseCount=0;
-							//new dBug($data);
+                                
+							
                             foreach($data as $row){
                                 $courseName=$row["courseName"];
                                 $courseSummary=$row["courseSummary"];
@@ -211,38 +212,41 @@ if($userId==""){
                                 $catagoryName=$row["courseCatagoryName"];
                                 $courseRating=$row["courseRating"];
 								$courseImageURL="http://sevkikocadag.com/kurultay/img/courses.png";
+                                $courseLink=$row["courseLink"];
 								$courseCount++;
                         ?>
                         <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="col-item">
+                            
+                             <div class="col-item">
 
-                                    <div class="photo">
-                                        <a href="#"><img src="<?php echo $courseImageURL; ?>" alt="" /></a>
-                                        
-                                        <div class="cat_row"><a href=" <?php assetsUrl(); ?><?php echo "courseList/catagoryName/$catagoryName"; ?>"><?php echo  $catagoryName; ?></a><span class="pull-right"><i class=" icon-clock"></i><?php echo $timeDiff. " days ago"; ?></span></div>
-                                    </div>
-                                    <div class="info">
-                                        <div class="row">
-                                            <div class="course_info col-md-12 col-sm-12">
-                                                <h4> <?php echo  $courseName; ?></h4>
-                                                <p > <?php echo  $courseSummary; ?> </p>
-                                                <div class="price text-center"><?php echo "₺".$coursePrice; ?></div> 
-                                                <div class="rating"> 
-                                                <?php for($i=0;$i<$courseRating;$i++){  ?>
-		                                            	<i class="icon-star"></i>
-		                                        <?php } ?>
-		                                           		 
-		                                        </div>
+                                <div class="photo">
+                                    <a href="<?php baseUrl(); ?><?php echo "course/".$courseLink ?>"><img src="<?php echo $courseImageURL; ?>" alt="" /></a>
+
+                                    <div class="cat_row"><a href=" <?php baseUrl(); ?><?php echo "courseList/catagory/".prepareCourseNameLink($catagoryName); ?>"><?php echo  $catagoryName; ?></a><span class="pull-right"><i class=" icon-clock"></i><?php  echo $timeDiff." day"; echo ($timeDiff!=1) ?  "s":""; echo " ago"; ?></span></div>
+                                </div> <!-- End photo -->
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="course_info col-md-12 col-sm-12">
+                                            <h4> <?php echo  $courseName; ?></h4>
+                                            <p > <?php echo  $courseSummary; ?> </p>
+                                            <div class="price text-center"><?php echo "₺".$coursePrice; ?></div> 
+                                            <div class="rating"> 
+                                            <?php for($i=0;$i<$courseRating;$i++){  ?>
+                                                    <i class="icon-star"></i>
+                                            <?php } ?>
+
                                             </div>
                                         </div>
-                                        <div class="separator clearfix">
+                                    </div> <!-- End row -->
+                                    <div class="separator clearfix">
 
-                                            <p > <a href=' <?php assetsUrl(); ?><?php echo "course.php/courseName/$courseName" ?>'><i class=" icon-list"></i> Details</a></p>
-                                        </div>
-                                    </div>
-                               </div>
-                            </div>
-							
+                                        <p > <a href=' <?php baseUrl(); ?><?php echo "course/".$courseLink ?>'><i class=" icon-list"></i> Details</a></p>
+                                    </div> <!-- End separator -->
+                                </div> <!-- End info -->
+
+                           </div> <!-- End col-item-->
+                        </div><!-- End col-lg-4-->
+
                         <?php
                         	if ($courseCount>=8) // Anasayfada 8 tane kurs görünsün.
 									break;

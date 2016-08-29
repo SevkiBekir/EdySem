@@ -31,20 +31,24 @@ class main extends CI_Controller {
 		$this->load->model('courses');
         
         $get=$this->courses->getCourseDetails(NULL, array('isActive'=>1));
-		//new dBug($data);
+		
 		$i=0;
         $data = [];
 		foreach($get as $row){
 			$getCatagoryName=$this->courses-> getCatagoryName($row->catagoryId);
 			$getDateDifference=$this->courses->getDateDifference($row->id);
 			$getCourseRating=$this->courses->getCourseRating($row->id);
-	        $data['a'.$i]=array('courseName'=>$row->name,
-	        			'courseSummary'=>$row->summary,
-	        			'courseUpdatedDate'=>$row->updatedDate,
-	        			'courseCatagoryName'=>$getCatagoryName->name,
-	        			'coursePrice'=>$row->price,
-	        			'courseDateDifference'=>$getDateDifference->days,
-						'courseRating'=>intval($getCourseRating->stars),
+            $getCourseLink=$this->courses->getCourseLink($row->id)->name;
+            
+	        $data['a'.$i]=array('courseName'   =>  $row->name,
+	        			'courseSummary'        =>  $row->summary,
+	        			'courseUpdatedDate'    =>  $row->updatedDate,
+	        			'courseCatagoryName'   =>  $getCatagoryName->name,
+	        			'coursePrice'          =>  $row->price,
+	        			'courseDateDifference' =>  $getDateDifference->days,
+						'courseRating'         =>  intval($getCourseRating->stars),
+                        'courseLink'           =>  $getCourseLink,
+                        
 	        								);
 	        
 			$i++;
