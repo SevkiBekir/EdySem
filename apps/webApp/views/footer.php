@@ -34,7 +34,7 @@
                             $catagoryId=$fetchQuery["id"];
                             $catagoryName=$fetchQuery["name"];
                   ?>
-                    <li><a href=' <?php assetsUrl(); ?><?php echo "courseList.php?catagoryId=$catagoryId"; ?>'><?php echo $catagoryName; ?></a></li>
+                    <li><a href=' <?php baseUrl(); ?><?php echo "courseList.php/catagory/$catagoryId"; ?>'><?php echo $catagoryName; ?></a></li>
                     <?php 
                             }
                     ?>
@@ -43,11 +43,11 @@
             <div class="col-md-3 col-sm-3">
                 <h4>About E-Learning</h4>
                 <ul>
-                    <li><a href="aboutUs">Hakkımızda</a></li>
-                    <li><a href="applyInstructor">Eğitmen Ol!</a></li>
-                    <li><a href="termsAndConditions">Hükümler ve Koşullar</a></li>
-                    <li><a href="register">Kayıt Ol</a></li>
-                    <li><a href="contact">İletişim</a></li>
+                    <li><a href="<?php baseUrl(1,"aboutUs"); ?>">Hakkımızda</a></li>
+                    <li><a href="<?php baseUrl(1,"applyInstructor"); ?>">Eğitmen Ol!</a></li>
+                    <li><a href="<?php baseUrl(1,"termsAndConditions"); ?>">Hükümler ve Koşullar</a></li>
+                    <li><a href="<?php baseUrl(1,"register"); ?>">Kayıt Ol</a></li>
+                    <li><a href="<?php baseUrl(1,"contact"); ?>">İletişim</a></li>
                 </ul>
             </div><!-- End col-md-4 -->
             <div class="col-md-3 col-sm-3">

@@ -141,6 +141,7 @@
 		/* $queryProgress="select lL.name as legendName from lessonProgress lP inner join lessonLegends lL on lL.id=lP.lessonLegendId where lP.lessonId=$lessonId and lP.userId=$userId"; */
 		
 		public function getLegendName($userId=0, $lessonId=0){
+			
 			if ($userId==0 || $lessonId==0)
 				return NULL;
 			
