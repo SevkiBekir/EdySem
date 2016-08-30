@@ -50,7 +50,7 @@
   <div class="container">
   
   <ol class="breadcrumb">
-      <li><a href="courseList">Bütün Kurslar</a></li>
+      <li><a href="<?php baseUrl(1,"courseList");?>">Bütün Kurslar</a></li>
       <li class="active"><?php echo $courseName; ?></li>
     </ol>
 
@@ -110,7 +110,7 @@
 	                
 	                	<div class="strip_single_course">
 	                        <h4 class=" <?php if($isPaid==1 || $instructorId==$userId) echo " "; else echo "btn disadsasabled "; if($legendName==NULL) echo "start"; else if($legendName!="") echo $legendName; ?> ">
-								<a href=" <?php baseUrl(); echo "/course/lesson/".$link; ?>"><?php echo $lessonName; ?>
+								<a href=" <?php baseUrl(1,"course/".$this->uri->segment(2)."/lesson/".$link); ?>"><?php echo $lessonName; ?>
 						    </h4>
 	                        <ul>
 	                              <li><i class="icon-clock"></i> <?php echo  $lessonDuration." Minutes"; ?></li>
