@@ -1,11 +1,13 @@
 
 <?php
     /**
-     * Created automaticaly by dbModelCreator
-     * Asim Dogan NAMLI
-     * asim.dogan.namli@gmail.com
+     * SemTech Co -> E-Learning Project
      * @2016
-     * 
+     * ************ T E A M ************
+     * Şevki KOCADAĞ -> bekirsevki@gmail.com
+     * Asim Dogan NAMLI -> asim.dogan.namli@gmail.com
+     * Okan KAYA -> okankaya93@gmail.com
+     *
      */
     class lessons extends EL_Model {
 
@@ -71,29 +73,8 @@
         	return false;
         }        
         
-        // SET FUNCTIONS//
-        
-        
-        public function newRecord($p_typeId = false, $p_chapterId = false, $p_name = false, $p_duration = false){
-            /**
-             * Assigning values...
-             */
-            if (typeId != NULL && chapterId != NULL && name != NULL && duration != NULL){
-	            if($this->save(array("typeId" => $p_typeId, "chapterId" => $p_chapterId, "name" => $p_name, "duration" => $p_duration))){
-	                /// Record is successful
-	                return 1;
-	            };
-
-        	}
-            else{
-	            return -1; // There is a null vars
-            }            
-            //return false;
-        }
-        
 		
-		// GET FUNCTION //
-        public function countLessons($id){
+		 public function countLessons($id){
             $table="lessons l";
             $schemeVar=printSchemeName();
             if (findLocalOrNot()==true)
@@ -170,12 +151,11 @@
             
 	        $this->db->select('lL.name as legendName')
 	        		 ->from($table)
-                     ->where('lP.id',$lessonId)
+                     ->where('lP.lessonId',$lessonId)
                      ->where('lP.userId',$userId)
                      ->join($schemeVar.".lessonLegends lL", "lL.id=lP.lessonLegendId");
 
 	        $query=$this->db->get();
-         
 	        $row=$query->result();
 	        
 	        return $row[0];
@@ -205,6 +185,86 @@
 	        
 	        return $row[0];
         }
+		
+		public function controlLink($link,$lessonId=0,$optionalCase=0){
+			
+			$table="links li";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+			$conditionArray=[];
+			
+			if ($optionalCase==0) 
+				$conditionArray=array('lessonId' => $lessonId);
+			else if ($optionalCase==1) 
+				$conditionArray=array('lessonId' => NULL);
+			
+			$conditionArray['name']=$link;
+			
+			$row=$this->countRow($conditionArray,$table);
+			return $row->rowcount;
+			
+		}
+		
+		
+		
+		
+		
+        // SET FUNCTIONS //
+        
+        
+        public function newRecord($p_typeId = false, $p_chapterId = false, $p_name = false, $p_duration = false){
+            /**
+             * Assigning values...
+             */
+            if (typeId != NULL && chapterId != NULL && name != NULL && duration != NULL){
+	            if($this->save(array("typeId" => $p_typeId, "chapterId" => $p_chapterId, "name" => $p_name, "duration" => $p_duration))){
+	                /// Record is successful
+	                return 1;
+	            };
+
+        	}
+            else{
+	            return -1; // There is a null vars
+            }            
+            //return false;
+        }
+        
+		public function generateLinkAndSave($lessonName=NULL,$courseId=0,$lessonId=0)
+		{
+			$table="links";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+
+			if($lessonName!=NULL && $courseId!=0 && $lessonId!=0){
+				$lessonName=prepareCourseNameLink($lessonName);
+				if(!($this->controlLink($lessonName,$lessonId))){
+					// there is no link and save
+					//case1: is there any the same link name in the table, if it's not, then save,
+					//case 2: if it is, then change link name with random number and save it.
+					if(!($this->controlLink($lessonName,$lessonId,1))){
+						$this -> save(array('lessonId'=> $lessonId, 'name'=>$lessonName),$table);
+						return $lessonName;
+					}
+					else{
+						$randomNumber=rand(1,999999);
+						$lessonName.="-".$randomNumber;
+						$this -> save(array('lessonId'=> $lessonId, 'name'=>$lessonName),$table);
+						return $lessonName;
+					}
+				}
+				else //found the link
+					return $lessonName;
+			}
+			else
+				return NULL;
+			
+		}
+	
+       
+		
+		
 		
 		
         

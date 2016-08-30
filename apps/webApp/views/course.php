@@ -102,14 +102,15 @@
 		                    echo "<h3 class='chapter_course'>Chapter $chapterNo: $chapterName  </h3>";
 	                    }
 					
-							$legendName=$row["getLegendName"];
+						$legendName=convert2LegendName($row["getLegendName"]);
+						$link=$row["link"];
 							
 	                    
 	                ?>
 	                
 	                	<div class="strip_single_course">
-	                        <h4 class=" <?php if($isPaid==1 || $instructorId==$userId) echo " "; else echo "btn disadsasabled "; if($legendName=="") echo "start"; else if($legendName!="") echo $legendName; ?> ">
-								<a href=" <?php baseUrl(); echo "/course/lesson/".$lessonId; ?>"><?php echo $lessonName; ?>
+	                        <h4 class=" <?php if($isPaid==1 || $instructorId==$userId) echo " "; else echo "btn disadsasabled "; if($legendName==NULL) echo "start"; else if($legendName!="") echo $legendName; ?> ">
+								<a href=" <?php baseUrl(); echo "/course/lesson/".$link; ?>"><?php echo $lessonName; ?>
 						    </h4>
 	                        <ul>
 	                              <li><i class="icon-clock"></i> <?php echo  $lessonDuration." Minutes"; ?></li>
@@ -138,7 +139,7 @@
 						else
 						{
 						?>
-							<a href=" <?php baseUrl(1,"/course/".$this->uri->segment(2)."/payment"); ?>" class='btn button_fullwidth-3'>Pay <?php echo $coursePrice; ?>  & Start Learning</a>
+							<a href=" <?php baseUrl(1,"/course/".$this->uri->segment(2)."/payment"); ?>" class='btn button_fullwidth-3'><?php echo $coursePrice; ?> Öde & Öğrenmeye Başla</a>
 						<?php
 						}
 						
@@ -147,8 +148,8 @@
         		 ?>
             	  	
             	<div class="box_style_1">
-         			<h4>Lessons <span class="pull-right"><?php echo $countLesson; ?></span></h4>
-         			<h4>Total Duration <span class="pull-right"><?php echo $sumDurations." Minutes"; ?></span></h4>
+         			<h4>Dersler <span class="pull-right"><?php echo $countLesson; ?></span></h4>
+         			<h4>Toplam Süre <span class="pull-right"><?php echo $sumDurations." Minutes"; ?></span></h4>
                     
                     <?php
                     
@@ -162,7 +163,7 @@
 				    
 				  
                      ?>
-                	<h4>Instructor</h4>
+                	<h4>Eğitmen</h4>
                     <div class="media">
                     	<div class="rows">
 	                        <div class="col-md-4 pull-left">
@@ -184,11 +185,11 @@
            </div>
            
             <div class="box_style_1">
-                    <h4>Legend</h4>
+                    <h4>Açıklamalar</h4>
                     <ul class="legend_course">
-                          <li id="tostart">Still to start</li>
-                         
-                          <li id="completed">Completed</li>
+                          <li id="tostart">Başlanılmadı</li>
+                          <li id="inprogress">Devam Ediyor</li>
+                          <li id="completed">Tamamlandı</li>
                      </ul>
            </div>
        	 	

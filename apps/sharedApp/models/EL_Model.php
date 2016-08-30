@@ -70,6 +70,7 @@
             } 
 
             $this->db->insert($tablename, $data); 
+			print_r($this->db);
             return $this->db->affected_rows(); 
         } 
 
@@ -84,6 +85,7 @@
             if($conditions != NULL){ 
                 //new dBug($conditions);
                 //echo $tablename." ";
+				print_r($this->db->where($conditions)->get($tablename, $limit, $offset = 0));
                 return $this->db->where($conditions)->get($tablename, $limit, $offset = 0)->result(); 
             }
 
@@ -129,5 +131,26 @@
 
             return $this->db->affected_rows(); 
         }
+		
+		public function countRow($conditions = "", $tablename = ""){
+			if($tablename == ""){ 
+                $tablename = $this->table;
+                $schemeVar=printSchemeName();
+                if (findLocalOrNot()==true)
+                     $tablename=$schemeVar.".". $tablename;
+            }
+			
+			$this -> db ->select('count(*) as rowCount')
+	        		 	->from($tablename);
+			
+			$this -> db -> where($conditions);
+			
+			$query=$this->db->get();
+         	
+	        $row=$query->result();
+	        
+	        return $row[0];
+			
+		}
     }
 ?>

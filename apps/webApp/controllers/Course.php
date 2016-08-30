@@ -69,7 +69,8 @@ class course extends CI_Controller {
 					'lessonTypeName'	=> $row -> lessonTypeName,
 					'chapterName'		=> $row -> chapterName,
 					'chapterNo'			=> $row -> chapterNo,
-					'getLegendName'		=> $this -> lessons -> getLegendName($userId, $row -> id),
+					'getLegendName'		=> $this -> lessons -> getLegendName($userId, $row -> id)->legendName,
+					'link'				=> $this -> lessons -> generateLinkAndSave($row -> name,$getCourseId, $row -> id)
 				);
 				$i++;
 			}
