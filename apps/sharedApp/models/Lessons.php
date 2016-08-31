@@ -157,6 +157,7 @@
                      ->join($schemeVar.".lessonLegends lL", "lL.id=lP.lessonLegendId");
 
 	        $query=$this->db->get();
+			
 	        $row=$query->result();
 	        
 	        return $row[0];
@@ -208,7 +209,67 @@
 		}
 		
 		
+		 public function getLessonLink($id=NULL,$where=NULL){
+	        $table="links";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+            
+	        $this->db->select('*')
+	        		 ->from($table);
+	       if ($where == NULL)
+                $this -> db ->where('lessonId',$id);
+            else if ($id == NULL)
+                $this -> db -> where('name', $where);
+
+	        $query=$this->db->get();
+	        $row=$query->result();
+	        
+	        return $row[0];
+        }
 		
+//		$query="select count(*) as OK, c.name,c.id,c.teacherId   where cTU.userId=$userId and l.id=$getLessonId";
+		
+		public function ControlUser2Lesson($userId=0,$lessonId){
+			$table="lessons l";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+            
+	        $this->db->select('count(*) as OK, c.name as courseName, c.id as courseId, c.instructorId')
+	        		 ->from($table)
+					 ->join($schemeVar.".chapters ch","ch.id=l.chapterId")
+                     ->join($schemeVar.".courses c","c.id=ch.courseId")
+					 ->join($schemeVar.".courseToUser cTU","c.id=cTU.courseId")
+					 ->where(array('cTU.userId'=>$userId, 'l.id'=>$lessonId))
+					 ->group_by(array("c.name", "c.id"));
+			
+			$query=$this->db->get();
+	        $row=$query->result();
+	        
+	        return $row[0];
+		}
+		
+		
+//		$queryLesson="select l.name, l.content, lT.name as lessonTName, l.fileURL from lessons l inner join lessonTypes lT on lT.id=l.typeId where l.id=$getLessonId";
+		public function getLessonWithContent($lessonId)
+		{
+			$table="lessons l";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+			
+			 $this->db->select('l.name as lessonName, dt.name as documentTypeName, d.explanation, d.name as fileURL ')
+					  ->from($table)
+					  ->join($schemeVar.".documents d","d.lessonId=l.id")
+					  ->join($schemeVar.".documentTypes dt","dt.id=d.documentTypeId")
+				 	  ->where("l.id",$lessonId);
+			
+			$query=$this->db->get();
+	        $row=$query->result();
+			
+			return $row[0];
+		}
 		
 		
         // SET FUNCTIONS //

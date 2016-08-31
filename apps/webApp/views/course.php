@@ -108,11 +108,11 @@
 	                    
 	                ?>
 	                
-	                	<div class="strip_single_course">
-	                        <h4 class=" <?php if($isPaid==1 || $instructorId==$userId) echo " "; else echo "btn disadsasabled "; if($legendName==NULL) echo "start"; else if($legendName!="") echo $legendName; ?> ">
-								<a href=" <?php baseUrl(1,"course/".$this->uri->segment(2)."/lesson/".$link); ?>"><?php echo $lessonName; ?>
+	                	<div class="strip_single_course disabled">
+	                        <h4 class=" <?php if($isPaid==1 || $instructorId==$userId) echo " "; else echo "btn disabled "; if($legendName==NULL) echo "start"; else if($legendName!="") echo $legendName; ?> ">
+								<a href=" <?php if($isPaid==1 || $instructorId==$userId) baseUrl(1,"course/".$this->uri->segment(2)."/lesson/".$link); else echo "#"?>"><?php echo $lessonName; ?>
 						    </h4>
-	                        <ul>
+	                        <ul >
 	                              <li><i class="icon-clock"></i> <?php echo  $lessonDuration." Minutes"; ?></li>
 	                              <li><i class="icon-<?php if($lessonTypeName=="Text") echo "doc"; else if($lessonTypeName==".mp4") echo "video"; ?>"></i><?php echo $lessonTypeName; ?></li>
 	                        </ul>
@@ -139,7 +139,7 @@
 						else
 						{
 						?>
-							<a href=" <?php baseUrl(1,"/course/".$this->uri->segment(2)."/payment"); ?>" class='btn button_fullwidth-3'><?php echo $coursePrice; ?> Öde & Öğrenmeye Başla</a>
+							<a href=" <?php baseUrl(1,"/course/".$this->uri->segment(2)."/payment"); ?>" class='btn button_fullwidth-3'><?php echo $coursePrice; ?>₺ Öde & Öğrenmeye Başla</a>
 						<?php
 						}
 						

@@ -171,8 +171,10 @@
      * Prepare courseNameLink catagoryNameLink
      */
     function prepareCourseNameLink($string){
-        $string=str_replace(" ","-",$string);
-        return $string;
+		$search = array('Ç','ç','Ğ','ğ','ı','İ','Ö','ö','Ş','ş','Ü','ü',' ');
+		$replace = array('C','c','G','g','i','I','O','o','S','s','U','u','-');
+		$new_text = str_replace($search,$replace,$string);
+        return $new_text;
         
     }
 

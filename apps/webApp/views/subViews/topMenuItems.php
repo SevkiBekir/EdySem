@@ -114,4 +114,4 @@
     </li>
 <?php }?>
 
-<li><a href="contact">İletişim</a></li>
+<li><a href="<?php baseUrl(1,"contact");?>">İletişim</a></li>
