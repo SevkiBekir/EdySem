@@ -80,16 +80,16 @@
             if (findLocalOrNot()==true)
                 $table=$schemeVar.".".$table;
             
-	        $this->db->select('count(*)')
+	        $this->db->select('count(*) as count')
 	        		 ->from($table)
                      ->where('co.id',$id)
                      ->join($schemeVar.".chapters ch","ch.id=l.chapterId")
                      ->join($schemeVar.".courses co","co.id=ch.courseId");
 
 	        $query=$this->db->get();
-            
+
 	        $row=$query->result();
-	        
+
 	        return $row[0];
         }
         
@@ -99,7 +99,7 @@
             if (findLocalOrNot()==true)
                 $table=$schemeVar.".".$table;
             
-	        $this->db->select('count(*)')
+	        $this->db->select('count(*) as count')
 	        		 ->from($table)
                      ->where('co.id',$courseId)
                      ->where('lP.lessonLegendId',3)
@@ -175,7 +175,7 @@
             if (findLocalOrNot()==true)
                 $table=$schemeVar.".".$table;
             
-	        $this->db->select('sum(l.duration::integer) as sum')
+	        $this->db->select('sum(l.duration) as sum')
 	        		 ->from($table)
                      ->where('co.id',$courseId)
 					 ->join($schemeVar.".chapters ch","ch.id=l.chapterId")
@@ -189,7 +189,7 @@
         }
 		
 		public function controlLink($link,$lessonId=0,$optionalCase=0){
-			
+
 			$table="links li";
             $schemeVar=printSchemeName();
             if (findLocalOrNot()==true)
@@ -202,9 +202,10 @@
 				$conditionArray=array('lessonId' => NULL);
 			
 			$conditionArray['name']=$link;
-			
+
 			$row=$this->countRow($conditionArray,$table);
-			return $row->rowcount;
+
+			return $row->rowCount;
 			
 		}
 		
@@ -300,19 +301,20 @@
                 $table=$schemeVar.".".$table;
 
 			if($lessonName!=NULL && $courseId!=0 && $lessonId!=0){
+
 				$lessonName=prepareCourseNameLink($lessonName);
 				if(!($this->controlLink($lessonName,$lessonId))){
 					// there is no link and save
 					//case1: is there any the same link name in the table, if it's not, then save,
 					//case 2: if it is, then change link name with random number and save it.
 					if(!($this->controlLink($lessonName,$lessonId,1))){
-						$this -> save(array('lessonId'=> $lessonId, 'name'=>$lessonName),$table);
+						$this -> save(array('lessonId'=> $lessonId, 'name'=>$lessonName,'courseId'=>$courseId),$table);
 						return $lessonName;
 					}
 					else{
 						$randomNumber=rand(1,999999);
 						$lessonName.="-".$randomNumber;
-						$this -> save(array('lessonId'=> $lessonId, 'name'=>$lessonName),$table);
+						$this -> save(array('lessonId'=> $lessonId, 'name'=>$lessonName,'courseId'=>$courseId),$table);
 						return $lessonName;
 					}
 				}

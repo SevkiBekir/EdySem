@@ -13,12 +13,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class courseList extends CI_Controller {
 
 	public function index(){
-		$this->load->model('courses');
+        $this->load->model('courses');
+
+
     
         
         //COURSE DATA
         $get = $this->courses->getCourseDetails(NULL, array('isActive' => 1));
-		//new dBug($data);
+		//new dBug($get);
 		
         $i = 0;
         $data = [];
@@ -29,7 +31,7 @@ class courseList extends CI_Controller {
 			$getCourseRating = $this->courses->getCourseRating($row->id);
             $getCourseLink=$this->courses->getCourseLink($row->id)->name;
             
-            
+
 	        $data['a'.$i] = array('courseName'          =>  $row->name,
                                 'courseSummary'         =>  $row->summary,
                                 'courseUpdatedDate'     =>  $row->updatedDate,
@@ -44,6 +46,7 @@ class courseList extends CI_Controller {
 		}
         
 		$myA = array('courseData'=> $data);
+
 		$myA['countCourse'] = array('count'=>$i);
 		
 		$getCatagory = $this->courses->getCatagory();
@@ -55,6 +58,7 @@ class courseList extends CI_Controller {
 		
         foreach($getCatagory as $row){
             $getCatagoryCount = $this->courses->getCatagoryCount($row->id);
+
 			$data['c'.$i] = array('catagoryId'=>$row->id,
 								  'catagoryName'=>$row->name,
                                   'count'=>$getCatagoryCount->count
@@ -63,11 +67,72 @@ class courseList extends CI_Controller {
 		}
         
 		$myA['catagories'] = $data;
-		
+        $myA['active'] = NULL;
 		
 		//new dBug($myA);
 		loadView('courseList', $myA);
         loadView('footer');
         
 	}
+
+    public function catagory($link = NULL){
+        $this->load->model('courses');
+        $catagoryId = $this->courses->getCatagoryIdFromLink($link);
+        //new dBug($catagoryId->catagoryId);
+
+        $get = $this->courses->getCourseDetails(NULL, array('isActive' => 1),$catagoryId->catagoryId);
+        //new dBug($get);
+
+        $i = 0;
+        $data = [];
+
+        foreach($get as $row){
+            $getCatagoryName = $this->courses-> getCatagoryName($row->catagoryId);
+            $getDateDifference = $this->courses->getDateDifference($row->id);
+            $getCourseRating = $this->courses->getCourseRating($row->id);
+            $getCourseLink=$this->courses->getCourseLink($row->id)->name;
+
+
+            $data['a'.$i] = array('courseName'          =>  $row->name,
+                'courseSummary'         =>  $row->summary,
+                'courseUpdatedDate'     =>  $row->updatedDate,
+                'courseCatagoryName'    =>  $getCatagoryName->name,
+                'coursePrice'           =>  $row->price,
+                'courseDateDifference'  =>  $getDateDifference->days,
+                'courseRating'          =>  intval($getCourseRating->stars),
+                'courseLink'            =>  $getCourseLink,
+            );
+
+            $i++;
+        }
+
+        $myA = array('courseData'=> $data);
+
+        $myA['countCourse'] = array('count'=>$i);
+
+        $getCatagory = $this->courses->getCatagory();
+
+        //new dBug($getCatagory);
+
+        $i = 0;
+        $data = [];
+
+        foreach($getCatagory as $row){
+            $getCatagoryCount = $this->courses->getCatagoryCount($row->id);
+
+            $data['c'.$i] = array('catagoryId'=>$row->id,
+                'catagoryName'=>$row->name,
+                'count'=>$getCatagoryCount->count
+            );
+            $i++;
+        }
+
+        $myA['catagories'] = $data;
+        $myA['active'] = $link;
+
+        //new dBug($myA);
+        loadView('courseList', $myA);
+        loadView('footer');
+
+    }
 }

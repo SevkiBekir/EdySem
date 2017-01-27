@@ -1,0 +1,9 @@
+INSERT INTO `courses` (`id`, `name`, `instructorId`, `catagoryId`, `price`, `createdDate`, `updatedDate`, `isActive`) VALUES (NULL, 'Kalkulüs 2', '1', '2', '50', CURRENT_TIME(), CURRENT_TIME(), '1');
+
+INSERT INTO `courseDetails` (`id`, `courseId`, `summary`, `objectives`) VALUES (NULL, '3', 'Kalkülüs 2 dersidir', 'Kalkülüs 2 öğrenmek');
+
+
+INSERT INTO `links` (`id`, `courseId`, `name`) VALUES (NULL, '2', 'Kalkulus'), (NULL, '3', 'Kalkulus-2');
+
+INSERT INTO `ratings` (`id`, `courseId`, `stars`) VALUES (NULL, '2', '2');
+INSERT INTO `ratings` (`id`, `courseId`, `stars`) VALUES (NULL, '3', '3');

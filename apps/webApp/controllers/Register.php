@@ -24,7 +24,8 @@ class register extends CI_Controller {
 			
         	
         	//echo "<script>alert('Kayıt Olundu');</script>";
-        	headerLocation('login');
+        	//headerLocation('login');
+            MetaRefresh("login");
 	        
         }
         // FORM VALIDATION'DAN SONRA DEĞİŞECEK -> GEÇİCİ

@@ -78,7 +78,7 @@
 	            if($this->save(array("email" => $email, "password" => $password, "firstname" => $firstName, "lastname" => $lastName))){
 	                
 	                /// Registration is successful
-	                echo "girdi";
+	                echo "Registration is successful";
 	                return 1;
 	            };
 

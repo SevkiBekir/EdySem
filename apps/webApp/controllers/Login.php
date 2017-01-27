@@ -25,8 +25,8 @@ class login extends CI_Controller {
             session('userId', $id);
             session('userFName', $firstName);
             session('userLName', $lastName);
-            
-            headerLocation('');
+
+            MetaRefresh("main");
         }
         else{
             loadView('login');

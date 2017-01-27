@@ -29,7 +29,7 @@ $localips = array(
     '::1'
 );
 
-$config['base_url'] = in_array($_SERVER['REMOTE_ADDR'], $localips) ? 'http://edysem.local/EdySem' : 'http://127.0.0.2/';
+$config['base_url'] = in_array($_SERVER['REMOTE_ADDR'], $localips) ? 'http://edysem.local/' : 'http://127.0.0.1/~sbk/EdySem';
 
 
 /*

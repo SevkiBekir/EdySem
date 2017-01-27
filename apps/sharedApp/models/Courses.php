@@ -33,7 +33,7 @@
          * Get CourseDetails Table Inner Join
          */
         
-        public function getCourseDetails($id=NULL,$where = NULL){      	
+        public function getCourseDetails($id=NULL,$where = NULL,$catId = NULL){
         	$table=$this->table;
             $schemeVar=printSchemeName();
             
@@ -48,9 +48,17 @@
             
 	        if($where != NULL)
 	        	$this->db->where($where);
+
+	        if ($id != NULL){
+	            $this->db->where('id',$id);
+            }
+
+            if ($catId != NULL){
+                $this->db->where('catagoryId',$catId);
+            }
 	        
             $query=$this->db->get();
-	      
+
 	        $row = $query->result();
             if (count($where)==2) //to get course
                 return $row[0];
@@ -72,6 +80,9 @@
 	        
 	        return $row[0];
         }
+
+
+
         
          public function getCatagory(){
 	        $table="catagories";
@@ -97,7 +108,7 @@
             if (findLocalOrNot()==true)
                 $table=$schemeVar.".".$table;
             
-	        $this->db->select("DATE_PART('day',NOW()-c.\"updatedDate\") AS days")
+	        $this->db->select("DATEDIFF(NOW(),c.updatedDate) AS days")
 	        		 ->from($table.' c')
 					 ->where('id',$id);
 					 
@@ -133,13 +144,12 @@
             if (findLocalOrNot()==true)
                 $table=$schemeVar.".".$table;
             
-	        $this->db->select('count(*)')
+	        $this->db->select('count(*) as count')
 	        		 ->from($table)
 	        		 ->where('catagoryId',$id);
 
 	        $query=$this->db->get();
 	        $row=$query->result();
-	        
 	        return $row[0];
         }
         
@@ -160,6 +170,21 @@
 	        $row=$query->result();
 	        
 	        return $row[0];
+        }
+
+        public function getCatagoryIdFromLink($string){
+            $table="links";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+            $this->db->select('catagoryId')
+                ->from($table)
+                ->where('name',$string);
+
+            $query=$this->db->get();
+            $row=$query->result();
+
+            return $row[0];
         }
         
         public function getInstructor($id){

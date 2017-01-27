@@ -44,7 +44,8 @@
                 }
             }
             
-            foreach ($fields as $field){ 
+            foreach ($fields as $field){
+                date_default_timezone_set("Europe/Istanbul");
                 if($op == 'insert'){
                     if($field->name == 'createdDate'){
                         $data['createdDate'] = date("Y-m-d H:i:s"); // Mysql datetime formated
@@ -67,10 +68,9 @@
                 if($this->db->affected_rows()==1){ 
                     return $this->db->affected_rows(); 
                 } 
-            } 
+            }
 
-            $this->db->insert($tablename, $data); 
-			//print_r($this->db);
+            $this->db->insert($tablename, $data);
             return $this->db->affected_rows(); 
         } 
 

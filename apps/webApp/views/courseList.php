@@ -57,21 +57,22 @@ include_once "header.php";
             	<h4>Categories</h4>
                 <ul class="submenu-col">
                     <li>
-                        <a href=" <?php baseUrl(); ?>courseList<?php if($getSearch != "") echo "/search/$getSearch"; ?>" id="<?php  echo "active"; ?>">All Courses <span class="badge"><?php echo $countCourse; ?></span></a>
+                        <a href=" <?php baseUrl(); ?>courseList<?php if($getSearch != "") echo "/search/$getSearch"; ?>" id="<?php echo ($active==NULL) ? "active":""; ?>">All Courses <span class="badge"><?php echo $countCourse; ?></span></a>
                     </li>
                     <?php
 						foreach($catagories as $row){
 							$catagoryId = $row["catagoryId"];
 							$catagoryName = $row["catagoryName"];
 						    $countCatagory = $row["count"];
-                            
-	                	
+
+
 	               ?>
-                   
+
                     	
-                                <li><a href=" <?php baseUrl(); ?><?php echo "courseList/catagory/".prepareCourseNameLink($catagoryName); /*if($getSearch!="") echo "&search=$getSearch"; ?>" id="<?php /*if($getCatagoryId=="$catagoryId") echo "active"; */?>"><?php echo $catagoryName." "; ?><span class="badge"><?php echo $countCatagory; ?></span></a></li>
+                                <li><a href=" <?php baseUrl(); ?><?php echo "courseList/catagory/".prepareCourseNameLink($catagoryName); /*if($getSearch!="") echo "&search=$getSearch"; ?>" id="<?php /*if($getCatagoryId=="$catagoryId") echo "active"; */?>" id="<?php echo ($active==prepareCourseNameLink($catagoryName)) ? "active":""; ?>"><?php echo $catagoryName." "; ?><span class="badge"><?php echo $countCatagory; ?></span></a></li>
                 <?php 
 						}
+
                 ?>
                     
                 </ul>

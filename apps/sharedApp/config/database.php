@@ -80,7 +80,7 @@ $active_group = in_array($_SERVER['REMOTE_ADDR'], $localips) ? 'sevki_local' : '
 
 $query_builder = TRUE;
 
-
+/*
 $db['sevki_local'] = array(
 	'dsn'	=> 'pgsql:host=localhost;port=5432;dbname=EdySEM',
 	'hostname' => 'localhost',
@@ -103,11 +103,11 @@ $db['sevki_local'] = array(
 	'save_queries' => TRUE
 );
 
+*/
 
 
-/*
 
-$db['host'] = array(
+$db['sevki_local'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'developUserDB',
@@ -129,7 +129,7 @@ $db['host'] = array(
 	'save_queries' => TRUE
 );
 
-*/
+
 
 $db['asim_local'] = array(
     'dsn'	=> '',

@@ -38,7 +38,8 @@ class course extends CI_Controller {
                 'summary'       =>   $getCourseDetails -> summary,
                 'objectives'    =>   $getCourseDetails -> objectives,
             );
-            
+
+
             $getInstructorDetails = $this -> courses -> getInstructor($getCourseDetails -> instructorId);
             //new dBug($getInstructorDetails);
             
@@ -53,7 +54,7 @@ class course extends CI_Controller {
                 'occupation'    =>   $getOccupation -> name,
                 'username'      =>   $getInstructorDetails -> username,
             );
-            
+
             $countLesson = $this -> lessons -> countLessons($getCourseId);
             $data['countLesson'] = $countLesson->count;
             
@@ -65,7 +66,10 @@ class course extends CI_Controller {
 			$dummyArray=[];
 			$i=0;
 			foreach ($getLessons as $row){
-				
+
+			    $getLegendName = $this -> lessons -> getLegendName($userId, $row -> id);
+
+
 				$dummyArray['l'.$i]=array(
 					'lessonId' 			=> $row -> id,
 					'lessonName'		=> $row -> name,
@@ -73,7 +77,7 @@ class course extends CI_Controller {
 					'lessonTypeName'	=> $row -> lessonTypeName,
 					'chapterName'		=> $row -> chapterName,
 					'chapterNo'			=> $row -> chapterNo,
-					'getLegendName'		=> $this -> lessons -> getLegendName($userId, $row -> id)->legendName,
+					'getLegendName'		=> ($getLegendName == NULL)?'':$getLegendName->legendName,
 					'link'				=> $this -> lessons -> generateLinkAndSave($row -> name,$getCourseId, $row -> id)
 				);
 				$i++;
@@ -86,6 +90,7 @@ class course extends CI_Controller {
 			$data['controlCourse2User']=$controlCourse2User -> count;
 			
 			$sumDurations=$this -> lessons -> sumDurations($getCourseId);
+
 			$data['sumDurations']=$sumDurations -> sum;
 			
 			

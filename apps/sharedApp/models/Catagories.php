@@ -33,7 +33,9 @@
         		return $row[0]->name;
         	}
         	return false;
-        }        
+        }
+
+
         
         // SET FUNCTIONS//
         

@@ -179,12 +179,15 @@
     }
 
 
-	function convert2LegendName ($name){
-		if($name=="Tamamlandı")
-			return "completed";
-		else if($name=="Devam Ediyor")
-			return "inprogress";
-		else if ($name="Başlanılmadı")
-			return "start";
-	}
+
+
+
+    function convert2LegendName ($name){
+            if($name=="Tamamlandı")
+                return "completed";
+            else if($name=="Devam Ediyor")
+                return "inprogress";
+            else if ($name="Başlanılmadı")
+                return "start";
+        }
 ?>
