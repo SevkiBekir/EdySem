@@ -60,12 +60,32 @@
 	        }
 	        return false;
         }
+
+        /**
+         * Get getUsername by using ID
+         */
+        function getUsername($id){
+            if($row = $this->search(array('id' => $id))){
+                return $row[0]->username;
+            }
+            return false;
+        }
+
+        /**
+         * Get getUserID by using username
+         */
+        function getUserIdWithUsername($username){
+            if($row = $this->search(array('username' => $username))){
+                return $row[0]->id;
+            }
+            return false;
+        }
          /**
          * Register
          */
-        function register($email, $password, $firstName, $lastName){
+        function register($email, $password, $firstName, $lastName, $username){
         	//DAHA SONRA FORM VALIDATION OLACAK!
-        	if ($email != NULL && $password != NULL && $firstName != NULL && $lastName != NULL){
+        	if ($email != NULL && $password != NULL && $firstName != NULL && $lastName != NULL && $username != NULL){
 	        	if($this->search(array('email'=>$email))){
                     //Email found!
                     //No register
@@ -75,7 +95,7 @@
 	            
                 $password = md5($password);
                 
-	            if($this->save(array("email" => $email, "password" => $password, "firstname" => $firstName, "lastname" => $lastName))){
+	            if($this->save(array("email" => $email, "password" => $password, "firstname" => $firstName, "lastname" => $lastName, "username" => $username))){
 	                
 	                /// Registration is successful
 	                echo "Registration is successful";

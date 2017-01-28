@@ -58,4 +58,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['course/(:any)/lesson']='lesson/transfer/$1';
 $route['course/(:any)/lesson/(:any)']='lesson/index/$2';
 $route['course/(:any)/payment']='course/payment/$1';
+$route['course/(:any)/payment']='course/payment/$1';
+$route['course/(:any)/payment/process']='course/process/$1';
 $route['course/(:any)']='course/index/$1';

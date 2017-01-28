@@ -12,7 +12,7 @@
         
 
         $courseName=$course["courseName"];
-		$instructorId=$instructor["id"];
+		$instructorUsername=$instructor["username"];
 		$courseSummary=$course["summary"];
     	$coursePrice=$course["price"];
     	$courseObjectives=$course["objectives"];
@@ -57,9 +57,9 @@
 	 <div class="row">
      		<div class="col-md-8">
                     <?php
-                    
+                    $isPaid=$controlCourse2User;
                 
-                    if($userId!=NULL or $userId!=0)
+                    if(($username!=NULL || $username!=0) && $isPaid)
                     {
                         $percentage=(100*$countCompleted)/$countLesson;
                         
@@ -84,7 +84,7 @@
                     } // END PROGRESS BAR 
                 
                 	
-					$isPaid=$controlCourse2User;
+
                     
                     
                 	$usedChapter=0;
@@ -109,8 +109,8 @@
 	                ?>
 	                
 	                	<div class="strip_single_course disabled">
-	                        <h4 class=" <?php if($isPaid==1 || $instructorId==$userId) echo " "; else echo "btn disabled "; if($legendName==NULL) echo "start"; else if($legendName!="") echo $legendName; ?> ">
-								<a href=" <?php if($isPaid==1 || $instructorId==$userId) baseUrl(1,"course/".$this->uri->segment(2)."/lesson/".$link); else echo "#"?>"><?php echo $lessonName; ?>
+	                        <h4 class=" <?php if($isPaid==1 || $instructorUsername==$username) echo " "; else echo "btn disabled "; if($legendName==NULL) echo "start"; else if($legendName!="") echo $legendName; ?> ">
+								<a href=" <?php if($isPaid==1 || $instructorUsername==$username) baseUrl(1,"course/".$this->uri->segment(2)."/lesson/".$link); else echo "#"?>"><?php echo $lessonName; ?>
 						    </h4>
 	                        <ul >
 	                              <li><i class="icon-clock"></i> <?php echo  $lessonDuration." Minutes"; ?></li>
@@ -132,7 +132,7 @@
             		<?php 
             		
             			
-						if($isPaid==1 or $instructorId==$userId)
+						if($isPaid==1 or $instructorUsername==$username)
 						{
 							echo "<a href='#' class='btn disabled button_fullwidth-3'>Start Learning</a>";
 						}

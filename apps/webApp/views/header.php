@@ -58,13 +58,13 @@ include_once("sessions.php");
                 <div class="col-md-9 col-sm-9 col-xs-9">
                     <div class=" pull-right">
                     <?php 
-                        if($userId!=""){?>
+                        if($username!=""){?>
                             <div class="row">
                                 <div class="gggcol-xs-offset-2"></div>
                                 <div class="col-xs-4 pull-right">
                             <?php 	
                                 //include_once "connectionDB.php" ;
-                                $querySearch="select id,profileImageURL from users where id='$userId'";
+                                //$querySearch="select id,profileImageURL from users where id='$userId'";
 
                                 // $runQuery=mysql_query($querySearch);
 
@@ -88,7 +88,7 @@ include_once("sessions.php");
                                  </div>
                             </div>
                     <?php }
-                        else if($userId==""){?>
+                        else if($username==""){?>
                         <a href="<?php echo baseUrl()."login";?>" class="button_top" id="login_top2">Giriş</a>
                         <a href="<?php echo baseUrl()."applyInstructor";?>" class="button_top hidden-xs" id="apply">Eğitmen Ol</a></div>
                         <ul id="top_nav" class="hidden-xs">

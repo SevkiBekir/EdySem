@@ -1,7 +1,7 @@
 <li><a href="<?php baseUrl(); ?>">Anasayfa</a></li>
 <li><a href=<?php echo baseUrl()."courseList"; ?>>Kurslar</a></li>
 
-<?php if($userId != ""){ ?>
+<?php if($username != ""){ ?>
     <li class="mega_drop_down">
         <a href="#">Profilim</a>
         <div class="mobnav-subarrow"></div>
@@ -13,19 +13,19 @@
                     <li style="margin-top:10%">
                         <?php 	
                             //include_once("connectionDB.php");
-                            $querySearch="select id,profileImageURL from users where id='$userId'";
+                            //querySearch="select id,profileImageURL from users where id='$userId'";
                             //$runQuery=mysql_query($querySearch);
-                            while(false) //$fetchQuery=mysql_fetch_array($runQuery)
-                            {
+                            //while(false) //$fetchQuery=mysql_fetch_array($runQuery)
+                            //{
                                 //$userImageProfileURL=$fetchQuery["profileImageURL"];
-                            }
+                            //}
                         ?>
                         <center><img class="img-rounded " style="width:120px;height:120px;" src="<?php assetsUrl(); ?><?php  //echo $userImageProfileURL; ?>" alt="" /></center>
                         <p>
                            <h4 class="text-center"><?php echo $userFName.' '.$userLName; ?></h4>
                         </p>
 
-                        <a href="<?php echo baseUrl()."myProfile";?>" class="text-center">Profil Detaylarına Git</a>
+                        <a href="<?php echo baseUrl()."profile/$username";?>" class="text-center">Profil Detaylarına Git</a>
 
                     </li>
                 </ul>
@@ -35,6 +35,7 @@
                 <h5>Kurslarım</h5>
                 <ul class="mega_submenu">
                     <?php
+                    /*
                     $querySearch="select courseId from courseToUser where userId='$userId'";
                     //$runQuery=mysql_query($querySearch);
                     $count=0;
@@ -59,6 +60,7 @@
                              $countCompleted=$fetchQueryX["OK"];
 
                         $percentage=(100*$countCompleted)/$countLesson;
+                    */
                     ?>
 
                     <li>
@@ -66,7 +68,7 @@
                             <div class="col-xs-4">
 
                                 <div class="photo">
-                                   <img class="img-rounded" style="width:160px;height:120px;" src="<?php assetsUrl(); ?><?php echo $courseImageURL; ?>" alt="" />
+                                   <img class="img-rounded" style="width:160px;height:120px;" src="<?php assetsUrl(); ?><?php //echo $courseImageURL; ?>" alt="" />
 
                                 </div>
                             </div>
@@ -74,11 +76,11 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="course_info text-center">
-                                            <a href=" <?php assetsUrl(); ?><?php echo 'course.php?courseId='.$courseId; ?>"><?php echo  $courseName; ?></a>
+                                            <a href=" <?php assetsUrl(); ?><?php //echo 'course.php?courseId='.$courseId; ?>"><?php //echo  $courseName; ?></a>
                                         </div>
-                                        <span>You complete <strong><?php echo $countCompleted; ?></strong> out of <strong><?php echo $countLesson; ?></strong> derslerin</span><span id="end"><i class="icon-trophy"></i></span>
+                                        <span>You complete <strong><?php //echo $countCompleted; ?></strong> out of <strong><?php //echo $countLesson; ?></strong> derslerin</span><span id="end"><i class="icon-trophy"></i></span>
                                         <div class="progress">
-                                            <div class="progress-bar progress-bar-info" role="progressbar" data-percentage="<?php echo $percentage; ?>"></div>
+                                            <div class="progress-bar progress-bar-info" role="progressbar" data-percentage="<?php //echo $percentage; ?>"></div>
                                         </div>
                                     </div>
                                 </div><!-- End progress bar -->
@@ -89,9 +91,9 @@
                     </li>
 
                 <?php
-                    } 
+                   // }
                         
-                    if($count == 0){
+                    //if($count == 0){
                 ?>
 
                     <li>
@@ -104,7 +106,7 @@
                         </div>
                     </li>	 		
                 <?php	 		
-                    }
+                   // }
                  ?>
 
 

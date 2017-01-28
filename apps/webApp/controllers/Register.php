@@ -20,7 +20,7 @@ class register extends CI_Controller {
         //-1->Boş gönderi yaptı.
         
         
-        if(($this->users->register(post('rEmail'), post('rPassword1'), post('rFirstName'), post('rLastName'))) == 1){
+        if(($this->users->register(post('rEmail'), post('rPassword1'), post('rFirstName'), post('rLastName'), post('rUsername'))) == 1){
 			
         	
         	//echo "<script>alert('Kayıt Olundu');</script>";

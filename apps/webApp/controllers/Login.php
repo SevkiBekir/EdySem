@@ -21,8 +21,9 @@ class login extends CI_Controller {
         if($id){
         	$firstName = $this->users->getFName($id);
         	$lastName  = $this->users->getLName($id);
-        	
-            session('userId', $id);
+        	$username = $this->users->getUsername($id);
+
+            session('username', $username);
             session('userFName', $firstName);
             session('userLName', $lastName);
 

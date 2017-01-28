@@ -10,7 +10,7 @@
      */ 
 include_once( "sessions.php");
 
-if($userId==''){
+if($username==''){
 	include_once("header.php"); ?>
 
 	<section id="login_bg">

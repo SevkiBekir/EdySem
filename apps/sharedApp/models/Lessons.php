@@ -159,8 +159,10 @@
 	        $query=$this->db->get();
 			
 	        $row=$query->result();
-	        
-	        return $row[0];
+	        if($row!=NULL)
+	            return $row[0];
+	        else
+	            return NULL;
         }
 		
 		

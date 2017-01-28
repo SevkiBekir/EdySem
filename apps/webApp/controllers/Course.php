@@ -25,7 +25,8 @@ class course extends CI_Controller {
         else{
             $this->load->model('courses');
             $this -> load -> model('lessons');
-            
+            $this -> load -> model('users');
+
 		    $getCourseId = $this -> courses -> getCourseLink(NULL,$link) -> courseId;
             
             //new dBug($getCourseId);
@@ -45,9 +46,11 @@ class course extends CI_Controller {
             
             $getEducation = $this -> courses -> getEducation($getInstructorDetails -> educationId);
             $getOccupation = $this -> courses -> getOccupation($getInstructorDetails -> occupationId);
-            
+
+
+
             $data['instructor'] = array(
-				'id'			=> 	 $getCourseDetails -> instructorId,
+				'username'		=> 	$getInstructorDetails -> username,
                 'firstName'     =>   $getInstructorDetails -> firstname,
                 'lastName'      =>   $getInstructorDetails -> lastname,
                 'education'     =>   $getEducation -> name,
@@ -58,8 +61,9 @@ class course extends CI_Controller {
             $countLesson = $this -> lessons -> countLessons($getCourseId);
             $data['countLesson'] = $countLesson->count;
             
-            $userId = $this->session->userId;
-            $countCompleted = $this -> lessons -> countCompleted($userId,$getCourseId);
+            $username = $this->session->username;
+            $getUserId = $this -> users -> getUserIdWithUsername($username);
+            $countCompleted = $this -> lessons -> countCompleted($getUserId,$getCourseId);
             $data['countCompleted']=$countCompleted->count;
 			
 			$getLessons = $this -> lessons -> getLessons($getCourseId);
@@ -67,7 +71,7 @@ class course extends CI_Controller {
 			$i=0;
 			foreach ($getLessons as $row){
 
-			    $getLegendName = $this -> lessons -> getLegendName($userId, $row -> id);
+			    $getLegendName = $this -> lessons -> getLegendName($getUserId, $row -> id);
 
 
 				$dummyArray['l'.$i]=array(
@@ -86,14 +90,16 @@ class course extends CI_Controller {
 			$data['lessons']=$dummyArray;
 			
             
-			$controlCourse2User=$this -> courses -> controlCourse2User($userId, $getCourseId);
+			$controlCourse2User=$this -> courses -> controlCourse2User($getUserId, $getCourseId);
 			$data['controlCourse2User']=$controlCourse2User -> count;
 			
 			$sumDurations=$this -> lessons -> sumDurations($getCourseId);
 
 			$data['sumDurations']=$sumDurations -> sum;
 			
-			
+
+
+
             //new dBug($data);
             
             loadView('course',$data);
@@ -105,8 +111,56 @@ class course extends CI_Controller {
 		echo "Payment Page for '".$link."'<br/>";
 		echo "<a href='";
 		baseUrl(1,"/course/".$this->uri->segment(2));
+
 		echo "'>GERİ </a>";
+
+        echo "<br/><h1>Dersi al</h1><br/>";
+
+        echo "<a href='";
+        baseUrl(1,"/course/".$this->uri->segment(2));
+        echo "/payment/process'>ÖDE </a>";
+        echo "";
 	}
+
+    public function process($link){
+
+        echo "Process Page for '".$link."'<br/>";
+        $this->load->model('courses');
+        $this->load->model('users');
+        $this->load->model('paymentprocess');
+
+
+        $getCourseId = $this -> courses -> getCourseLink(NULL,$link) -> courseId;
+
+        $getUserId = $this -> users -> getUserIdWithUsername($this->session->username);
+
+        $controlCourse2User=$this -> courses -> controlCourse2User($getUserId, $getCourseId);
+
+        if(!$controlCourse2User->count){ //kayıt yok kaydet
+            if($this->paymentprocess->newRecord($getUserId,$getCourseId,"başarılı") == 1){
+                echo "başarılı";
+                $this->load->model('coursetouser');
+                if($this->coursetouser->newRecord($getUserId,$getCourseId) == 1){
+                    echo "ders alma işlemi gerçekleşti.<br/>";
+                    echo "<a href='";
+                    baseUrl(1,"/course/".$this->uri->segment(2));
+
+                    echo "'>DERSE GİT </a>";
+
+                }else{
+                    echo "ders almada sorun yaşandı.";
+                }
+
+            }
+        }else{
+            //kayıt var. etme
+            echo "ders daha önce alınmış";
+        }
+
+
+
+
+    }
     
     
     

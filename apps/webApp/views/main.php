@@ -13,7 +13,7 @@
 //new dBug(session());
 include_once("header.php");
 
-if($userId==""){ 
+if($username==""){
 
 ?>
     <section id="sub-header" >
@@ -67,24 +67,31 @@ if($userId==""){
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control style_2" name="rUsername" placeholder="Kullanıcı Adı" required>
+                                <span class="input-icon"><i class="icon-user"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <input type="email" name="rEmail" class="form-control style_2" placeholder="Email" required>
                                 <span class="input-icon"><i class="icon-email"></i></span>
                             </div>
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <input type="password" class="form-control style_2" name="rPassword1" placeholder="Şifre" required>
-                                <span class="input-icon"><i class="icon-user"></i></span>
+                                <span class="input-icon"><i class="icon-lock"></i></span>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <input type="password" class="form-control style_2" name="rPassword2" placeholder="Şifre (Yeniden)" required>
-                                <span class="input-icon"><i class="icon-user"></i></span>
+                                <span class="input-icon"><i class="icon-lock"></i></span>
                             </div>
                         </div>
                     </div>
@@ -104,7 +111,7 @@ if($userId==""){
         </div>
       </section><!-- End sub-header -->
 <?php  }
-	else if($userId!=""){
+	else if($username!=""){
 ?>
         <section id="sub-header" >
         <div class="container">

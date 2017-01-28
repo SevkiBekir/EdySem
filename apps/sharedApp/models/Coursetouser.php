@@ -62,12 +62,12 @@
         // SET FUNCTIONS//
         
         
-        public function newRecord($p_userId = false, $p_courseId = false, $p_date = false){
+        public function newRecord($p_userId = false, $p_courseId = false){
             /**
              * Assigning values...
              */
-            if (userId != NULL && courseId != NULL && date != NULL){
-	            if($this->save(array("userId" => $p_userId, "courseId" => $p_courseId, "date" => $p_date))){
+            if ($p_userId != NULL && $p_courseId != NULL){
+	            if($this->save(array("userId" => $p_userId, "courseId" => $p_courseId))){
 	                /// Record is successful
 	                return 1;
 	            };
@@ -78,4 +78,4 @@
             }            
             //return false;
         }
-        
+    }

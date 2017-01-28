@@ -35,6 +35,11 @@ if($userId=='')
 							<input type="text" class="form-control inputFormMargin" name="rLastName" placeholder="Soyisim" required>
                             <span class="input-icon"><i class="icon-user"></i></span>
 				</div>
+
+                <div class="form-group inputFormMargin">
+                    <input type="text" class="form-control inputFormMargin" name="rUsername" placeholder="Kullanıcı Adı" required>
+                    <span class="input-icon"><i class="icon-user"></i></span>
+                </div>
        
 				<div class="form-group inputFormMargin">
 					<input name="rEmail" type="email" class=" form-control inputFormMargin" placeholder="Email" required>

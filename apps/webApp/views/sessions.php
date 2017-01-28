@@ -1,5 +1,5 @@
 <?php
-    $userId = session('userId');
+    $username = session('username');
     $userFName = session("userFName");
     $userLName = session("userLName");
 
