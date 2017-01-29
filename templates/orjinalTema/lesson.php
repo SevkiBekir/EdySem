@@ -1,21 +1,6 @@
 <?php include_once "sessions.php"; ?>
 <?php include_once "header.php"; 
-	
-	$getLessonId="";
-	$getLessonId=$_GET['lessonId'];
-	
-	include_once "connectionDB";
-	
-	$query="select count(*) as OK, c.name,c.id,c.teacherId from lessons l join courseToUser cTU on cTU.courseId=l.courseId  join courses c on c.Id=l.courseId where cTU.userId=$userId and l.id=$getLessonId";
-	$query=mysql_real_escape_string($query);
-	$runQuery=mysql_query($query);
-	while($fetchQuery=mysql_fetch_array($runQuery))
-	{
-		$countLesson=$fetchQuery["OK"];
-		$courseName=$fetchQuery["name"];
-		$courseId=$fetchQuery["id"];
-		$courseTeacherId=$fetchQuery["teacherId"];
-	}
+
 	if($courseTeacherId==$userId)
 		$countLesson=1;
 	

@@ -101,8 +101,16 @@
 	                    	$usedChapter=$chapterNo;
 		                    echo "<h3 class='chapter_course'>Chapter $chapterNo: $chapterName  </h3>";
 	                    }
-					
-						$legendName=convert2LegendName($row["getLegendName"]);
+                        $legendName = $row["getLegendName"];
+
+
+                        if($row["getLegendName"] != "Başlanılmadı"){
+                            $legendName =  $legendName -> legendName;
+                        }
+
+                        $legendName=convert2LegendName($legendName);
+
+
 						$link=$row["link"];
 							
 	                    

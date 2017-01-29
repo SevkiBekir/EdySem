@@ -81,14 +81,14 @@ class course extends CI_Controller {
 					'lessonTypeName'	=> $row -> lessonTypeName,
 					'chapterName'		=> $row -> chapterName,
 					'chapterNo'			=> $row -> chapterNo,
-					'getLegendName'		=> ($getLegendName == NULL)?'':$getLegendName->legendName,
+					'getLegendName'		=> ($getLegendName == NULL)?'':$getLegendName,
 					'link'				=> $this -> lessons -> generateLinkAndSave($row -> name,$getCourseId, $row -> id)
 				);
 				$i++;
 			}
 			
 			$data['lessons']=$dummyArray;
-			
+
             
 			$controlCourse2User=$this -> courses -> controlCourse2User($getUserId, $getCourseId);
 			$data['controlCourse2User']=$controlCourse2User -> count;

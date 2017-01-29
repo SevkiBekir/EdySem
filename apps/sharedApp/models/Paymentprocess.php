@@ -1,12 +1,14 @@
 
 <?php
-    /**
-     * Created automaticaly by dbModelCreator
-     * Asim Dogan NAMLI
-     * asim.dogan.namli@gmail.com
-     * @2016
-     * 
-     */
+/**
+ * SemTech Co -> E-Learning Project
+ * @2016
+ * ************ T E A M ************
+ * Şevki KOCADAĞ -> bekirsevki@gmail.com
+ * Asim Dogan NAMLI -> asim.dogan.namli@gmail.com
+ * Okan KAYA -> okankaya93@gmail.com
+ *
+ */
     class paymentprocess extends EL_Model {
 
         /**

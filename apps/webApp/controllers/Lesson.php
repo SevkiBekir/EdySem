@@ -22,6 +22,7 @@ class lesson extends CI_Controller {
         
 		$this -> load -> model('courses');
 		$this -> load -> model('lessons');
+		$this -> load -> model('users');
 
 		$data=[];
 
@@ -33,8 +34,9 @@ class lesson extends CI_Controller {
 			headerLocation("course/".$this->uri->segment(2));
 		if($getCourseId==NULL)
 			headerLocation("courseList");
-			
-		$userId = $this->session->userId;
+
+        $userId = $this -> users -> getUserIdWithUsername($this->session->username);
+
 		$ControlUser2Lesson=$this -> lessons -> ControlUser2Lesson($userId,$getLessonId);
 		if($ControlUser2Lesson==NULL)	
 			headerLocation("course/".$this->uri->segment(2));
@@ -52,11 +54,13 @@ class lesson extends CI_Controller {
 		
 		$getLessonWithContent=$this -> lessons -> getLessonWithContent($getLessonId);
 		$data['getLessonWithContent']=$getLessonWithContent;
+		$data['userId'] = $userId;
+		$data['lessonLegendName'] = $this -> lessons -> getLegendName($userId,$getLessonId);
+
 		
 		
 		
-		
-		new dBug($data);
+		//new dBug($data);
 
 		loadView("lesson",$data);
 		loadView("footer");
@@ -64,8 +68,28 @@ class lesson extends CI_Controller {
 	}
 	
 	public function transfer($link){
-		headerLocation("course/$link");
+        MetaRefresh("course/$link");
 	}
-	
+
+    /**
+     * Lesson completed
+     *
+     * @param       string  $courselink    Input $lessonlink
+     *
+     */
+    public function completed($courselink,$lessonlink){
+        $this -> load -> model('lessonprogress');
+        $this -> load -> model('users');
+        $this -> load -> model('lessons');
+
+        $getLessonId=$this -> lessons -> getLessonLink(NULL,$lessonlink) ->lessonId;
+        $userId = $this -> users -> getUserIdWithUsername($this->session->username);
+
+        if($this -> lessonprogress -> newRecord($userId,$getLessonId,3) != 1){
+            echo "ders tamamlandı fonks. sorun yaşandı.";
+        }
+
+        $this->transfer($courselink);
+    }
 	
 }

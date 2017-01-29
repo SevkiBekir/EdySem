@@ -159,11 +159,16 @@
 	        $query=$this->db->get();
 			
 	        $row=$query->result();
-	        if($row!=NULL)
+
+	        if($row != NULL)
 	            return $row[0];
 	        else
-	            return NULL;
+	            return "Başlanılmadı";
         }
+
+
+
+
 		
 		
 		/* $query=SELECT SUM(l.duration::integer) FROM "eLearningProject"."lessons" "l" JOIN "eLearningProject"."chapters" "ch" ON "ch"."id"="l"."chapterId" JOIN "eLearningProject"."courses" "co" ON "co"."id"="ch"."courseId" WHERE "co"."id" = 1 
@@ -234,12 +239,13 @@
 //		$query="select count(*) as OK, c.name,c.id,c.teacherId   where cTU.userId=$userId and l.id=$getLessonId";
 		
 		public function ControlUser2Lesson($userId=0,$lessonId){
+
 			$table="lessons l";
             $schemeVar=printSchemeName();
             if (findLocalOrNot()==true)
                 $table=$schemeVar.".".$table;
             
-	        $this->db->select('count(*) as OK, c.name as courseName, c.id as courseId, c.instructorId')
+	        $this->db->select('count(*) as ok, c.name as courseName, c.id as courseId, c.instructorId')
 	        		 ->from($table)
 					 ->join($schemeVar.".chapters ch","ch.id=l.chapterId")
                      ->join($schemeVar.".courses c","c.id=ch.courseId")
@@ -249,7 +255,7 @@
 			
 			$query=$this->db->get();
 	        $row=$query->result();
-	        
+
 	        return $row[0];
 		}
 		
@@ -262,7 +268,7 @@
             if (findLocalOrNot()==true)
                 $table=$schemeVar.".".$table;
 			
-			 $this->db->select('l.name as lessonName, dt.name as documentTypeName, d.explanation, d.name as fileURL ')
+			 $this->db->select('l.name as lessonName, l.content as content, dt.name as documentTypeName, d.explanation, d.name as fileURL ')
 					  ->from($table)
 					  ->join($schemeVar.".documents d","d.lessonId=l.id")
 					  ->join($schemeVar.".documentTypes dt","dt.id=d.documentTypeId")

@@ -1,12 +1,14 @@
 
 <?php
-    /**
-     * Created automaticaly by dbModelCreator
-     * Asim Dogan NAMLI
-     * asim.dogan.namli@gmail.com
-     * @2016
-     * 
-     */
+/**
+ * SemTech Co -> E-Learning Project
+ * @2016
+ * ************ T E A M ************
+ * Şevki KOCADAĞ -> bekirsevki@gmail.com
+ * Asim Dogan NAMLI -> asim.dogan.namli@gmail.com
+ * Okan KAYA -> okankaya93@gmail.com
+ *
+ */
     class lessonprogress extends EL_Model {
 
         /**
@@ -62,12 +64,12 @@
         // SET FUNCTIONS//
         
         
-        public function newRecord($p_userId = false, $p_lessonId = false, $p_lessonLegendId = false){
+        public function newRecord($userId = false, $lessonId = false, $lessonLegendId = false){
             /**
              * Assigning values...
              */
-            if (userId != NULL && lessonId != NULL && lessonLegendId != NULL){
-	            if($this->save(array("userId" => $p_userId, "lessonId" => $p_lessonId, "lessonLegendId" => $p_lessonLegendId))){
+            if ($userId != NULL && $lessonId != NULL && $lessonLegendId != NULL){
+	            if($this->save(array("userId" => $userId, "lessonId" => $lessonId, "lessonLegendId" => $lessonLegendId))){
 	                /// Record is successful
 	                return 1;
 	            };
@@ -78,4 +80,5 @@
             }            
             //return false;
         }
+    }
         
