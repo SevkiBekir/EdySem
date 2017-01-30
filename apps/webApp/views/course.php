@@ -104,7 +104,10 @@
                         $legendName = $row["getLegendName"];
 
 
-                        if($row["getLegendName"] != "Başlanılmadı"){
+	                    if($legendName == "")
+                            $legendName = "Başlanılmadı";
+
+                        if($legendName != "Başlanılmadı"){
                             $legendName =  $legendName -> legendName;
                         }
 
@@ -142,7 +145,7 @@
             			
 						if($isPaid==1 or $instructorUsername==$username)
 						{
-							echo "<a href='#' class='btn disabled button_fullwidth-3'>Start Learning</a>";
+							echo "<a href='#' class='btn disabled button_fullwidth-3'>Öğrenmeye Başla</a>";
 						}
 						else
 						{

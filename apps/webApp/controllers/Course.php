@@ -6,12 +6,10 @@
      * Şevki KOCADAĞ -> bekirsevki@gmail.com
      * Asim Dogan NAMLI -> asim.dogan.namli@gmail.com
      * Okan KAYA -> okankaya93@gmail.com
-     * 
+     *
      */
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class course extends CI_Controller {
-    
     public function __construct()
     {
     	parent::__construct();
@@ -108,56 +106,111 @@ class course extends CI_Controller {
 	}
 	
 	public function payment($link){
-		echo "Payment Page for '".$link."'<br/>";
-		echo "<a href='";
-		baseUrl(1,"/course/".$this->uri->segment(2));
+        $this->load->model('users');
+        $this->load->model('courses');
 
-		echo "'>GERİ </a>";
+        $this->load->library('form_validation');
 
-        echo "<br/><h1>Dersi al</h1><br/>";
+        $data = [];
+        $username = $this -> session -> username;
 
-        echo "<a href='";
-        baseUrl(1,"/course/".$this->uri->segment(2));
-        echo "/payment/process'>ÖDE </a>";
-        echo "";
+        $getUserId = $this -> users -> getUserIdWithUsername($username);
+        $courseLink = $this->uri->segment(2);
+
+        //userid false dönerse böyle bir user yok. birisi session düzenleme yapmış ama işe yaramaz header hemen...
+        if(!$getUserId){
+            headerLocation("course/".$courseLink);
+        }
+
+        $getCourseId = $this -> courses -> getCourseLink(NULL,$link) -> courseId;
+        $getCourseDetails = $this->courses->getCourseDetails(NULL, array('isActive' => 1,'c.id' => $getCourseId));
+
+        $data['course'] = array(
+            'courseName'    =>   $getCourseDetails -> name,
+            'price'         =>   $getCourseDetails -> price,
+            'courseLink'    =>   $courseLink,
+        );
+
+        //new dBug($data);
+
+        $data['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+
+
+        loadView('payment',$data);
 	}
 
-    public function process($link){
-
-        echo "Process Page for '".$link."'<br/>";
+    public function process($courseLink){
         $this->load->model('courses');
         $this->load->model('users');
         $this->load->model('paymentprocess');
 
+        $this->load->library('form_validation');
 
-        $getCourseId = $this -> courses -> getCourseLink(NULL,$link) -> courseId;
+        $this->form_validation->set_rules('txbCCOwnerFLName', 'Kredi Kartı Sahibinin Adı ve Soyadı', 'trim|required');
+        $this->form_validation->set_rules('txbCCNo', 'Kredi Kartı No', 'numeric|trim|required');
+        $this->form_validation->set_rules('txbCCSecurityNo', 'Kredi Kartı Güvenlik Kodu', 'numeric|trim|required');
+
+        if($this->form_validation->run() == FALSE)
+            headerLocation("/course/".$courseLink."/payment");
+
+
+
+        $getCourseId = $this -> courses -> getCourseLink(NULL,$courseLink) -> courseId;
 
         $getUserId = $this -> users -> getUserIdWithUsername($this->session->username);
 
-        $controlCourse2User=$this -> courses -> controlCourse2User($getUserId, $getCourseId);
-
-        if(!$controlCourse2User->count){ //kayıt yok kaydet
-            if($this->paymentprocess->newRecord($getUserId,$getCourseId,"başarılı") == 1){
-                echo "başarılı";
-                $this->load->model('coursetouser');
-                if($this->coursetouser->newRecord($getUserId,$getCourseId) == 1){
-                    echo "ders alma işlemi gerçekleşti.<br/>";
-                    echo "<a href='";
-                    baseUrl(1,"/course/".$this->uri->segment(2));
-
-                    echo "'>DERSE GİT </a>";
-
-                }else{
-                    echo "ders almada sorun yaşandı.";
-                }
-
-            }
-        }else{
-            //kayıt var. etme
-            echo "ders daha önce alınmış";
+        //userid false dönerse böyle bir user yok. birisi session düzenleme yapmış ama işe yaramaz header hemen...
+        if(!$getUserId){
+            headerLocation("course/".$courseLink);
         }
 
+        $data = [];
+        $data['courseLink'] = $courseLink;
 
+        $txbCCOwnerFLName=post('txbCCOwnerFLName');
+        $txbCCNo=post('txbCCNo');
+        $txbCCSecurityNo=post('txbCCSecurityNo');
+        $cmbCCMonth=post('cmbCCMonth');
+        $cmbCCYear=post('cmbCCYear');
+        $chbAgreement=post('chbAgreement');
+        $btnPayment=post('btnPayment');
+
+        if($btnPayment == "Satın Al" && $chbAgreement == 1){
+            if($txbCCNo==1234 && $txbCCSecurityNo==123 && $cmbCCMonth==1 && $cmbCCYear==2017 && $txbCCOwnerFLName=="edysem"){
+                //Credit Cart Control
+                $controlCourse2User=$this -> courses -> controlCourse2User($getUserId, $getCourseId);
+
+                if(!$controlCourse2User->count){ //kayıt yok kaydet
+                    if($this->paymentprocess->newRecord($getUserId,$getCourseId,"başarılı") == 1){
+
+                        $this->load->model('coursetouser');
+                        if($this->coursetouser->newRecord($getUserId,$getCourseId) == 1){
+                            $data['gotoCourse'] =  baseUrl(0,"/course/".$courseLink);
+                            $data['isSuccessful'] = TRUE;
+
+
+                        }else{
+
+                            echo "ders almada sorun yaşandı.";
+                        }
+
+                    }
+                }else{
+                    //kayıt var. etme
+                    echo "ders daha önce alınmış";
+                }
+
+            }else{
+                $this->paymentprocess->newRecord($getUserId,$getCourseId,"Kredi kartı bilgileri yanlış.");
+                $data['isSuccessful'] = FALSE;
+            }
+        }else{
+            headerLocation("/course/".$courseLink."/payment");
+        }
+        loadView("paymentResult",$data);
 
 
     }

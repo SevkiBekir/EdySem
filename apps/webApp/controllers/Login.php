@@ -16,7 +16,6 @@ class login extends CI_Controller {
 		$this->load->model('users');
         
         $id = $this->users->getUserId(post('lEmail'), post('lPassword'));
-        new dBug(post('lPassword'));
         
         if($id){
         	$firstName = $this->users->getFName($id);

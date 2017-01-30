@@ -1,4 +1,3 @@
-
 <?php
    /**
      * SemTech Co -> E-Learning Project
@@ -7,11 +6,8 @@
      * Şevki KOCADAĞ -> bekirsevki@gmail.com
      * Asim Dogan NAMLI -> asim.dogan.namli@gmail.com
      * Okan KAYA -> okankaya93@gmail.com
-     * 
+     *
      */
-
-    //include "dbModels/Users.php";
-
     class users extends EL_Model {
 
         /**
@@ -112,7 +108,7 @@
 		
 		
     }
-?>
+
                 
                 
                 

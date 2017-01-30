@@ -8,7 +8,6 @@
      * Okan KAYA -> okankaya93@gmail.com
      * 
      */
-    
     /**
      * $this->session->userData($key) yapısını kısaltır.
      * 
@@ -142,11 +141,20 @@
     /**
      * Shortens "<meta http-equiv=\"refresh\" content=\"0; url=".get_instance()->config->base_url($file,NULL))."\">"
      */
-    function MetaRefresh($file = NULL){
-       echo "<meta http-equiv='refresh' content='0; url=".get_instance()->config->base_url($file, NULL)."'>";
+    function MetaRefresh($file = NULL,$seconds=0){
+       echo "<meta http-equiv='refresh' content='$seconds; url=".get_instance()->config->base_url($file, NULL)."'>";
     }
 
+
     /**
+     * Shortens "<script>location.href = '".get_instance()->config->base_url($file, NULL).";</script>"
+     */
+    function scriptLocation($file = NULL){
+        echo("<script>location.href = '".get_instance()->config->base_url($file, NULL).";</script>");
+
+    }
+
+/**
      * find local or remote host
      */
     function findLocalOrNot(){
@@ -190,4 +198,3 @@
             else if ($name="Başlanılmadı")
                 return "start";
         }
-?>

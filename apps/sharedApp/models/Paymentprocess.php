@@ -1,4 +1,3 @@
-
 <?php
 /**
  * SemTech Co -> E-Learning Project
@@ -9,6 +8,7 @@
  * Okan KAYA -> okankaya93@gmail.com
  *
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
     class paymentprocess extends EL_Model {
 
         /**
