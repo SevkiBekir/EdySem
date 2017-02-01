@@ -40,6 +40,7 @@ if($username==''){
 					<div class="form-group" style="margin-bottom:5px;">
 						<input name="btnLogin" type="submit" value="Giriş" class="button_fullwidth" style=" margin-bottom:5px;" >
 					</div>
+                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none;"/>
 					
 	                <div class="login-or"><hr class="hr-or"><span class="span-or">or</span></div>
 					<a href="<?php baseUrl(1,'register') ?>" class="button_fullwidth-2">Kayıt Ol</a>

@@ -143,6 +143,8 @@ class course extends CI_Controller {
 	}
 
     public function process($courseLink){
+
+
         $this->load->model('courses');
         $this->load->model('users');
         $this->load->model('paymentprocess');
@@ -155,8 +157,7 @@ class course extends CI_Controller {
 
         if($this->form_validation->run() == FALSE)
             headerLocation("/course/".$courseLink."/payment");
-
-
+        //echo validation_errors();
 
         $getCourseId = $this -> courses -> getCourseLink(NULL,$courseLink) -> courseId;
 
@@ -211,6 +212,8 @@ class course extends CI_Controller {
             headerLocation("/course/".$courseLink."/payment");
         }
         loadView("paymentResult",$data);
+
+
 
 
     }

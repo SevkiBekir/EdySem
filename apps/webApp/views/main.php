@@ -41,6 +41,7 @@ if($username==""){
                                     <span class="input-icon"><i class="icon-lock"></i></span>
                                 </div>
                             </div>
+                            <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none;"/>
                             <div class="col-md-12">
                                 <div class="form-group">
                                      <input type="submit" name="btnLogin" value="Giriş" class="btn-lg button_fullwidth">
@@ -95,6 +96,7 @@ if($username==""){
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none;"/>
 
                     <div class="row">
 

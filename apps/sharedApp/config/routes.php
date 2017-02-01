@@ -55,6 +55,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 /* CUSTOM */
+$route['courseList/search/catagory/(:any)'] = 'courseList/searchCat/$1';
 $route['course/(:any)/lesson']='lesson/transfer/$1';
 $route['course/(:any)/lesson/(:any)']='lesson/index/$2';
 $route['course/(:any)/lesson/(:any)/completed']='lesson/completed/$1/$2';

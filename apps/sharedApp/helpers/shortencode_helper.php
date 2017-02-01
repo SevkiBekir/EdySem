@@ -116,6 +116,17 @@
         return get_instance()->input->post($key, TRUE);
     }
 
+
+    /**
+     * $this->input->cookie yordamını xss kontrolü açık olarak döndrür
+     *
+     * @param string $key Boş bırakıldığında tüm post verisini döndürür
+     */
+    function cookie($key = NULL){
+
+        return get_instance()->input->cookie($key, TRUE);
+    }
+
     /**
      * $this->input->server verisini döndürür
      * 

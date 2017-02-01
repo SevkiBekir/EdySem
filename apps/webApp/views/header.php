@@ -116,10 +116,15 @@ include_once("sessions.php");
 
                     <div class="col-md-3 pull-right hidden-sm hidden-xs">
                             <div id="sb-search" class="sb-search">
-                                <form method="get" action="<?php echo baseUrl()."courseList";?>">
-                                    <input class="sb-search-input" placeholder="Aramak istediğin kelimeyi gir" type="text" value="" name="search" id="search">
+
+
+                                <form method="get" action="<?php echo baseUrl()."courseList/search";?>">
+                                    <input class="sb-search-input" placeholder="Aramak istediğin kelimeyi giriniz" type="text" value="" name="words" id="words" style="color: white">
                                     <input class="sb-search-submit" type="submit" value="">
                                     <span class="sb-icon-search"></span>
+                                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none;"/>
+
+
                                 </form>
                             </div>
                       </div><!-- End search -->

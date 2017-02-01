@@ -40,6 +40,7 @@
             </div><!-- End col-md-4  -->
 
             <div class="col-md-8" style="margin-top:10px;">
+
                 <form method="post" action="<?php baseUrl(1,"/course/".$courseLink."/payment/process"); ?>">
                     <div class="form-group">
                         <input name="txbCCOwnerFLName" type="text" class=" form-control" value="<?php echo set_value('txbCCOwnerFLName'); ?>" placeholder="Kredi Kartı Sahibinin Adı ve Soyadı" required>
@@ -103,7 +104,7 @@ kabul ediyorum.                            </label>
                                 <input name="btnPayment" type="submit" class="btn-lg button_fullwidth button_subscribe_green " value="Satın Al">
                             </div>
                         </div><!-- End row -->
-                        <input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>" />
+                        <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none;"/>
                 </form>
             </div>
 

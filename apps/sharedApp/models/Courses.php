@@ -32,7 +32,7 @@ class courses extends EL_Model {
      * Get CourseDetails Table Inner Join
      */
 
-    public function getCourseDetails($id=NULL,$where = NULL,$catId = NULL){
+    public function getCourseDetails($id=NULL,$where = NULL,$catId = NULL,$like = NULL){
         $table=$this->table;
         $schemeVar=printSchemeName();
 
@@ -56,9 +56,14 @@ class courses extends EL_Model {
             $this->db->where('catagoryId',$catId);
         }
 
+        if ($like != NULL){
+            $this->db->like('name',$like);
+        }
+
         $query=$this->db->get();
 
         $row = $query->result();
+
         if (count($where)==2) //to get course
             return $row[0];
         else
@@ -83,7 +88,7 @@ class courses extends EL_Model {
 
 
 
-     public function getCatagory(){
+     public function getCatagory($id = NULL){
         $table="catagories";
         $schemeVar=printSchemeName();
         if (findLocalOrNot()==true)
@@ -91,6 +96,34 @@ class courses extends EL_Model {
 
         $this->db->select('*')
                  ->from($table);
+
+         if ($id != NULL){
+             $this->db->where('id',$id);
+         }
+
+
+        $query=$this->db->get();
+        $row=$query->result();
+
+        return $row;
+    }
+
+    public function getCatagoryWithWords($words = NULL){
+        $table=$this->table;
+        $schemeVar=printSchemeName();
+
+        if (findLocalOrNot()==true)
+            $table=$schemeVar.".".$table;
+        $this->db->select('catagoryId, ca.name')
+            ->from($table.' c');
+
+        $this->db->join('courseDetails cd','cd.courseId=c.id');
+        $this->db->join('catagories ca','ca.Id=c.catagoryId');
+        $this->db->distinct();
+
+        if ($words != NULL){
+            $this->db->like('c.name',$words);
+        }
 
 
         $query=$this->db->get();
@@ -137,16 +170,21 @@ class courses extends EL_Model {
 
 
 
-    public function getCatagoryCount($id){
+    public function getCatagoryCount($id=NULL,$words = NULL){
         $table="courses";
         $schemeVar=printSchemeName();
         if (findLocalOrNot()==true)
             $table=$schemeVar.".".$table;
 
         $this->db->select('count(*) as count')
-                 ->from($table)
-                 ->where('catagoryId',$id);
+                 ->from($table);
 
+
+        if($id != NULL)
+            $this->db->like('catagoryId',$id);
+
+        if($words != NULL)
+            $this->db->like('name',$words);
         $query=$this->db->get();
         $row=$query->result();
         return $row[0];

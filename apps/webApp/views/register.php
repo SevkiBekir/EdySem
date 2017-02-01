@@ -57,6 +57,7 @@ if($userId=='')
 					<input name="btnRegister" value="Kayıt Ol" type="submit" class="button_fullwidth">
 				
 				</div>
+                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none;"/>
 				
                 <div class="login-or"><hr class="hr-or"><span class="span-or">or</span></div>
                 <a href="login" class="button_fullwidth-2">Giriş</a>

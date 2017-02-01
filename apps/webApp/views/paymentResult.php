@@ -95,6 +95,6 @@ if($isSuccessful){
                 </section>
 
 <?php
-    MetaRefresh("/course/".$courseLink."/payment",3);
+    MetaRefresh("/course/".$courseLink."/payment",30);
 }
     ?>
