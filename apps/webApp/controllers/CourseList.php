@@ -145,6 +145,7 @@ class courseList extends CI_Controller {
         try{
             if(isset($get_token) && isset($get_cookie) && $get_cookie == $get_token){
                 $words = get('words');
+                //new dBug($words);
                 $this->load->model('courses');
                 $get = $this->courses->getCourseDetails(NULL, array('isActive' => 1),NULL, $words);
 

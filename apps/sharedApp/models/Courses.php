@@ -11,19 +11,44 @@
  * COURSES MODEL
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+/**
+ * Class courses
+ */
 class courses extends EL_Model {
 
     /**
      * Columns of table users
      */
     public $name;
+    /**
+     * @var
+     */
     public $instructorId;
+    /**
+     * @var
+     */
     public $catagoryId;
+    /**
+     * @var
+     */
     public $price;
+    /**
+     * @var
+     */
     public $createdDate;
+    /**
+     * @var
+     */
     public $updatedDate;
+    /**
+     * @var
+     */
     public $isActive;
 
+    /**
+     * courses constructor.
+     */
     public function __construct(){
         // Call the CI_Model constructor
         parent::__construct();
@@ -70,6 +95,10 @@ class courses extends EL_Model {
             return $row;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getCatagoryName($id){
         $table="catagories";
         $schemeVar=printSchemeName();
@@ -86,9 +115,11 @@ class courses extends EL_Model {
     }
 
 
-
-
-     public function getCatagory($id = NULL){
+    /**
+     * @param null $id
+     * @return mixed
+     */
+    public function getCatagory($id = NULL){
         $table="catagories";
         $schemeVar=printSchemeName();
         if (findLocalOrNot()==true)
@@ -108,6 +139,10 @@ class courses extends EL_Model {
         return $row;
     }
 
+    /**
+     * @param null $words
+     * @return mixed
+     */
     public function getCatagoryWithWords($words = NULL){
         $table=$this->table;
         $schemeVar=printSchemeName();
@@ -133,6 +168,10 @@ class courses extends EL_Model {
     }
 
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getDateDifference($id){
 
         $table=$this->table;
@@ -152,6 +191,10 @@ class courses extends EL_Model {
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getCourseRating($id){
         $table="ratings";
         $schemeVar=printSchemeName();
@@ -169,8 +212,12 @@ class courses extends EL_Model {
     }
 
 
-
-    public function getCatagoryCount($id=NULL,$words = NULL){
+    /**
+     * @param null $id
+     * @param null $words
+     * @return mixed
+     */
+    public function getCatagoryCount($id=NULL, $words = NULL){
         $table="courses";
         $schemeVar=printSchemeName();
         if (findLocalOrNot()==true)
@@ -190,7 +237,12 @@ class courses extends EL_Model {
         return $row[0];
     }
 
-     public function getCourseLink($id=NULL,$where=NULL){
+    /**
+     * @param null $id
+     * @param null $where
+     * @return mixed
+     */
+    public function getCourseLink($id=NULL, $where=NULL){
         $table="links";
         $schemeVar=printSchemeName();
         if (findLocalOrNot()==true)
@@ -209,6 +261,10 @@ class courses extends EL_Model {
         return $row[0];
     }
 
+    /**
+     * @param $string
+     * @return mixed
+     */
     public function getCatagoryIdFromLink($string){
         $table="links";
         $schemeVar=printSchemeName();
@@ -224,6 +280,10 @@ class courses extends EL_Model {
         return $row[0];
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getInstructor($id){
         $table="users u";
         $schemeVar=printSchemeName();
@@ -242,6 +302,10 @@ class courses extends EL_Model {
         return $row[0];
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getEducation($id){
         $table="educationLevels";
         $schemeVar=printSchemeName();
@@ -255,11 +319,14 @@ class courses extends EL_Model {
         $query=$this->db->get();
 
         $row=$query->result();
-
         return $row[0];
     }
 
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getOccupation($id){
         $table="occupations";
         $schemeVar=printSchemeName();
@@ -280,6 +347,11 @@ class courses extends EL_Model {
     /* $queryPay="select count(*) as OK from courseToUser where userId=$userId and courseId=$getCourseId";
     */
 
+    /**
+     * @param $userId
+     * @param $courseId
+     * @return mixed
+     */
     public function controlCourse2User($userId, $courseId){
 
         $table="courseToUser";
@@ -291,6 +363,120 @@ class courses extends EL_Model {
                  ->from($table)
                  ->where('userId',$userId)
                  ->where('courseId',$courseId);
+
+        $query=$this->db->get();
+
+        $row=$query->result();
+
+        return $row[0];
+    }
+
+
+    /**
+     * @param $userId
+     * @return mixed
+     */
+    function countCourseForUsers($userId){
+        $table="courseToUser";
+        $schemeVar=printSchemeName();
+        if (findLocalOrNot()==true)
+            $table=$schemeVar.".".$table;
+
+        $this->db->select('count(*) as count')
+            ->from($table)
+            ->where('userId',$userId);
+
+        $query=$this->db->get();
+
+        $row=$query->result();
+
+        return $row[0];
+    }
+
+
+    // select c.name as courseName, ca.name as catagoryName, ca.id as catagoryId, c.id as courseId from courseToUser ct
+    // join courses c on ct.courseId=c.id join catagories ca on ca.id=c.catagoryId where ct.userId=4
+    /**
+     * @param $userId
+     * @return mixed
+     */
+    function getCourseIdFromBuyedCourses($userId){
+        $table="courseToUser ct";
+        $schemeVar=printSchemeName();
+        if (findLocalOrNot()==true)
+            $table=$schemeVar.".".$table;
+
+        $this->db->select('c.name as courseName, ca.name as catagoryName, ca.id as catagoryId, c.id as courseId')
+            ->from($table)
+            ->join($schemeVar.'.courses c','ct.courseId=c.id')
+            ->join($schemeVar.'.catagories ca','ca.id=c.catagoryId')
+            ->where('userId',$userId);
+
+        $query=$this->db->get();
+
+        $row=$query->result();
+        return $row;
+    }
+
+    /**
+     * @param null $id
+     * @param null $where
+     * @return mixed
+     */
+    public function getCatagoryLink($id=NULL, $where=NULL){
+        $table="links";
+        $schemeVar=printSchemeName();
+        if (findLocalOrNot()==true)
+            $table=$schemeVar.".".$table;
+
+        $this->db->select('*')
+                 ->from($table);
+        if ($where == NULL)
+            $this -> db ->where('catagoryId',$id);
+        else if ($id == NULL)
+            $this -> db -> where('name', $where);
+
+        $query=$this->db->get();
+        $row=$query->result();
+
+        return $row[0];
+    }
+
+
+    /**
+     * @param $instructorId
+     * @return mixed
+     */
+    function getCourseFromTaught($instructorId){
+        $table=$this->table." c";
+        $schemeVar=printSchemeName();
+        if (findLocalOrNot()==true)
+            $table=$schemeVar.".".$table;
+
+        $this->db->select('c.name as courseName, ca.name as catagoryName, ca.id as catagoryId, c.id as courseId')
+            ->from($table)
+            ->join($schemeVar.'.catagories ca','ca.id=c.catagoryId')
+            ->where('c.instructorId',$instructorId);
+
+        $query=$this->db->get();
+
+        $row=$query->result();
+        return $row;
+    }
+
+    /**
+     * @param $userId
+     * @return mixed
+     */
+    function countCourseForInstructors($userId){
+        $table=$this->table." c";
+        $schemeVar=printSchemeName();
+        if (findLocalOrNot()==true)
+            $table=$schemeVar.".".$table;
+
+        $this->db->select('count(*) as count')
+            ->from($table)
+            ->where('instructorId',$userId);
 
         $query=$this->db->get();
 

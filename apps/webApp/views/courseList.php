@@ -10,13 +10,7 @@
      * 
      */
 
-include_once "header.php"; 
-	/*
-	$getCatagoryId="";
-	$getCatagoryId=$_GET['catagoryId'];
-	$getSearch="";
-	$getSearch=$_GET['search'];
-	*/
+include_once "header.php";
 ?>
 
 <section id="sub-header">
@@ -39,16 +33,7 @@ include_once "header.php";
         <div class="row">
         
         <aside class="col-lg-3 col-md-4 col-sm-4">
-        	<?php /*if($getSearch!="")
-        	{ ?>
-        	<div class="box_style_1">
-            	<h4>Search</h4>
-                <ul class="submenu-col">
-                	<li><a href="<?php echo "courseList";if($getCatagoryId!="") echo "?catagoryId=$getCatagoryId"; ?>"><?php echo $getSearch; ?><i class="pull-right icon-off"></i> </a></li>
-                </ul>
-        	</div>
-            <?php
-            }*/
+        	<?php
             			$countCourse = $countCourse['count'];
             			
             			$getSearch = "";  // ???

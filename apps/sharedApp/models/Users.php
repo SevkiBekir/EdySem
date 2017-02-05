@@ -14,17 +14,33 @@
          * Columns of table users
          */
 		public $firstname;
-		public $lastname;
-		public $email;
-		public $password;
+        /**
+         * @var
+         */
+        public $lastname;
+        /**
+         * @var
+         */
+        public $email;
+        /**
+         * @var
+         */
+        public $password;
 
 
+        /**
+         * users constructor.
+         */
         public function __construct(){
             // Call the CI_Model constructor
             parent::__construct();
         }
-		/**
+
+        /**
          * Get UserID
+         * @param $email
+         * @param $password
+         * @return bool
          */
         function getUserId($email, $password){
         	$password = md5($password);
@@ -38,8 +54,11 @@
             
             return false;
         }
+
         /**
          * Get FirstName by using ID
+         * @param $id
+         * @return bool
          */
         function getFName($id){
 	        if($row = $this->search(array('id' => $id))){
@@ -47,8 +66,11 @@
 	        }
 	        return false;
         }
+
         /**
          * Get LastName by using ID
+         * @param $id
+         * @return bool
          */
         function getLName($id){
 	        if($row = $this->search(array('id' => $id))){
@@ -59,6 +81,8 @@
 
         /**
          * Get getUsername by using ID
+         * @param $id
+         * @return bool
          */
         function getUsername($id){
             if($row = $this->search(array('id' => $id))){
@@ -69,6 +93,8 @@
 
         /**
          * Get getUserID by using username
+         * @param $username
+         * @return bool
          */
         function getUserIdWithUsername($username){
             if($row = $this->search(array('username' => $username))){
@@ -76,6 +102,64 @@
             }
             return false;
         }
+
+        /**
+         * Get getUserDetails
+         * @param null $id
+         * @param null $where
+         * @return
+         * @internal param $id ,where
+         */
+
+        function getUserDetails($id = NULL, $where = NULL){
+            $table=$this->table;
+            $schemeVar=printSchemeName();
+
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+            $this->db->select('*')
+                ->from($table.' u');
+            if (findLocalOrNot()==true)
+                $this->db->join($schemeVar.'.userDetails ud','ud.userId=u.id');
+            else
+                $this->db->join('userDetails ud','ud.userId=u.id');
+
+            if($where != NULL)
+                $this->db->where($where);
+
+            if ($id != NULL){
+                $this->db->where('u.id',$id);
+            }
+
+            $query=$this->db->get();
+            $row = $query->result();
+            return $row[0];
+
+
+        }
+
+
+        /**
+         * @param $id
+         * @return mixed
+         */
+        function getUserType($id){
+            $table="userTypes";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+
+            $this->db->select('name')
+                ->from($table)
+                ->where('id',$id);
+
+            $query=$this->db->get();
+
+            $row=$query->result();
+
+            return $row[0];
+        }
+
          /**
          * Register
          */

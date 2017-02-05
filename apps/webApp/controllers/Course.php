@@ -143,8 +143,6 @@ class course extends CI_Controller {
 	}
 
     public function process($courseLink){
-
-
         $this->load->model('courses');
         $this->load->model('users');
         $this->load->model('paymentprocess');
