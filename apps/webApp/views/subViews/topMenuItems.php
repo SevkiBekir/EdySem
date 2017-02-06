@@ -11,21 +11,13 @@
                 <ul class="mega_submenu">
 
                     <li style="margin-top:10%">
-                        <?php 	
-                            //include_once("connectionDB.php");
-                            //querySearch="select id,profileImageURL from users where id='$userId'";
-                            //$runQuery=mysql_query($querySearch);
-                            //while(false) //$fetchQuery=mysql_fetch_array($runQuery)
-                            //{
-                                //$userImageProfileURL=$fetchQuery["profileImageURL"];
-                            //}
-                        ?>
+                        
                         <center><img class="img-rounded " style="width:120px;height:120px;" src="<?php assetsUrl(); ?><?php  //echo $userImageProfileURL; ?>" alt="" /></center>
                         <p>
                            <h4 class="text-center"><?php echo $userFName.' '.$userLName; ?></h4>
                         </p>
 
-                        <a href="<?php echo baseUrl()."profile/$username";?>" class="text-center">Profil Detaylarına Git</a>
+                        <a href="<?php echo baseUrl()."profile";?>" class="text-center">Profil Detaylarına Git</a>
 
                     </li>
                 </ul>

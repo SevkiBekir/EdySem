@@ -62,16 +62,6 @@ include_once("sessions.php");
                             <div class="row">
                                 <div class="gggcol-xs-offset-2"></div>
                                 <div class="col-xs-4 pull-right">
-                            <?php 	
-                                //include_once "connectionDB.php" ;
-                                //$querySearch="select id,profileImageURL from users where id='$userId'";
-
-                                // $runQuery=mysql_query($querySearch);
-
-                                while(false){ //$fetchQuery=mysql_fetch_array($runQuery)
-                                    //$userImageProfileURL = $fetchQuery["profileImageURL"];
-                                }
-                            ?>
                                     <img class="img-circle img-responsive" style="width:50px;height:50px;" src="<?php assetsUrl(); ?><?php  //echo $userImageProfileURL; ?>" alt="">
                                 </div>
                                 <div class="col-xs-4 col-xs-push-1 hpull-right">
@@ -81,8 +71,8 @@ include_once("sessions.php");
                                     <span class="caret"></span>
                                   </a>
                                   <ul class="dropdown-menu">
-                                    <li><a  href="<?php echo baseUrl()."myProfile";?>"><span class=" icon-cog"></span> My Dashboard</a></li>
-                                    <li><a  href="<?php echo baseUrl()."logout";?>"><span class="icon-logout"></span> Log Out</a></li>
+                                    <li><a  href="<?php echo baseUrl()."profile";?>"><span class=" icon-cog"></span> Panelim</a></li>
+                                    <li><a  href="<?php echo baseUrl()."logout";?>"><span class="icon-logout"></span> Çıkış</a></li>
                                   </ul>
                                     </div>
                                  </div>

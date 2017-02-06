@@ -48,15 +48,15 @@
 
                     </ul>
                     <ul>
-                        <li>Name <strong class="pull-right"><?php echo $userFName." ".$userLName; ?></strong> </li>
+                        <li>İsim <strong class="pull-right"><?php echo $userFName." ".$userLName; ?></strong> </li>
                         <li>Email <strong class="pull-right"><?php echo $userEmail; ?></strong></li>
-                        <li>Age<strong class="pull-right"><?php echo $userAge; ?></strong></li>
-                        <li>Education Level<strong class="pull-right"><?php echo $userEduName; ?></strong></li>
-                        <li>Occupation<strong class="pull-right"><?php echo $userOccuName; ?></strong></li>
-                        <li>Telephone  <strong class="pull-right"><?php echo $userPhone; ?></strong></li>
-                        <li>Courses <strong class="pull-right"><?php echo $totalCourse; ?></strong></li>
-                        <li>Membership Type<strong class="pull-right"><?php echo $userType; ?></strong></li>
-                        <a href="course/edit" class="button_fullwidth btn-lg">EDIT YOUR PROFILE</a>
+                        <li>Yaş<strong class="pull-right"><?php echo $userAge; ?></strong></li>
+                        <li>Eğitim Seviyesi<strong class="pull-right"><?php echo $userEduName; ?></strong></li>
+                        <li>Meslek<strong class="pull-right"><?php echo $userOccuName; ?></strong></li>
+                        <li>Telefon  <strong class="pull-right"><?php echo $userPhone; ?></strong></li>
+                        <li>Satın Alınan Kurs Sayısı <strong class="pull-right"><?php echo $totalCourse; ?></strong></li>
+                        <li>Üyelik Tipi<strong class="pull-right"><?php echo $userType; ?></strong></li>
+                        <a href="course/edit" class="button_fullwidth btn-lg">Profilini Düzenle</a>
                     </ul>
 
                 </div><!-- End box-sidebar -->
@@ -66,12 +66,12 @@
 
                 <!--  Tabs -->
                 <ul class="nav nav-tabs" id="mytabs">
-                    <li class="active"><a href="#profile_teacher" data-toggle="tab">Profile</a></li>
-                    <li><a href="#courses" data-toggle="tab">My Courses as Student</a></li>
+                    <li class="active"><a href="#profile_teacher" data-toggle="tab">Profilim</a></li>
+                    <li><a href="#courses" data-toggle="tab">Öğrenci Olarak Kurslarım</a></li>
                     <?php if($userType === "Yönetici" || $userType === "Öğretmen")
                     { ?>
-                        <li><a href="#myGivingCourses" data-toggle="tab">My Courses as Instructor</a></li>
-                        <li><a href="#myDashboard" data-toggle="tab">My Dashboard</a></li>
+                        <li><a href="#myGivingCourses" data-toggle="tab">Öğretmen olarak Kurslarım</a></li>
+                        <li><a href="#myDashboard" data-toggle="tab">Yönetim Panelim</a></li>
                     <?php }
                     ?>
                 </ul>
@@ -79,7 +79,7 @@
                 <div class="tab-content">
 
                     <div class="tab-pane fade in active" id="profile_teacher">
-                        <h3>About me</h3>
+                        <h3>Hakkımda</h3>
                         <?php echo $userAbout; ?>
                     </div>
 
@@ -87,12 +87,12 @@
 
                         <div class="table-responsive">
                             <table class="table table-striped">
-                                <thead >
-                                <tr >
-                                    <th>Category</th>
-                                    <th>Course name</th>
-                                    <th>Lessons</th>
-                                    <th>Progress</th>
+                                <thead>
+                                <tr>
+                                    <th>Kategori</th>
+                                    <th>Kurs İsmi</th>
+                                    <th>Ders Sayısı</th>
+                                    <th>Durum</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -128,7 +128,7 @@
 
                                 </tbody>
                             </table>
-                            <?php if($count==0) echo "No course :("; ?>
+                            <?php if($count==0) echo "Hiç kurs yok. :("; ?>
                         </div>
                     </div><!-- End tab-pane -->
                     <?php
@@ -144,9 +144,10 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Category</th>
-                                        <th>Course name</th>
-                                        <th>Lessons</th>
+                                        <th>Kategori</th>
+                                        <th>Kurs İsmi</th>
+                                        <th>Ders Sayısı</th>
+                                        <th>Durum</th>
 
                                     </tr>
                                     </thead>
@@ -188,7 +189,7 @@
 
                                     </tbody>
                                 </table>
-                                <?php if($instructorCourseCount==0) echo "No course :("; ?>
+                                <?php if($instructorCourseCount==0) echo "Hiç kurs yok. :("; ?>
                             </div>
                         </div><!-- End tab-pane -->
 
@@ -198,29 +199,29 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Process Name</th>
-                                        <th>Description</th>
+                                        <th>İşlem İsmi</th>
+                                        <th>Açıklaması</th>
 
 
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td><a href="#">Add a course</a></td>
-                                        <td>This process is about adding a new course</td>
+                                        <td><a href="#">Kurs Ekle</a></td>
+                                        <td>Bu işlem; kurs eklemenizi sağlar.</td>
                                     </tr>
                                     <tr>
-                                        <td><a href="#">Update your course/s</a></td>
-                                        <td>You can edit your course/s and also delele it.</td>
+                                        <td><a href="#">Kursu Düzenle veya Sil</a></td>
+                                        <td>Bu işlem; kursunuzu düzenlemenize veya silmenize yarar.</td>
                                     </tr>
                                     <?php
 
-                                    if($userType=="Admin")
+                                    if($userType==="Yönetici")
                                     {
                                         ?>
                                         <tr>
-                                            <td><a href="#">Approve/Deny Course</a></td>
-                                            <td>You can approve or deny a course. Course status also included.</td>
+                                            <td><a href="#">Kurs Onayla/Reddet</a></td>
+                                            <td>Gönderilen kursları onaylayabilirsiniz veya reddetebilirsiniz.</td>
                                         </tr>
                                         <?php
                                     }
