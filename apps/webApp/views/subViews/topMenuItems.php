@@ -11,7 +11,7 @@
                 <ul class="mega_submenu">
 
                     <li style="margin-top:10%">
-                        
+
                         <center><img class="img-rounded " style="width:120px;height:120px;" src="<?php assetsUrl(); ?><?php  //echo $userImageProfileURL; ?>" alt="" /></center>
                         <p>
                            <h4 class="text-center"><?php echo $userFName.' '.$userLName; ?></h4>
@@ -27,79 +27,66 @@
                 <h5>Kurslarım</h5>
                 <ul class="mega_submenu">
                     <?php
-                    /*
-                    $querySearch="select courseId from courseToUser where userId='$userId'";
-                    //$runQuery=mysql_query($querySearch);
-                    $count=0;
-                    while(false) //$fetchQuery=mysql_fetch_array($runQuery)
-                    {
-                        $count++;
-                        $courseId=$fetchQuery["courseId"];
-                        $queryCourseInfo="select c.name, cD.ImageURL from courses c inner join courseDetails cD on c.id=cD.courseId where c.id=$courseId";
-                        $runQueryCI=mysql_query($queryCourseInfo);
-                        while($fetchQueryCI=mysql_fetch_array($runQueryCI))
-                        {
-                            $courseName=$fetchQueryCI["name"];
-                            $courseImageURL=$fetchQueryCI["ImageURL"];
-                        }
-                        $queryX="select count(*) as OK from lessons where courseId=$courseId";
-                        $runQueryX=mysql_query($queryX);
-                        while($fetchQueryX=mysql_fetch_array($runQueryX))
-                            $countLesson=$fetchQueryX["OK"];
-                        $queryX="select count(*) as OK from lessonProgress lP inner join lessons l on l.id=lP.lessonId  where lP.userId=$userId and lP.lessonLegendId=2 and l.courseId=$courseId";
-                        $runQueryX=mysql_query($queryX);
-                        while($fetchQueryX=mysql_fetch_array($runQueryX))
-                             $countCompleted=$fetchQueryX["OK"];
+                    $topMenuData = session('topMenu');
+                    $topCountCourse = $topMenuData['countCourse'];
 
-                        $percentage=(100*$countCompleted)/$countLesson;
-                    */
+                        
+                    if($topCountCourse === 0){
                     ?>
 
-                    <li>
-                        <div class="row">
-                            <div class="col-xs-4">
-
-                                <div class="photo">
-                                   <img class="img-rounded" style="width:160px;height:120px;" src="<?php assetsUrl(); ?><?php //echo $courseImageURL; ?>" alt="" />
-
-                                </div>
-                            </div>
-                            <div class="col-xs-8">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="course_info text-center">
-                                            <a href=" <?php assetsUrl(); ?><?php //echo 'course.php?courseId='.$courseId; ?>"><?php //echo  $courseName; ?></a>
-                                        </div>
-                                        <span>You complete <strong><?php //echo $countCompleted; ?></strong> out of <strong><?php //echo $countLesson; ?></strong> derslerin</span><span id="end"><i class="icon-trophy"></i></span>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-info" role="progressbar" data-percentage="<?php //echo $percentage; ?>"></div>
-                                        </div>
+                        <li>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="course_info text-center">
+                                        <h4> Hiç kursun yok :(</h4>
                                     </div>
-                                </div><!-- End progress bar -->
-                                <!-- end col-xs-8 -->
-                            </div>
-                        <!-- end row -->
-                        </div>
-                    </li>
-
-                <?php
-                   // }
-                        
-                    //if($count == 0){
-                ?>
-
-                    <li>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="course_info text-center">
-                                    <h4> Hiç kayıtlı kursun yok :(</h4>
                                 </div>
                             </div>
-                        </div>
-                    </li>	 		
-                <?php	 		
-                   // }
-                 ?>
+                        </li>
+                    <?php
+                    }else if($topCountCourse>0){
+                        $topCourse=$topMenuData['course'];
+                        for ($i=0; $i<$topCountCourse;$i++){
+                            $topTemp = $topCourse["a".$i];
+                            $topCourseName=$topTemp["courseName"];
+                            $topCountLesson=$topTemp["countLesson"];
+                            $topCountCompleted=$topTemp["countCompleted"];
+                            $topCourseLink=$topTemp["courseLink"];
+
+                            $topPercentage=(100*$topCountCompleted)/$topCountLesson;
+
+                    ?>
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-4">
+
+                                    <div class="photo">
+                                       <img class="img-rounded" style="width:160px;height:120px;" src="<?php assetsUrl(); ?><?php //echo $courseImageURL; ?>" alt="" />
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="course_info text-center">
+                                                <a href=" <?php baseUrl(1,"course/".$topCourseLink); ?>"><?=$topCourseName; ?></a>
+                                            </div>
+                                            <span>You complete <strong><?=$topCountCompleted; ?></strong> out of <strong><?=$topCountLesson; ?></strong> derslerin</span><span id="end"><i class="icon-trophy"></i></span>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-info" role="progressbar" data-percentage="<?=$topPercentage; ?>"></div>
+                                            </div>
+                                        </div>
+                                    </div><!-- End progress bar -->
+                                    <!-- end col-xs-8 -->
+                                </div>
+                            <!-- end row -->
+                            </div>
+                        </li>
+                    <?php
+
+                        }
+                    }
+                    ?>
 
 
                 </ul>

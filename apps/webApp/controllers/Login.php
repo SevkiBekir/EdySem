@@ -26,7 +26,43 @@ class login extends CI_Controller {
             session('userFName', $firstName);
             session('userLName', $lastName);
 
-            MetaRefresh("main");
+
+            $data=[];
+            $this->load->model('courses');
+
+            $getUserId = $id;
+
+            $countCourse = $this -> courses -> countCourseForUsers($getUserId)->count;
+            $data['countCourse'] = $countCourse;
+
+            if($countCourse !== 0){
+                $i=0;
+                $getCourse = $this -> courses -> getCourseIdFromBuyedCourses($getUserId);
+                $myArray=[];
+                $this -> load -> model('lessons');
+
+                foreach ($getCourse as $row){
+                    $getCourseLink = $this->courses->getCourseLink($row->courseId)->name;
+
+                    $countLesson = $this -> lessons -> countLessons($row->courseId);
+                    $countCompleted = $this -> lessons -> countCompleted($getUserId,$row->courseId);
+
+
+                    $myArray['a'.$i] = array(
+                        'courseName'            =>  $row->courseName,
+                        'courseLink'            =>  $getCourseLink,
+                        'countLesson'           =>  $countLesson->count,
+                        'countCompleted'        =>  $countCompleted->count,
+                    );
+
+                    $i++;
+                }
+
+                $data['course'] = $myArray;
+                session('topMenu', $data);
+            }
+
+            headerLocation("main");
         }
         else{
             loadView('login');

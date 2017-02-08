@@ -56,7 +56,7 @@
                         <li>Telefon  <strong class="pull-right"><?php echo $userPhone; ?></strong></li>
                         <li>Satın Alınan Kurs Sayısı <strong class="pull-right"><?php echo $totalCourse; ?></strong></li>
                         <li>Üyelik Tipi<strong class="pull-right"><?php echo $userType; ?></strong></li>
-                        <a href="course/edit" class="button_fullwidth btn-lg">Profilini Düzenle</a>
+                        <a href="course/edit" class="button_fullwidth btn-lg">Profili Düzenle</a>
                     </ul>
 
                 </div><!-- End box-sidebar -->

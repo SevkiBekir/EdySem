@@ -1,4 +1,3 @@
-
 <?php
     /**
      * SemTech Co -> E-Learning Project

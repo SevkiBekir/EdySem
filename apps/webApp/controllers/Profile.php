@@ -128,6 +128,8 @@ class profile extends CI_Controller {
 
             loadView('profile',$data);
             loadView('footer');
+
+
         }
         else{
             //Baska profili goster
