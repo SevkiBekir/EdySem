@@ -160,6 +160,56 @@
             return $row[0];
         }
 
+
+        /**
+         * @param $id
+         * @return mixed
+         */
+        public function getEducation($id = NULL){
+            $table="educationLevels";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+
+            $this->db->select('name')
+                ->from($table);
+            if($id !== NULL)
+                $this->db->where('id',$id);
+
+            $query=$this->db->get();
+
+            $row=$query->result();
+            if($id !==NULL)
+                return $row[0];
+            else
+                return $row;
+        }
+
+
+        /**
+         * @param $id
+         * @return mixed
+         */
+        public function getOccupation($id = NULL){
+            $table="occupations";
+            $schemeVar=printSchemeName();
+            if (findLocalOrNot()==true)
+                $table=$schemeVar.".".$table;
+
+            $this->db->select('name')
+                ->from($table);
+            if($id !== NULL)
+                $this->db->where('id',$id);
+
+            $query=$this->db->get();
+
+            $row=$query->result();
+            if($id !==NULL)
+                return $row[0];
+            else
+                return $row;
+        }
+
          /**
          * Register
          */
@@ -188,6 +238,9 @@
             }            
             //return false;
         }
+
+
+
 		
 		
 		

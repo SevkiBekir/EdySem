@@ -63,3 +63,5 @@ $route['course/(:any)/payment']='course/payment/$1';
 $route['course/(:any)/payment']='course/payment/$1';
 $route['course/(:any)/payment/process']='course/process/$1';
 $route['course/(:any)']='course/index/$1';
+$route['profile/edit/process']='profile/process/';
+

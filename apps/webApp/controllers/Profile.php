@@ -9,7 +9,6 @@
      *
      */
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 /**
  * Class profile
  */
@@ -138,7 +137,50 @@ class profile extends CI_Controller {
 	}
 
 	function edit(){
-        echo "edit page";
+        $this -> load -> model('users');
+
+        $username = $this->session->username;
+        // login kontrolu
+        if (!isset($username))
+            headerLocation("login");
+
+        $data=[];
+        $getUserId = $this -> users -> getUserIdWithUsername($username);
+        $getUserDetails = $this->users -> getUserDetails($getUserId);
+
+        $getEducation = $this -> users -> getEducation($getUserDetails -> educationId);
+        $getOccupation = $this -> users -> getOccupation($getUserDetails -> occupationId);
+
+        $data['users'] = array(
+            'firstname'        =>   $getUserDetails -> firstname,
+            'lastname'         =>   $getUserDetails -> lastname,
+            'email'            =>   $getUserDetails -> email,
+            'age'              =>   $getUserDetails -> age,
+            'education'        =>   $getEducation -> name,
+            'occupation'       =>   $getOccupation -> name,
+            'phone'            =>   $getUserDetails -> phone,
+            'about'            =>   $getUserDetails -> about,
+            'facebook'         =>   $getUserDetails -> fbUserName,
+            'twitter'          =>   $getUserDetails -> twUserName,
+            'gender'           =>   $getUserDetails -> gender,
+
+        );
+
+        $getEducationAll = $this -> users -> getEducation();
+        $data['allEducation'] = $getEducationAll;
+
+        $getOccupationAll = $this -> users -> getOccupation();
+        $data['allOccupation'] = $getOccupationAll;
+
+        loadView('editProfile',$data);
+        loadView('footer');
+
+    }
+
+    function process(){
+        $this -> load -> model('users');
+        echo "hello";
+
     }
 	
 

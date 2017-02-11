@@ -4,7 +4,7 @@
  * User: sbk
  * Date: 30/01/2017
  * Time: 01:22
- */
+*/
 
 
     include_once("header.php");
@@ -56,7 +56,7 @@
                         <li>Telefon  <strong class="pull-right"><?php echo $userPhone; ?></strong></li>
                         <li>Satın Alınan Kurs Sayısı <strong class="pull-right"><?php echo $totalCourse; ?></strong></li>
                         <li>Üyelik Tipi<strong class="pull-right"><?php echo $userType; ?></strong></li>
-                        <a href="course/edit" class="button_fullwidth btn-lg">Profili Düzenle</a>
+                        <a href="<?php echo baseUrl()."profile/edit";?>" class="button_fullwidth btn-lg">Profili Düzenle</a>
                     </ul>
 
                 </div><!-- End box-sidebar -->
